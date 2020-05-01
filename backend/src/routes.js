@@ -1,34 +1,25 @@
 const  express = require('express');
 
-const connection = require('./database/connection');
+
+
+const EnterpriseController = require('./controllers/EnterpriseController');
+const MobileController = require('./controllers/MobileController');
+const UserController = require('./controllers/UserController');
 
 const routes = express.Router();
 
-routes.post('/singin', async(req, res) => {
-    const { name, phone, address, city, uf} = req.body;
-    let { password } = req.body;
-    // hash simples de seguranca 
-    let hash = 5;
-    hash = 59 * password + hash;
-    password=hash
-
-    await connection('enterprise').insert({
-        name,
-        phone,
-        address,
-        city,
-        uf,
-        password
-    });
-
-    return res.json({send:'sucessfull'});
-})
+//MOBILE
+//listagem das empresas cadastradas no mobile
+routes.get('/mobile/list',  MobileController.index);
+//Cadastro do usuario final(realizar pedido)
+routes.post('/mobile', UserController.create);
+//Cadastro do endereco do usuario final
+routes.put('/mobile/order/address', UserController.update_address);
 
 
-
-
-
-
+//WEB
+//Cadastro do usuario empresa
+routes.post('/', EnterpriseController.create);
 
 
 module.exports = routes
