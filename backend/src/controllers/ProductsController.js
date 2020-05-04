@@ -4,7 +4,7 @@ module.exports ={
     async Index_Products(req, res){
         const list = await connection('products').select('*');
 
-        return res.json({list});
+        return res.json(list);
 
     },
     async create_Products(req, res){

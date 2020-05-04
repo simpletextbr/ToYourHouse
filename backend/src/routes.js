@@ -7,6 +7,7 @@ const MobileController = require('./controllers/MobileController');
 const UserController = require('./controllers/UserController');
 const ProductsController = require('./controllers/ProductsController');
 const CategoryController = require('./controllers/CategoryController');
+const AddsController = require('./controllers/AddsController');
 
 const routes = express.Router();
 
@@ -28,6 +29,9 @@ routes.get('/category', CategoryController.Index_Category);
 //Cadastro de Produtos, Listar, Deletar
 routes.post('/category/products', ProductsController.create_Products);
 routes.get('/category/products', ProductsController.Index_Products);
+//Cadastro de produtos, Listar, Deletar 
+routes.post('/adds', AddsController.Create_Adds);
+routes.get('/adds', AddsController.Index_Adds);
 
 
 module.exports = routes
