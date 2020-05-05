@@ -12,7 +12,7 @@ module.exports ={
         const verifyId = await connection('enterprise').select('id').where({id:enterprise_id});
 
         if(!verifyId[0]){
-            return res.status(401).json({send:'Id Unauthorized'});
+            return res.status(401).json({ error:'Id Unauthorized'});
         }else{
             const { title } = req.body;
 

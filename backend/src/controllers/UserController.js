@@ -17,7 +17,7 @@ module.exports = {
         const verifyId = await connection('user').select('id').where({id});
 
         if(!verifyId[0]){
-            return res.status(401).json({send:'Id Unauthorized'});
+            return res.status(401).json({ error:'Id Unauthorized'});
         }else{
             const verify_Address = await connection('user').select('address').where({id})
 

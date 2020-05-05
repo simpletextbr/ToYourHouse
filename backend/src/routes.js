@@ -31,6 +31,7 @@ routes.get('/category', CategoryController.Index_Category);
 //Cadastro de Produtos, Listar, Deletar
 routes.post('/category/products', ProductsController.create_Products);
 routes.get('/category/products', ProductsController.Index_Products);
+routes.delete('/category/products/:id', ProductsController.delete_Products);
 //Cadastro de produtos, Listar, Deletar 
 routes.post('/adds', AddsController.Create_Adds);
 routes.get('/adds', AddsController.Index_Adds);

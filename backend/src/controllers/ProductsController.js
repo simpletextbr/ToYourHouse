@@ -14,7 +14,7 @@ module.exports ={
         const verityCat = await connection('categoryProducts').select('id').where({id:cat_id});
 
         if(!verifyId[0] || !verityCat[0]){
-            return res.status(404).json({send:'Not Authorized'});
+            return res.status(401).json({ error:'Not Authorized'});
         }else{
 
             const{ name, Ing, price } = req.body;
@@ -29,6 +29,27 @@ module.exports ={
 
         }
         return res.json({send:'sucessfull'});
+    },
+    async delete_Products(req, res){
+        const { id } = req.params;
+        const enterprise_id = req.headers.authorization;
+
+        const verifyId = await connection('products')
+        .where('id', id)
+        .select('enterprise_id')
+        .first();
+
+        console.log(enterprise_id)
+        console.log(verifyId.enterprise_id)
+    
+        if(verifyId.enterprise_id !== enterprise_id){
+            return res.status(401).json({error:'Not Authorized'});
+        }else{
+
+        await connection('products').where('id', id).delete();
+
+        return res.status(204).send();
+        }
     }
 
 }
