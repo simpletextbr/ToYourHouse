@@ -13,7 +13,7 @@ module.exports ={
         const verifyId = await connection('enterprise').select('id').where({id:enterprise_id});
         const verityCat = await connection('categoryProducts').select('id').where({id:cat_id});
 
-        if(!verifyId || !verityCat){
+        if(!verifyId[0] || !verityCat[0]){
             return res.status(404).json({send:'Not Authorized'});
         }else{
 
