@@ -5,6 +5,7 @@ const uploadConfigCardapio = require("./config/cardapioUpload");
 
 
 const EnterpriseController = require('./controllers/EnterpriseController');
+const SessionController = require('./controllers/SessionController');
 const MobileController = require('./controllers/MobileController');
 const UserController = require('./controllers/UserController');
 const ProductsController = require('./controllers/ProductsController');
@@ -29,6 +30,8 @@ routes.put('/mobile/order/address', UserController.update_address);
 
 
 //WEB
+//Login da Empresa
+routes.post('/session', SessionController.create);
 //Cadastro do usuario empresa
 routes.post('/', EnterpriseController.create);
 //Upload de logo 

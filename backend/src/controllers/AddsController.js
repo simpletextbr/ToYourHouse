@@ -2,7 +2,10 @@ const connection = require('../database/connection');
 
 module.exports = {
     async Index_Adds(req, res) {
-        const list = await connection('adds').select('*');
+        const enterprise_id = req.headers.authorization;
+        const list = await connection('adds')
+        .where('enterprise_id', enterprise_id)
+        .select('*');
 
         return res.json(list);
         },
