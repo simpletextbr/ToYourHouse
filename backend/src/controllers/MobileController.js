@@ -9,7 +9,7 @@ async index(req, res){
     const list = await connection('enterprise')
     .limit(8)
     .offset((page - 1 ) * 8)
-    .select('*');
+    .select('name','phone','address','city','uf','logo','cardapio');
 
 
     res.header('Amazing-Enterprises', count['count(*)']);
