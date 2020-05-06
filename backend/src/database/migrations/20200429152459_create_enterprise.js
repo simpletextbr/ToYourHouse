@@ -9,6 +9,7 @@ exports.up = function(knex) {
       table.string('uf', 2).notNullable();
       table.string('password').notNullable();
       table.string('logo');
+      table.string('cardapio');
   });
   
 };

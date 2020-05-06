@@ -1,5 +1,7 @@
 const  express = require('express');
-
+const multer = require('multer');
+const uploadConfigLogo = require('./config/logoUpload');
+const uploadConfigCardapio = require("./config/cardapioUpload");
 
 
 const EnterpriseController = require('./controllers/EnterpriseController');
@@ -10,8 +12,12 @@ const CategoryController = require('./controllers/CategoryController');
 const AddsController = require('./controllers/AddsController');
 const PaymentsController = require('./controllers/PaymentsController');
 const CustonController = require('./controllers/CustonController');
+const UploadController = require('./controllers/UploadController');
 
 const routes = express.Router();
+const uploadlogo = multer(uploadConfigLogo);
+const uploadcardapio = multer(uploadConfigCardapio)
+
 
 //MOBILE
 //Cadastro do usuario final(realizar pedido)
@@ -26,7 +32,10 @@ routes.put('/mobile/order/address', UserController.update_address);
 //Cadastro do usuario empresa
 routes.post('/', EnterpriseController.create);
 //Upload de logo 
-
+routes.put('/config/upload/logo',uploadlogo.single('logo'), UploadController.logo_upload);
+routes.put('/config/upload/cardapio',uploadcardapio.single('cardapio'), UploadController.cardapio_upload);
+//alterando customizacao do fundo e dos botoes 
+routes.put('/config/custom', CustonController.create_Custon);
 //Cadastro de categoria, Listar, Deletar
 routes.post('/category', CategoryController.create_Category);
 routes.get('/category', CategoryController.Index_Category);
@@ -43,8 +52,6 @@ routes.delete('/adds/:id', AddsController.delete_Adds);
 routes.post('/config/payments', PaymentsController.create_Payments);
 routes.get('/config/payments', PaymentsController.Index_Payments);
 routes.delete('/config/payments/:id', PaymentsController.delete_Payments);
-//alterando customizacao do fundo e dos botoes 
-routes.put('/config/custom', CustonController.create_Custon);
 
 module.exports = routes
 
