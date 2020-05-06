@@ -25,19 +25,24 @@ routes.put('/mobile/order/address', UserController.update_address);
 //WEB
 //Cadastro do usuario empresa
 routes.post('/', EnterpriseController.create);
+//Upload de logo 
+
 //Cadastro de categoria, Listar, Deletar
 routes.post('/category', CategoryController.create_Category);
 routes.get('/category', CategoryController.Index_Category);
+routes.delete('/category/:id', CategoryController.delete_Category);
 //Cadastro de Produtos, Listar, Deletar
-routes.post('/category/products', ProductsController.create_Products);
-routes.get('/category/products', ProductsController.Index_Products);
-routes.delete('/category/products/:id', ProductsController.delete_Products);
+routes.post('/products', ProductsController.create_Products);
+routes.get('/products', ProductsController.Index_Products);
+routes.delete('/products/:id', ProductsController.delete_Products);
 //Cadastro de produtos, Listar, Deletar 
 routes.post('/adds', AddsController.Create_Adds);
 routes.get('/adds', AddsController.Index_Adds);
+routes.delete('/adds/:id', AddsController.delete_Adds);
 //Cadastro de Pagamentos, Listar, Deletar 
 routes.post('/config/payments', PaymentsController.create_Payments);
 routes.get('/config/payments', PaymentsController.Index_Payments);
+routes.delete('/config/payments/:id', PaymentsController.delete_Payments);
 //alterando customizacao do fundo e dos botoes 
 routes.put('/config/custom', CustonController.create_Custon);
 

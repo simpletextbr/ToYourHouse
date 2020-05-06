@@ -39,10 +39,8 @@ module.exports ={
         .select('enterprise_id')
         .first();
 
-        console.log(enterprise_id)
-        console.log(verifyId.enterprise_id)
-    
-        if(verifyId.enterprise_id !== enterprise_id){
+
+        if(verifyId.enterprise_id != enterprise_id){
             return res.status(401).json({error:'Not Authorized'});
         }else{
 

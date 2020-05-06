@@ -23,5 +23,24 @@ module.exports = {
         }
         return res.json({send:'sucessfull'});
     },
+    async delete_Category(req, res){
+        const { id } = req.params;
+        const enterprise_id = req.headers.authorization;
+
+        const verifyId = await connection('categoryProducts')
+        .where('id', id)
+        .select('enterprise_id')
+        .first();
+
+
+        if(verifyId.enterprise_id != enterprise_id){
+            return res.status(401).json({error:'Not Authorized'});
+        }else{
+
+        await connection('categoryProducts').where('id', id).delete();
+
+        return res.status(204).send();
+        }
+    }
 
 }
