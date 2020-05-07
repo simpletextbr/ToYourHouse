@@ -33,7 +33,7 @@ routes.put('/mobile/order/address', UserController.update_address);
 //Login da Empresa
 routes.post('/session', SessionController.create);
 //Cadastro do usuario empresa
-routes.post('/', EnterpriseController.create);
+routes.post('/register', EnterpriseController.create);
 //Upload de logo 
 routes.put('/config/upload/logo',uploadlogo.single('logo'), UploadController.logo_upload);
 routes.put('/config/upload/cardapio',uploadcardapio.single('cardapio'), UploadController.cardapio_upload);
