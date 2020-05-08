@@ -15,8 +15,10 @@ async create(req, res) {
 
 
     const verify = await connection("enterprise")
-    .where('name' || 'phone', name || phone)
+    .where('phone', phone)
     .first();
+
+ 
 
     if(!verify){
     await connection('enterprise').insert({

@@ -28,34 +28,35 @@ async function Register(e){
         uf,
         password
     }
-
+    if(name.trim() === "" || phone.trim() === "" || address.trim() === "" || city.trim() === "" || uf.trim() === "" || password.trim() ===""){
+        alert('Você precisa preencher todos os campos!')
+    }else{
     try{
-   
-        
-
-
-        await api.post('/register', data);
-        alert('criou o user krai');
-
+        await api.post('/register',  data);
         history.push('/inicio');
     }catch(error){
         alert('Usuario ja Cadastrado, Tente na aba de Login')
+        }
     }
-
 }
 
+async function Login(e){
+    e.preventDefault();
+
+    history.push('/login')
+}
     return(
         <>
         <header><img src={logoHeader} alt="Logomarca Toyourhouse"></img></header>
         <main>
             <section className="content">
-                <section className="apresentation">
+                <div className="apresentation">
                     <p><span className="S">S</span>eja Bem-Vindo ao <span className="TYH">TOYOURHOUSE®</span>,
                          Esta pagina é destinada aos web commerce que desejam aumentar sua produtividade e 
                          eficiência em sua recepção de pedidos via Whatsapp® e facilitar aos seus clientes a 
                          solicitação de cada pedido pelo Aplicativo mobile <span className="TYH">TOYOURHOUSE®</span>.</p>
-                </section>
-                <section className="singin">
+                </div>
+                <div className="singin">
                     <h3>Faça já o cadastro da sua empresa</h3>
                         <form onSubmit={Register}>
                             <p>Nome da Empresa<span className="aviso">( ESTE SERÁ O SEU USUÁRIO DE ACESSO )</span></p>
@@ -79,33 +80,37 @@ async function Register(e){
                                 onChange={e => setAddress(e.target.value)}
                             />
 
-                            <div className="row city-uf">
-                                <p>Cidade</p>
+                            <div className="rowcity-uf">
+                                <p>Cidade
                                 <input 
+                                    className="city"
                                     placeholder="Raposos"
                                     value={city}
                                     onChange={e => setCity(e.target.value)}
-                                />
-                                <p>UF</p>
-                                <input 
+                                /></p>
+                                
+                                <p>UF
+                                <input
+                                    className="uf"
                                     placeholder="MG"
                                     value={uf}
                                     onChange={e => setUf(e.target.value)}
-                                />
+                                /></p>
+                                
                             </div>
-                            <p>Senha <span className="aviso">( ESTE SERÁ O SEU USUÁRIO DE ACESSO )</span></p>
+                            <p>Senha <span className="aviso">( DEVE SER NUMERICA )</span></p>
                             <input
                                 type="password"
                                 placeholder="**********"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 />
-                            <div className="row buttons">
-                                <button className="btnregister" type="submit">Cadastar</button>
-                                <button className="btnregister">Login</button>
+                            <div className="rowbuttons">
+                                <button className="btnregister" type="submit">CADASTRAR</button>
+                                <button className="btnlogin" type="button" onClick={Login}>LOGIN</button>
                             </div>
                         </form>
-                </section>
+                </div>
             </section>
         </main>
         <footer><p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p></footer>

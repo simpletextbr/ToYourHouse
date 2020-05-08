@@ -1,0 +1,159 @@
+
+
+header{
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+header img{
+    width: 124px;
+    height: 60px;
+}
+
+
+.content{
+    width: 1312px;
+    height: 600px;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.apresentation{
+    width: 100%;
+    max-width: 791px;
+    height: 447px;
+    border-radius: 8px;
+
+    background-color: #FFFF;
+    box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.3);
+}
+
+.apresentation p{
+    font-size: 36px;
+    margin: 40px 20px 20px;   
+    justify-content: center;
+}
+
+.apresentation p .S{
+    margin-left: 86px;
+    font-size: 64px;
+
+}
+
+.apresentation p .TYH{
+    font-weight: bold;
+}
+
+.singin{
+    margin-left: 40px;
+    width: 100%;
+    max-width: 500px;
+    height: 600px;
+    border-radius: 8px;
+
+    background-color: #E1E1E1;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.singin h3{
+    margin: 20px auto;
+    font-size: 30px;
+    text-align: center;
+}
+
+.singin p{
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.singin p .aviso{
+    font-size: 10px;
+}
+
+.singin input{
+    border: 20px;
+    border-color: #616161;
+    border-radius: 4px;
+    margin: 0px  20px;
+    width: 100%;
+    max-width: 457px;
+    height: 46px;
+    box-sizing: border-box;
+    
+}
+
+div.rowcity-uf {
+    display: flex;
+}
+
+div.rowcity-uf input + input{
+    margin-left: 8px;
+}
+
+div.rowcity-uf p {
+    margin-top: 20px;
+}
+
+div.rowcity-uf input.city{
+    border: 2px;
+    margin: auto;
+    border-color: #616161;
+    border-radius: 4px;
+    width: 366px;
+    height: 46px;
+}
+
+div.rowcity-uf input.uf{
+    border: 2px;
+    margin: auto;
+    margin-right: 40px;
+    border-color: #616161;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 70px;
+    height: 46px;
+}
+
+
+div .rowbuttons{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+.singin .btnregister{
+    margin: 20px 20px;
+    border:0px;
+    border-radius: 4px;
+    width: 211px;
+    height: 50px;
+
+    font-size: 24px;
+    color: #FFFF;
+    background-color: #FF5555;
+}
+
+.singin .btnlogin{
+    margin: 20px 20px;
+    border:0px;
+    border-radius: 4px;
+    width: 195px;
+    height: 50px;
+
+    font-size: 24px;
+    color: #FFFF;
+    background-color: #FF5555;
+}
+
+
+footer {
+    margin-top: auto;
+    text-align-last: center;
+}
