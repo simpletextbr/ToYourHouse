@@ -13,6 +13,12 @@ async create(req, res) {
     hash = 59 * password + hash;
     password=hash
 
+
+    const verify = await connection("enterprise")
+    .where('name' || 'phone', name || phone)
+    .first();
+
+    if(!verify){
     await connection('enterprise').insert({
         name,
         phone,
@@ -30,6 +36,10 @@ async create(req, res) {
         button_app,
         enterprise_id
     })
+
+    }else{
+        return res.status(401).json({error: 'Usuario ja Cadastrado, Tente na aba de Login'})
+    }
 
     return res.json({send:'sucessfull'});
     }

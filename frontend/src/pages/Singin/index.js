@@ -30,14 +30,19 @@ async function Register(e){
     }
 
     try{
-        const response = await api.post('/register', 'enterprise', data);
+   
+        
 
-        history.push('/');
-    }catch(err){
 
+        await api.post('/register', data);
+        alert('criou o user krai');
+
+        history.push('/inicio');
+    }catch(error){
+        alert('Usuario ja Cadastrado, Tente na aba de Login')
     }
 
-};
+}
 
     return(
         <>
@@ -52,40 +57,53 @@ async function Register(e){
                 </section>
                 <section className="singin">
                     <h3>Faça já o cadastro da sua empresa</h3>
-                        <form>
-                            <p>Nome da Empresa</p><p className="aviso">( ESTE SERÁ O SEU USUÁRIO DE ACESSO )</p>
+                        <form onSubmit={Register}>
+                            <p>Nome da Empresa<span className="aviso">( ESTE SERÁ O SEU USUÁRIO DE ACESSO )</span></p>
                             <input 
                                 placeholder="AÇAITEIRA MIL GRAU"
+                                value={name}
+                                onChange={e => setName(e.target.value)}
                             />
 
-                            <p>Telefone da Empresa</p><p className="aviso">( APENAS NUMEROS )</p>
+                            <p>Whatsapp® da Empresa<span className="aviso">( APENAS NUMEROS )</span></p>
                             <input
-                                type="tel"
                                 placeholder="(31) 9 1234 5678"
+                                value={phone}
+                                onChange={e => setPhone(e.target.value)}
                             />
 
                             <p>Endereço da Empresa</p>
                             <input
                                 placeholder="Rua A, Numero 100, Bairro Centro"
+                                value={address}
+                                onChange={e => setAddress(e.target.value)}
                             />
 
-                            <section className="row city-uf">
+                            <div className="row city-uf">
                                 <p>Cidade</p>
                                 <input 
                                     placeholder="Raposos"
+                                    value={city}
+                                    onChange={e => setCity(e.target.value)}
                                 />
                                 <p>UF</p>
                                 <input 
                                     placeholder="MG"
+                                    value={uf}
+                                    onChange={e => setUf(e.target.value)}
                                 />
-                            </section>
-                            <p>Senha</p>
+                            </div>
+                            <p>Senha <span className="aviso">( ESTE SERÁ O SEU USUÁRIO DE ACESSO )</span></p>
                             <input
                                 type="password"
                                 placeholder="**********"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
                                 />
-                                <button type="submit">Cadastar</button>
-                                <button>Login</button>
+                            <div className="row buttons">
+                                <button className="btnregister" type="submit">Cadastar</button>
+                                <button className="btnregister">Login</button>
+                            </div>
                         </form>
                 </section>
             </section>
