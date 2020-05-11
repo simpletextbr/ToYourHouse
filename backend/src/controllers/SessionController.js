@@ -14,10 +14,7 @@ module.exports ={
         .where('name' && 'password', name && password)
         .select('name')
         .first();
-
-        console.log(login)
-
-
+        
         if(!login){
             return res.status(400).json({error: 'Wrong password or name'});
         }

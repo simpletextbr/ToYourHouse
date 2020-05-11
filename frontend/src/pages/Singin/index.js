@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 
 import logoHeader from '../../assets/logoHeader.svg';
-import './styles.css';
+import '../Login/style.css';
 import api from '../../services/api';
 
 export default function Logon(){
