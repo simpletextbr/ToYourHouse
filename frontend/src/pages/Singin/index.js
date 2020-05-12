@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 
 
 import logoHeader from '../../assets/logoHeader.svg';
-import '../Login/style.css';
+import './styles.css';
 import api from '../../services/api';
 
-export default function Logon(){
+export default function Singin(){
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
@@ -47,8 +47,8 @@ async function Login(e){
 }
     return(
         <>
-        <header><img src={logoHeader} alt="Logomarca Toyourhouse"></img></header>
-        <main>
+        <header className='register'><img src={logoHeader} alt="Logomarca Toyourhouse"></img></header>
+        <main className='regiser'>
             <section className="content">
                 <div className="apresentation">
                     <p><span className="S">S</span>eja Bem-Vindo ao <span className="TYH">TOYOURHOUSE®</span>,

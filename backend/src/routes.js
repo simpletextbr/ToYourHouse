@@ -32,6 +32,8 @@ routes.put('/mobile/order/address', UserController.update_address);
 //WEB
 //Login da Empresa
 routes.post('/session', SessionController.create);
+//listagem de empresas
+routes.get('/enterprise/list', EnterpriseController.index);
 //Cadastro do usuario empresa
 routes.post('/register', EnterpriseController.create);
 //Upload de logo 

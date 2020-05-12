@@ -2,18 +2,18 @@
     box-sizing: border-box;
 }
 
-header{
-    margin-top: 20px;
+header.register{
     margin-left: 60px;
+    margin-top: 20px;
 }
 
-header img{
+header.register{
     width: 124px;
     height: 60px;
 }
 
 
-.content{
+section.content{
     width: 1312px;
     height: 600px;
     margin: 60px auto;
@@ -23,7 +23,7 @@ header img{
     align-items: center;
 }
 
-.apresentation{
+div.apresentation{
     width: 100%;
     max-width: 791px;
     height: 447px;
@@ -33,23 +33,23 @@ header img{
     box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.3);
 }
 
-.apresentation p{
+div.apresentation p{
     font-size: 36px;
     margin: 40px 20px 20px;   
     justify-content: center;
 }
 
-.apresentation p .S{
+div.apresentation p .S{
     margin-left: 86px;
     font-size: 64px;
 
 }
 
-.apresentation p .TYH{
+div.apresentation p .TYH{
     font-weight: bold;
 }
 
-.singin{
+div.singin{
     margin-left: 40px;
     width: 100%;
     max-width: 500px;
@@ -60,25 +60,25 @@ header img{
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.singin h3{
+div.singin h3{
     margin: 20px auto;
     font-size: 30px;
     text-align: center;
 }
 
-.singin p{
+div.singin p{
     margin-left: 20px;
     margin-top: 20px;
     font-size: 16px;
     font-weight: bold;
 }
 
-.singin p .aviso{
+div.singin p .aviso{
     font-size: 10px;
 }
 
-.singin input{
-    border-color: #E1E1E1;
+div.singin input{
+    border: 2px solid #E1E1E1; 
     border-radius: 4px;
     margin: 0px  20px;
     width: 100%;
@@ -87,7 +87,7 @@ header img{
     
 }
 
-.singin input::placeholder{
+div.singin input::placeholder{
     font-size: 24px;
     color: #d1d1d1
 }
@@ -123,7 +123,7 @@ div.rowcity-uf input.uf{
 }
 
 
-div .rowbuttons{
+div.rowbuttons{
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -131,7 +131,11 @@ div .rowbuttons{
     margin-top: 32px;
 }
 
-.singin .btnregister{
+div.rowbuttons button:hover{
+    filter: brightness(70%)
+}
+
+div.singin button.btnregister{
     margin: 20px 20px;
     border:0px;
     border-radius: 4px;
@@ -141,9 +145,10 @@ div .rowbuttons{
     font-size: 24px;
     color: #FFFF;
     background-color: #FF5555;
+    transition: filter 0.4s;
 }
 
-.singin .btnlogin{
+div.singin button.btnlogin{
     margin: 20px 20px;
     border:0px;
     border-radius: 4px;
@@ -153,6 +158,7 @@ div .rowbuttons{
     font-size: 24px;
     color: #FFFF;
     background-color: #FF5555;
+    transition: filter 0.4s;
 }
 
 

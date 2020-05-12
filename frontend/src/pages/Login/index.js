@@ -12,7 +12,7 @@ export default function Login(){
    const [name, setName] = useState('');
    const [password, setPassword] = useState('');
 
-   const history = useHistory('');
+   const history = useHistory();
 
    async function Logar(e){
     e.preventDefault();
@@ -23,7 +23,12 @@ export default function Login(){
     }
 
     try{
-        await api.post('/session', data);
+        const response = await api.post('/session', data);
+
+        localStorage.setItem('enterpriseid', response.data.id);
+        localStorage.setItem('enterprisename', name);
+
+
         history.push('/inicio');
     }catch(error){
         alert('Usuario ou senha incorretos, Tente novamente.')
@@ -31,30 +36,32 @@ export default function Login(){
 }
     return(
         <>
-        <header><img src={logoLogin} alt="Logo To Your House" /></header>
+        <header className='login'><img src={logoLogin} alt="Logo To Your House" /></header>
         <main>
-            <form onSubmit={Logar}>
-                <p>Nome da Empresa</p>
-                    <input 
-                    placeholder="AÇAITEIRA MIL GRAU"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    />
-                <p>Senha</p>
-                    <input
-                    type="password"
-                    placeholder="**********"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    />
-                    <div className="row-buttons">
-               <Link className="Back_Interations" to="/">
-                   <FiArrowLeft size={16} color='#FF5555' />
-                    Voltar
-                   </Link>
-                   <button className="btnlogin" type="submit">ENTRAR</button>
-                   </div>
-            </form> 
+            <div className='login'>
+                <form onSubmit={Logar}>
+                    <p>Nome da Empresa</p>
+                        <input 
+                        placeholder="AÇAITEIRA MIL GRAU"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        />
+                    <p>Senha</p>
+                        <input
+                        type="password"
+                        placeholder="**********"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        />
+                        <div className="row-buttons">
+                    <Link className="Back_Interations" to="/">
+                    <FiArrowLeft size={16} color='#FF5555' />
+                        Voltar
+                    </Link>
+                    <button className="btnlogin" type="submit">ENTRAR</button>
+                    </div>
+                </form> 
+            </div>
         </main>
         <footer><p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p></footer>
         </>

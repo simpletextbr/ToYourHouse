@@ -2,6 +2,17 @@ const connection = require('../database/connection');
 
 module.exports = {
 
+async index(req, res){
+    const id = req.headers.authorization;
+
+    const list = await connection('enterprise')
+    .where('id', id)
+    .select('id','name', 'phone', 'address', 'city', 'uf', 'urllogo', 'urlcardapio');
+
+
+    return res.json(list)
+},
+
 async create(req, res) {
     const backgound_app = '#FDF5F5'
     const button_app = '#FF0000'
@@ -45,4 +56,5 @@ async create(req, res) {
 
     return res.json({send:'sucessfull'});
     }
+
 };

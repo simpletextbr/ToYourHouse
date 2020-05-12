@@ -12,7 +12,7 @@ module.exports ={
 
         const login = await connection('enterprise')
         .where('name' && 'password', name && password)
-        .select('name')
+        .select('name', 'id')
         .first();
         
         if(!login){
