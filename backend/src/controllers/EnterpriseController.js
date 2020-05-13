@@ -25,13 +25,16 @@ async create(req, res) {
     password=hash
 
 
-    const verify = await connection("enterprise")
+    const verifyph = await connection("enterprise")
     .where('phone', phone)
     .first();
 
- 
+    const verifypass = await connection("enterprise")
+    .where('password', password)
+    .first();
 
-    if(!verify){
+ 
+    if(!verifyph && !verifypass){
     await connection('enterprise').insert({
         name,
         phone,
@@ -50,10 +53,10 @@ async create(req, res) {
         enterprise_id
     })
 
-    }else{
+    }else if(verifypass){
+        return res.status(401).json({error: 'Nós já vimos muitas senhas como essa por favor, Tente algo mais seguro!'})
+    }else
         return res.status(401).json({error: 'Usuario ja Cadastrado, Tente na aba de Login'})
-    }
-
     return res.json({send:'sucessfull'});
     }
 

@@ -74,7 +74,7 @@ export default function Inicio(){
         <Link to="/acrescimo">Acrescimos</Link>
         <Link to="/config">Configurar</Link>
         </header>
-        <main>
+        <main className="inico">
             {category.map(categorys => (
                 !categorys.name.trim()==="" ?  
                 <div className="category_create" key={categorys.id}>

@@ -9,18 +9,16 @@ module.exports ={
         hash = 59 * password + hash;
         password=hash
 
-
         const login = await connection('enterprise')
-        .where('name' && 'password', name && password)
+        .where('password', password)
         .select('name', 'id')
         .first();
-        
-        if(!login){
+
+        if(!login || login.name != name){
             return res.status(400).json({error: 'Wrong password or name'});
+            }
+
+
+            return res.status(202).json(login)
         }
-
-        return res.json(login)
-
-
     }
-}
