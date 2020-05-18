@@ -7,7 +7,12 @@ module.exports = {
         .where('enterprise_id', enterprise_id)
         .select('*');
 
-        return res.json(list);
+        if(!list[0]){
+           return res.json(null)
+        }
+
+      return res.json(list);
+        
     },
 
     async create_Category(req, res) {

@@ -20,3 +20,8 @@ input, button, textarea{
 button{
     cursor: pointer;
 }
+
+footer p{
+    margin-top:  123px;
+    text-align: center;
+}

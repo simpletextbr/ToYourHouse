@@ -3,9 +3,22 @@ const connection = require('../database/connection');
 module.exports ={
     async Index_Products(req, res){
         const enterprise_id = req.headers.authorization;
+        // const cat_id = req.headers.cat_authorization;
+        // const verifyId = await connection('enterprise').select('id').where({id:enterprise_id}).first();
+        // const verifyCat = await connection('categoryProducts').select('id').where({id:cat_id});
+
+        // if(!verifyId || !verifyCat){
+        //     return res.json(null)
+        // }
         const list = await connection('products')
         .where('enterprise_id', enterprise_id)
         .select('*');
+
+        
+
+        if(!list[0]){
+            return res.json(null)
+         }
 
         return res.json(list);
 
