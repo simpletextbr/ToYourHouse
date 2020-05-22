@@ -118,7 +118,7 @@ return (
                 <input
                 type="number"
                 required
-                placeholder="0.00"
+                placeholder="R$0,00"
                 value={proPrice}
                 onChange={e => setProprice(e.target.value)}
                 />
