@@ -21,6 +21,7 @@ export default function Login(){
         name, 
         password
     }
+    console.log(data)
 
     try{
         const response = await api.post('/session', data);
@@ -42,7 +43,7 @@ export default function Login(){
                 <form onSubmit={Logar}>
                     <p>Nome da Empresa</p>
                         <input 
-                        placeholder="AÇAITEIRA MIL GRAU"
+                        placeholder="O nome da sua Empresa"
                         value={name}
                         onChange={e => setName(e.target.value)}
                         />

@@ -1,0 +1,120 @@
+section.inicio{
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 2000px;
+    height: 100%;
+    max-height: 2000px;
+    box-sizing: border-box;
+}
+
+section.inicio div.new-user form {
+    margin-left: 60px;
+    justify-content: space-between;
+}
+
+section.inicio div.new-user input {
+    border: 0px;
+    font-size: 32px;
+    width: 600px;
+}
+
+section.inicio div.new-user button.add-category{
+    border: 0px;
+    background-color: #ffffff;
+    margin-left: 20px;
+}
+
+section.inicio div.content {
+    margin-left: 60px;
+}
+
+div.content div.list-category p{
+    display: flex;
+    padding-top: 20px;
+    font-size: 32px;
+}
+
+div.content div.list-category button{
+    border: 0px;
+    margin-left: 20px;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: 60px;
+}
+
+div.content div.list-products ul{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    list-style: none;
+}
+
+div.content div.list-products ul li {
+    width: 240px;
+    height: 110px;
+    background: #f4f4f4;
+    padding: 6px;
+    border-radius: 8px;
+    position: relative;
+    margin-top: 10px;
+}
+
+
+div.content div.list-products ul li p.name{
+    font-size: 18px;
+}
+div.content div.list-products ul li p.Ing{
+    font-size: 8px;
+    margin-top: -4px;
+    opacity: 60%;
+}
+
+div.content div.list-products ul li p.price{
+    font-size: 36px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+div.content div.list-products ul li button.delete-product{ 
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 0px;
+    background: transparent;
+}
+
+div.content div.list-products ul div.new-product {
+    display: flex;
+    width: 240px;
+    height: 110px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #f4f4f4;
+    align-items: center;
+    justify-content: center;
+}
+
+section.inicio div.default form {
+    margin-top: 20px;
+    margin-left: 60px;
+    justify-content: space-between;
+}
+
+section.inicio div.default input {
+    border: 0px;
+    font-size: 32px;
+    width: 600px;
+    margin-bottom: 212px;
+}
+
+section.inicio div.default button.add-category{
+    border: 0px;
+    background-color: #ffffff;
+    margin-left: 20px;
+}
+
+
+
+
+
+

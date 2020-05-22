@@ -3,13 +3,6 @@ const connection = require('../database/connection');
 module.exports ={
     async Index_Products(req, res){
         const enterprise_id = req.headers.authorization;
-        // const cat_id = req.headers.cat_authorization;
-        // const verifyId = await connection('enterprise').select('id').where({id:enterprise_id}).first();
-        // const verifyCat = await connection('categoryProducts').select('id').where({id:cat_id});
-
-        // if(!verifyId || !verifyCat){
-        //     return res.json(null)
-        // }
         const list = await connection('products')
         .where('enterprise_id', enterprise_id)
         .select('*');
@@ -50,13 +43,12 @@ module.exports ={
         const { id } = req.params;
         const enterprise_id = req.headers.authorization;
 
-        const verifyId = await connection('products')
+        const verify = await connection('products')
         .where('id', id)
         .select('enterprise_id')
         .first();
 
-
-        if(verifyId.enterprise_id != enterprise_id){
+        if(verify.enterprise_id != enterprise_id){
             return res.status(401).json({error:'Not Authorized'});
         }else{
 
