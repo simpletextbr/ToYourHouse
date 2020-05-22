@@ -94,6 +94,17 @@ div.content div.list-products ul div.new-product {
     justify-content: center;
 }
 
+div.content div.new-product ul li{
+    display: flex;
+    width: 240px;
+    height: 110px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #f4f4f4;
+    align-items: center;
+    justify-content: center;
+}
+
 section.inicio div.default form {
     margin-top: 20px;
     margin-left: 60px;

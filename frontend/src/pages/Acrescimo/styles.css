@@ -1,0 +1,75 @@
+section.acrescimo  {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 2000px;
+    height: 100vh;
+    max-height: 2000px;
+    box-sizing: border-box;
+}
+
+section.acrescimo  p.title{
+    font-size: 36px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+div.content div.new-user ul li{
+    display: flex;
+    width: 240px;
+    height: 110px;
+    background: #f4f4f4;
+    padding: 6px;
+    border-radius: 8px;
+    margin: 10px 0px  10px 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+div.content div.list-adds ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    list-style: none;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+div.content div.list-adds ul li{
+    width: 240px;
+    height: 110px;
+    background: #f4f4f4;
+    padding: 6px;
+    margin-top: 10px;
+    position: relative;
+    border-radius: 8px; 
+}
+
+div.content div.list-adds ul li p.name{
+    font-size: 18px;
+}
+
+div.content div.list-adds ul li p.price{
+    font-size: 36px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+div.content div.list-adds ul li button.delete-adds{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 0px;
+    background: transparent;
+}
+
+section.acrescimo div.default {
+    display: flex;
+    width: 240px;
+    height: 110px;
+    background: #f4f4f4;
+    padding: 6px;
+    border-radius: 8px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+}
+

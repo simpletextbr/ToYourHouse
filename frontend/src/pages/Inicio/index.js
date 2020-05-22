@@ -153,7 +153,15 @@ export default function Inicio() {
                         </p>
                 </div>
                 { products === null ?
-                    null :
+                <div className="new-product" >
+                     <ul>
+                         <li className="product">
+                    <Link className="add-interations" to='/inicio/new'>
+                        <FiPlus size={72} color="#dadada"></FiPlus>
+                    </Link>
+                        </li>
+                    </ul>
+                </div> :
                     <div className="list-products">
                         <ul> 
                     { products.map(product => ( 
@@ -168,7 +176,7 @@ export default function Inicio() {
                         </li> : null))}
                     <div className="new-product" >
                         <Link className="add-interations" to='/inicio/new'>
-                            <FiPlus size={72} color="#000000"></FiPlus>
+                            <FiPlus size={72} color="#dadada"></FiPlus>
                         </Link>
                     </div>   
                     </ul> 

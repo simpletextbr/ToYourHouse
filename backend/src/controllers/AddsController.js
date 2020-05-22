@@ -7,6 +7,10 @@ module.exports = {
         .where('enterprise_id', enterprise_id)
         .select('*');
 
+        if(!list[0]){
+            return res.json(null)
+         }
+ 
         return res.json(list);
         },
     async Create_Adds(req, res) {

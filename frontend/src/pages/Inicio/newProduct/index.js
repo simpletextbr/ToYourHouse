@@ -113,7 +113,6 @@ return (
                 value={proIng}
                 onChange={e => setProing(e.target.value)}
                 />
-                <div className="row-inputs">
                 <p>Preço</p>
                 <input
                 type="number"
@@ -134,7 +133,6 @@ return (
                             </option>
                             )}
                 </select>
-                </div>
                 <div className='row-buttons'>
                 <Link className="Back_Interations" to="/inicio">
                     <FiArrowLeft size={16} color='#FF5555' />

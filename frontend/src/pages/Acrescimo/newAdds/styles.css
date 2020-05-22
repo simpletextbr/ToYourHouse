@@ -1,7 +1,7 @@
-main div.add-product {
+main div.add-adds {
     align-items: center;
     width: 480px;
-    height: 580px;
+    height: 380px;
     box-sizing: border-box;
     margin: 20px auto -10px;
     background-color: #F9F9F9;
@@ -10,31 +10,31 @@ main div.add-product {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-main div.add-product p.title{
+main div.add-adds p.title{
     text-align: center;
     font-size: 24px;
     font-weight: bold;
 }
 
-main div.add-product form{
+main div.add-adds form{
     margin-top: 40px;
 }
 
-main div.add-product form p{
+main div.add-adds form p{
     font-size: 14px;
     font-weight: bold;
     margin-right: 60px;
     margin-top: 20px;
 }
 
-main div.add-product form input{
+main div.add-adds form input{
     font-size: 24px;
     border: 1px solid #d1d1d1;
     border-radius: 4px;
     width: 100%;
 }
 
-main div.add-product form textarea{
+main div.add-adds form textarea{
     font-size: 24px;
     border: 1px solid #d1d1d1;
     border-radius: 4px;
@@ -44,7 +44,7 @@ main div.add-product form textarea{
     resize: vertical;
 }
 
-main div.add-product form select {
+main div.add-adds form select {
     width: 100%;
     height: 34px;
     font-size: 24px;
@@ -52,7 +52,7 @@ main div.add-product form select {
     border: 1 solid #d1d1d1;
 }
 
-main div.add-product form select option{
+main div.add-adds form select option{
     font-size: 24px; 
 }
 
