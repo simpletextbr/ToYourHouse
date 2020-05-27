@@ -1,6 +1,16 @@
 const connection = require('../database/connection');
 
 module.exports = {
+    async index_Custon(req, res){
+        const enterprise_id = req.headers.authorization;
+        const list = await connection('custom')
+        .where('enterprise_id', enterprise_id)
+        .select('*');
+
+        return res.json(list);
+
+    },
+
     async create_Custon(req, res){
         const enterprise_id = req.headers.authorization;
         const verifyId = await connection('enterprise').select('id').where({id:enterprise_id});

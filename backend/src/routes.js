@@ -36,11 +36,13 @@ routes.post('/session', SessionController.create);
 routes.get('/enterprise/list', EnterpriseController.index);
 //Cadastro do usuario empresa
 routes.post('/register', EnterpriseController.create);
-//Upload de logo 
+//Upload de logo e do cardapio
 routes.put('/config/upload/logo',uploadlogo.single('logo'), UploadController.logo_upload);
 routes.put('/config/upload/cardapio',uploadcardapio.single('cardapio'), UploadController.cardapio_upload);
 //alterando customizacao do fundo e dos botoes 
 routes.put('/config/custom', CustonController.create_Custon);
+//Listagem de Cores
+routes.get('/config/custom', CustonController.index_Custon);
 //Cadastro de categoria, Listar, Deletar
 routes.post('/category', CategoryController.create_Category);
 routes.get('/category', CategoryController.Index_Category);

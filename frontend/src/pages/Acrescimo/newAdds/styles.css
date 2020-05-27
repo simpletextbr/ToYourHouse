@@ -1,4 +1,4 @@
-main div.add-adds {
+div.add-adds {
     align-items: center;
     width: 480px;
     height: 380px;
@@ -10,65 +10,37 @@ main div.add-adds {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-main div.add-adds p.title{
+div.add-adds p.title{
     text-align: center;
     font-size: 24px;
     font-weight: bold;
 }
 
-main div.add-adds form{
-    margin-top: 40px;
-}
-
-main div.add-adds form p{
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 60px;
+div.add-adds form{
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
 }
 
-main div.add-adds form input{
+div.add-adds form p{
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+div.add-adds form input{
     font-size: 24px;
     border: 1px solid #d1d1d1;
     border-radius: 4px;
     width: 100%;
 }
 
-main div.add-adds form textarea{
-    font-size: 24px;
-    border: 1px solid #d1d1d1;
-    border-radius: 4px;
-    min-height: 140px;
+div.add-adds form div.row-buttons{
+    margin-top: 100px;
     width: 100%;
-    line-height: 23px;
-    resize: vertical;
-}
-
-main div.add-adds form select {
-    width: 100%;
-    height: 34px;
-    font-size: 24px;
-    opacity: 60%;
-    border: 1 solid #d1d1d1;
-}
-
-main div.add-adds form select option{
-    font-size: 24px; 
-}
-
-main div.row-buttons button.cadastrar{
-    border:0px;
-    border-radius: 4px;
-    width: 211px;
-    height: 40px;
-
-    font-size: 24px;
-    color: #FFFF;
-    background-color: #FF5555;
-    transition: filter 0.4s;
-}
-
-main div.row-buttons button.cadastrar:hover{
-    filter: brightness(70%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 

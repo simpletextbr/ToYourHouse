@@ -21,7 +21,6 @@ export default function Login(){
         name, 
         password
     }
-    console.log(data)
 
     try{
         const response = await api.post('/session', data);
@@ -35,36 +34,36 @@ export default function Login(){
         alert('Usuario ou senha incorretos, Tente novamente.')
     }
 }
-    return(
-        <>
-        <header className='login'><img src={logoLogin} alt="Logo To Your House" /></header>
-        <main>
-            <div className='login'>
-                <form onSubmit={Logar}>
-                    <p>Nome da Empresa</p>
-                        <input 
-                        placeholder="O nome da sua Empresa"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        />
-                    <p>Senha</p>
-                        <input
-                        type="password"
-                        placeholder="**********"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        />
-                        <div className="row-buttons">
+return(
+    <>
+    <header className='login'><img src={logoLogin} alt="Logo To Your House" /></header>
+    <main>
+        <div className='login'>
+            <form onSubmit={Logar}>
+                <p>Nome da Empresa</p>
+                    <input 
+                    placeholder="O nome da sua Empresa"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    />
+                <p>Senha</p>
+                    <input
+                    type="password"
+                    placeholder="**********"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    />
+                    <div className="row-buttons">
                     <Link className="Back_Interations" to="/">
-                    <FiArrowLeft size={16} color='#FF5555' />
+                        <FiArrowLeft size={16} color='#FF5555' />
                         Voltar
                     </Link>
-                    <button className="btnlogin" type="submit">ENTRAR</button>
-                    </div>
-                </form> 
-            </div>
-        </main>
-        <footer><p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p></footer>
-        </>
-    );
+                <button className="btn" type="submit">ENTRAR</button>
+                </div>
+            </form> 
+        </div>
+    </main>
+    <footer><p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p></footer>
+    </>
+);
 }

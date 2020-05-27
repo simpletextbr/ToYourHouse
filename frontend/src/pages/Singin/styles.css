@@ -1,7 +1,3 @@
-*{
-    box-sizing: border-box;
-}
-
 header.register{
     margin-left: 60px;
     margin-top: 20px;
@@ -56,6 +52,9 @@ div.singin{
     height: 600px;
     border-radius: 8px;
 
+    display: flex;
+    flex-direction: column;
+
     background-color: #F1F1F1;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
@@ -66,15 +65,22 @@ div.singin h3{
     text-align: center;
 }
 
-div.singin p{
+div.singin form{
+    display: flex;
+    flex-direction: column;
+}
+
+div.singin form p{
     margin-left: 20px;
     margin-top: 20px;
     font-size: 16px;
     font-weight: bold;
+    margin-right: auto;
 }
 
-div.singin p .aviso{
+div.singin p span.aviso{
     font-size: 10px;
+    font-weight: normal;
 }
 
 div.singin input{
@@ -87,6 +93,7 @@ div.singin input{
     
 }
 
+
 div.singin input::placeholder{
     font-size: 24px;
     color: #d1d1d1
@@ -94,28 +101,25 @@ div.singin input::placeholder{
 
 div.rowcity-uf {
     display: flex;
-}
-
-div.rowcity-uf input + input{
-    margin-left: 8px;
+    flex-direction: row;    
 }
 
 div.rowcity-uf p {
     margin-top: 20px;
 }
 
-div.rowcity-uf input.city{
-    margin: auto;
-    border-color: #E1E1E1;
+div.rowcity-uf p select.city {
+    font-size: 24px;
+    border-color: #d1d1d1;
     border-radius: 4px;
     width: 366px;
     height: 46px;
 }
 
-div.rowcity-uf input.uf{
-    margin: auto;
+div.rowcity-uf p select.uf {
+    font-size: 24px;
     margin-right: 40px;
-    border-color: #E1E1E1;
+    border-color: #d1d1d1;
     border-radius: 4px;
     width: 100%;
     max-width: 70px;
@@ -128,7 +132,7 @@ div.rowbuttons{
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
-    margin-top: 32px;
+    margin-top: 23px;
 }
 
 div.rowbuttons button:hover{

@@ -1,16 +1,13 @@
 header.login{
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 
     width: 568px;
     height: 319px;
 }
 
 div.login {
-    display: flex;
-    flex-direction: column;
     margin-top: -40px;
     margin-left: auto;
     margin-right: auto;
@@ -26,15 +23,26 @@ div.login {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+div.login form{
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+}
+
 div.login p{
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 60px;
+    font-weight: bold;
+    margin-right: auto;
+}
+
+div.login input+p{
+    margin-top: 20px;
 }
 
 div.login input{
     border: 2px solid #E1E1E1;
     border-radius: 4px;
-    margin: 0px  20px;
     width: 100%;
     max-width: 457px;
     height: 46px;
@@ -46,36 +54,12 @@ div.login input::placeholder{
     color: #d1d1d1
 }
 
-div.row-buttons{
-    display: flex;
-    margin: 60px 20px;
-    
-    justify-content: space-between;
-}
-
-a.Back_Interations{
+div.login form div.row-buttons{
     display: flex;
     align-items: center;
-    font-size: 24px;
-    color: #ff5555;
-    text-decoration: none;
+    width: 100%;
+    margin-top: 120px;
+    justify-content: space-between;
 }
-
-button.btnlogin{
-    border:0px;
-    border-radius: 4px;
-    width: 195px;
-    height: 50px;
-
-    font-size: 24px;
-    color: #FFFF;
-    background-color: #FF5555;
-    transition: filter 0.4s;
-}
-
-button.btnlogin:hover{
-    filter: brightness(70%);
-}
-
 
 

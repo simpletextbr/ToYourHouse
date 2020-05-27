@@ -8,7 +8,9 @@ section.inicio{
 }
 
 section.inicio div.new-user form {
-    margin-left: 60px;
+    display: flex;
+    margin-left: auto;
+    margin-right: 60px;
     justify-content: space-between;
 }
 
@@ -105,23 +107,32 @@ div.content div.new-product ul li{
     justify-content: center;
 }
 
-section.inicio div.default form {
-    margin-top: 20px;
-    margin-left: 60px;
+section.inicio div.default div.add-category{
+    display: flex;
+    margin-left: auto;
+    margin-right: 60px;
+}
+
+div.add-category form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     justify-content: space-between;
+    margin-bottom: 212px;
+
+
 }
 
 section.inicio div.default input {
     border: 0px;
+    margin-left: 60px;
     font-size: 32px;
     width: 600px;
-    margin-bottom: 212px;
 }
 
 section.inicio div.default button.add-category{
     border: 0px;
-    background-color: #ffffff;
-    margin-left: 20px;
+    background-color: transparent;
 }
 
 
