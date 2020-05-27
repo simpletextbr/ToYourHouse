@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 
@@ -9,10 +9,6 @@ import {FiCheckCircle, FiChevronRight, FiImage, FiArrowLeft } from 'react-icons/
 import './styles.css';
 
 export default function UploadLogo(){
-
-//Listagem de empresas
-const[enterprises, setEnterprises] = useState([]);
-
 const[logo, setLogo] = useState(null)
 
 
@@ -34,17 +30,6 @@ async function uploadLogo(e){
     history.push('/config');
 }
 
-//Listagem de Empresas
-useEffect(() => {
-    api.get('/enterprise/list', {
-        headers: {
-            Authorization: enterprise_id
-            
-        }
-    }).then(response => {
-        setEnterprises(response.data);
-    })
-    },[enterprise_id]);
 
 return(
     <>
@@ -53,12 +38,9 @@ return(
         <form onSubmit={uploadLogo}>
             <label id="logo-upload"><p><FiChevronRight size={16} color="#FF0000"></FiChevronRight>Logo da Sua empresa</p>
                 <input type="file" onChange={e => setLogo(e.target.files[0])} />
-                {enterprises.map( enterprise => (
-                <div id="imglogo" key={enterprise.id}>
-                    {enterprise.urllogo===null 
-                    ? <FiImage size={32} color="#FFEA00" key={enterprise.id}></FiImage> 
-                    : <img className="logo" src={enterprise.urllogo} alt="Logo da Sua Empresa" /> }
-                </div>))}
+                <div id="imglogo">
+                    <FiImage size={160} color="#FFEA00"></FiImage> 
+                </div>
                 <span>(32x28)</span>
                 <div className="row-buttons">
                     <Link className="Back_Interations" to="/config">

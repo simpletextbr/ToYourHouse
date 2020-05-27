@@ -7,7 +7,7 @@ form{
 label#logo-upload{
     margin-top: 20px;
     width: 260px;
-    height: 240px;
+    height: 280px;
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 10px;
@@ -30,19 +30,9 @@ label#logo-upload input{
 
 div#imglogo{
     display: flex;
-    width: 100px;
-    height: 100px;
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
-}
-
-div#imglogo img.logo{
-    margin: 10px auto;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
-    height: 100%;
 }
 
 label#logo-upload span{
@@ -50,7 +40,7 @@ label#logo-upload span{
     font-size: 14px;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -62,7 +52,7 @@ label#logo-upload div.row-buttons{
 }
 
 label#logo-upload div.row-buttons button{
-    border: 0;
+    border: 0px;
     background: transparent;
     display: flex;
     margin-left: auto;
