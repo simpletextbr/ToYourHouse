@@ -8,7 +8,7 @@ section.config {
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 
     max-width: 600px;
-    max-height: 790px;
+    max-height: 1000px;
 }
 
 div.pagamento p.title{
@@ -191,6 +191,7 @@ div.uploads div.links{
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 div.uploads a {
