@@ -1,10 +1,10 @@
-import React, { useEffect , useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../../services/api';
 
 import Header from '../../Utils/Header'
-import { FiArrowLeft, FiLogOut } from 'react-icons/fi';
+import { FiArrowLeft} from 'react-icons/fi';
 import './styles.css';
 
 export default function Newadds(){

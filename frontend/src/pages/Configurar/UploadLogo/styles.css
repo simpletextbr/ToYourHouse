@@ -4,10 +4,10 @@ form{
     align-items: center;  
 }
 
-div#logo-upload{
+label#logo-upload{
     margin-top: 20px;
     width: 260px;
-    height: 290px;
+    height: 240px;
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 10px;
@@ -15,59 +15,55 @@ div#logo-upload{
 
     display: flex;
     flex-direction: column;
-}
 
-div#logo-upload label{
     font-size: 20px;
 }
 
-div#logo-upload label input{
+label#logo-upload p{
+    text-align: center;
+}
+
+label#logo-upload input{
     display: none;
     cursor: pointer;
 }
 
-div#logo-upload label div#imglogo{
+div#imglogo{
     display: flex;
-    max-width: 200px;
-    max-height: 200px;
+    width: 100px;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
 }
 
-div#logo-upload  label div#imglogo img.logo{
+div#imglogo img.logo{
+    margin: 10px auto;
+    cursor: pointer;
     margin-top: 10px;
     width: 100%;
     height: 100%;
 }
 
-div#logo-upload label span{
+label#logo-upload span{
     display: flex;
     font-size: 14px;
-    font-weight: bold;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
-div#logo-upload div.row-buttons{
+label#logo-upload div.row-buttons{
     margin: 0px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
 }
 
-div#logo-upload div.row-buttons button{
+label#logo-upload div.row-buttons button{
     border: 0;
     background: transparent;
     display: flex;
     margin-left: auto;
 }
 
-div#logo-upload div.row-buttons button svg{
-width: 33px;
-height: 33px;
-}
-
-div#logo-upload div.row-buttons a.Back_Interations{
-    width: 80px;
-}

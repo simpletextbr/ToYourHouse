@@ -10,7 +10,7 @@ import './styles.css';
 
 export default function UploadLogo(){
 
-//logo e name
+//Listagem de empresas
 const[enterprises, setEnterprises] = useState([]);
 
 const[logo, setLogo] = useState(null)
@@ -25,18 +25,13 @@ async function uploadLogo(e){
     const data = new FormData();
 
     data.append('logo', logo)
-
-    console.log(data);
-    try{
-    await api.post('/config/upload/logo', data, {
+    
+    await api.put('/config/upload/logo', data, {
         headers:{
             Authorization: enterprise_id
         }
     })
-    history.push('/config')
-    }catch(error){
-        alert('Não foi possivel Fazer o Upload do seu Logo, tente novamente');
-    }
+    history.push('/config');
 }
 
 //Listagem de Empresas
@@ -56,8 +51,7 @@ return(
     <Header />
     <main>
     <form onSubmit={uploadLogo}>
-        <div id="logo-upload"> 
-            <label><FiChevronRight size={16} color="#FF0000"></FiChevronRight>Logo da Sua empresa
+            <label id="logo-upload"><p><FiChevronRight size={16} color="#FF0000"></FiChevronRight>Logo da Sua empresa</p>
                 <input type="file" onChange={e => setLogo(e.target.files[0])} />
                 {enterprises.map( enterprise => (
                 <div id="imglogo" key={enterprise.id}>
@@ -72,11 +66,10 @@ return(
                                     Voltar
                     </Link>                    
                     <button type="submit">
-                        <FiCheckCircle size={16} color="#37B34A"></FiCheckCircle> 
+                        <FiCheckCircle size={33} color="#37B34A"></FiCheckCircle> 
                     </button>
                 </div>
             </label>
-        </div>
     </form>
     </main>
     <footer><p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p></footer>
