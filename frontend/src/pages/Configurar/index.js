@@ -5,16 +5,12 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import Header from '../Utils/Header'
-import { FiTrash2, FiCheckCircle, FiChevronRight, FiImage } from 'react-icons/fi';
+import { FiTrash2, FiCheckCircle, FiChevronRight} from 'react-icons/fi';
 import './styles.css';
 
 
 
 export default function Configurar(){
-    
-//logo uploda
-const[enterprises, setEnterprises] = useState([]);
-
 //Pagamentos
 const[payments, setPayments] = useState([]);
 const[payTitle, setPayTitle] = useState('');
@@ -23,9 +19,6 @@ const[payTitle, setPayTitle] = useState('');
 const[custom, setCustom] = useState([]);
 const[bgcolor, setBgcolor] = useState('#FDF5F5');
 const[btcolor, setBtcolor] = useState('#FF0000');
-
-
-const[cardapio, setCardapio] = useState('');
 
 
 const enterprise_id = localStorage.getItem('enterpriseid');
@@ -90,38 +83,6 @@ async function updateColor(e){
         alert('Não foi possivel atualizar as cores do app, tente novamente');
      }
 }
-
-
-// async function uploadCardapio(){
-//     const data = new FormData();
-
-//     data.append('cardapio', cardapio)
-
-//     try{
-//     await api.post('/config/upload/cardapio', data, {
-//         headers:{
-//             Authorization: enterprise_id
-//         }
-//     })
-
-//     history.go(0)
-//     }catch(error){
-//         alert('Não foi possivel Fazer o Upload do seu Logo, tente novamente');
-//     }
-// } 
-
-    
-//Logo e Name
-useEffect(() => {
-    api.get('/enterprise/list', {
-        headers: {
-            Authorization: enterprise_id
-            
-        }
-    }).then(response => {
-        setEnterprises(response.data);
-    })
-    },[enterprise_id]);
 
 //List Payments
 useEffect(() => {
@@ -222,22 +183,7 @@ return(
                     </button>
                 </form>
                     <Link to="/config/upload/logo">Upload do logo</Link>
-                <form>   
-                    <label id="imgcardapio"><FiChevronRight size={16} color="#FF0000"></FiChevronRight>Seu Cardapio 
-                    <input type="file" value={cardapio} onChange={e => setCardapio(e.target.files[0])}/>
-                    {enterprises.map(enterprise => (
-                    <div id="imgcardapio" key={enterprise.id} >
-                        { enterprise.urlcardapio===null 
-                        ? <FiImage size={120} color="FF0000" key={enterprise.id}></FiImage> 
-                        : <img className="cardapio" src={enterprise.urlcardapio} alt="Logo da Sua Empresa" />}
-                     </div>))}   
-                    <span>(412x823)</span>
-
-                    <button type="submit">
-                        <FiCheckCircle size={16} color="#37B34A"></FiCheckCircle> 
-                    </button>
-                    </label>
-                </form>  
+                    <Link to="/config/upload/cardapio">Upload do cardapio</Link>  
                 </div>
         </section>
     </main>

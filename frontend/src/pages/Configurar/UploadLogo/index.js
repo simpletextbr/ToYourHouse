@@ -50,13 +50,13 @@ return(
     <>
     <Header />
     <main>
-    <form onSubmit={uploadLogo}>
+        <form onSubmit={uploadLogo}>
             <label id="logo-upload"><p><FiChevronRight size={16} color="#FF0000"></FiChevronRight>Logo da Sua empresa</p>
                 <input type="file" onChange={e => setLogo(e.target.files[0])} />
                 {enterprises.map( enterprise => (
                 <div id="imglogo" key={enterprise.id}>
                     {enterprise.urllogo===null 
-                    ? <FiImage size={32} color="FF0000" key={enterprise.id}></FiImage> 
+                    ? <FiImage size={32} color="#FFEA00" key={enterprise.id}></FiImage> 
                     : <img className="logo" src={enterprise.urllogo} alt="Logo da Sua Empresa" /> }
                 </div>))}
                 <span>(32x28)</span>

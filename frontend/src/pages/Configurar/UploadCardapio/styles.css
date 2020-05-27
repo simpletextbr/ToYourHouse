@@ -1,0 +1,72 @@
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+label#cardapio-upload{
+    margin-top: 20px;
+    max-width: 430px;
+    max-height: 860px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 20px;
+}
+
+label#cardapio-upload p{
+    text-align: center;
+}
+
+label#cardapio-upload input{
+    display: none;
+    cursor: pointer;
+}
+
+div#imgcardapio{
+    display: flex;
+    cursor: pointer;
+    max-width: 412px;
+    max-height: 823px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#imgcardapio img.cardapio{
+    margin: 10px auto;
+    cursor: pointer;
+    border: 2px solid #d1d1d1;
+    border-radius: 20px;
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+label#cardapio-upload span{
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+label#cardapio-upload div.row-buttons{
+    margin: 0px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+
+label#cardapio-upload div.row-buttons button{
+    border: 0;
+    background: transparent;
+    display: flex;
+    margin-left: auto;
+}
+

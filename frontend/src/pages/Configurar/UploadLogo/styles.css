@@ -32,6 +32,7 @@ div#imglogo{
     display: flex;
     width: 100px;
     height: 100px;
+    cursor: pointer;
     margin-left: auto;
     margin-right: auto;
 }
