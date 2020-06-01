@@ -9,7 +9,7 @@ module.exports = {
         }
         await connection('user').insert({name});
     
-        res.json({send:'sucessfull'})
+        res.json(name)
     },
 
     async update_address(req, res){
