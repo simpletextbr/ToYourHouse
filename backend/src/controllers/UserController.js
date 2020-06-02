@@ -4,12 +4,17 @@ module.exports = {
     async create(req, res){
         const { name } = req.body;
 
+        const response = await connection('user').where('name',name).first();
+        
+
         if(!name.trim()){
-            return res.status(400).json({send:'Você precisa digitar o seu nome para entar'});
+           return res.json({send:'Você precisa digitar o seu nome para entar'});
+        }else if(response){
+           return res.json({send: 'Opa! Parece que esse nome ja esta em uso!, por favor tente outro'});
+        }else{   
+            await connection('user').insert({name}); 
         }
-        await connection('user').insert({name});
-    
-        res.json(name)
+        return res.json(name)
     },
 
     async update_address(req, res){

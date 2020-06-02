@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     
     logoLogin:{
-        marginBottom: 60,
+        marginBottom: 32,
         marginTop: 'auto'
     },
 
