@@ -7,6 +7,7 @@ import { AsyncStorage } from 'react-native';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Welcome from './pages/Login/Welcome';
+import Order from './pages/Order';
 
 
 
@@ -29,11 +30,11 @@ export default function Routes() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {!autho ?
-                    <Stack.Screen name="Login" component={Login} /> :
-                    <Stack.Screen name="welcome" component={Welcome} options={{
-                        animationEnabled: ''
-                    }} />}
+                    <Stack.Screen name="Singin" component={Login} /> :
+                    <Stack.Screen name="welcome" component={Welcome} />}
+                <Stack.Screen name="Login" component={Login} /> 
                 <Stack.Screen name="Dashboard" component={Dashboard} />
+                <Stack.Screen name="Order" component={Order} />
             </Stack.Navigator>
         </NavigationContainer>
 

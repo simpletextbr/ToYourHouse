@@ -85,14 +85,15 @@ return(
 
                     <div className="rowcity-uf">
                         <p>Cidade
-                            <select className="city" value={city} onChange={e => setCity(e.target.value)}>
+                            <select  required className="city" value={city} onChange={e => setCity(e.target.value)}>
                                 <option>Selecione Sua Cidade!</option>
                                 <option>Raposos</option>    
                             </select>
                         </p>
                         
                         <p>UF
-                            <select className="uf" value={uf} onChange={e => setUf(e.target.value)}>
+                            <select required className="uf" value={uf} onChange={e => setUf(e.target.value)}>
+                                <option>UF</option> 
                                 <option>MG</option>    
                             </select>
                         </p>
@@ -100,6 +101,7 @@ return(
                     </div>
                     <p>Senha <span className="aviso">( DEVE SER NUMERICA )</span></p>
                     <input
+                        required
                         type="password"
                         placeholder="**********"
                         value={password}

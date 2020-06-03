@@ -23,6 +23,8 @@ const uploadcardapio = multer(uploadConfigCardapio)
 //MOBILE
 //Cadastro do usuario final(realizar pedido)
 routes.post('/mobile', UserController.create);
+//Logout do usuario final
+routes.delete('/mobile/:id', UserController.delete);
 //listagem das empresas cadastradas no mobile
 routes.get('/mobile/list',  MobileController.index);
 //Atualizacao do endereco do usuario final

@@ -23,10 +23,9 @@ export default function Login() {
             }else if(response.data.send==="Você precisa digitar o seu nome para entar"){
                 alert('Você precisa digitar o seu nome para entar')
             }else{
-
-            await AsyncStorage.setItem('userName', response.data);
-            navigation.navigate('Dashboard');
-        
+             await AsyncStorage.setItem('userName', response.data.name);
+             await AsyncStorage.setItem('userId', response.data.id[0].toString());
+             navigation.navigate('Dashboard');
             }
         }
 

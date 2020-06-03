@@ -12,10 +12,12 @@ module.exports = {
         }else if(response){
            return res.json({send: 'Opa! Parece que esse nome ja esta em uso!, por favor tente outro'});
         }else{   
-            await connection('user').insert({name}); 
-        }
-        return res.json(name)
-    },
+            const id = await connection('user').insert({name}); 
+
+            return res.json({id, name})
+    }
+},
+        
 
     async update_address(req, res){
         const id = req.headers.authorization;
@@ -44,5 +46,23 @@ module.exports = {
 
     return res.json({send:'sucessfull'});
         } 
+    },
+
+    async delete(req, res){
+        const { id } = req.params;
+        const name = req.headers.authorization;
+
+        const verify = await connection('user')
+        .where('name', name)
+        .select('id', 'name')
+        .first();
+
+        if(!verify || verify.id!=id ){
+            return res.json({send:"Unautorized"})
+        }
+
+        await connection('user').where('id', id).delete();
+
+        return res.status(204).send();
     }
 }

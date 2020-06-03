@@ -7,9 +7,9 @@ async index(req, res){
     .count();
 
     const list = await connection('enterprise')
-    .limit(8)
-    .offset((page - 1 ) * 8)
-    .select('name','phone','address','city','uf','logo','cardapio', 'urllogo', 'urlcardapio');
+    .limit(6)
+    .offset((page - 1 ) * 6)
+    .select('id','name','phone','address','city','uf', 'logo', 'cardapio');
 
 
     res.header('Amazing-Enterprises', count['count(*)']);
