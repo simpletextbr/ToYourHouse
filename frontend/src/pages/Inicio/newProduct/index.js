@@ -86,7 +86,6 @@ return (
             <p>Ingredientes Basicos</p>
             <textarea
             placeholder="Ingredientes Principais do seu Produto"
-            required
             value={proIng}
             onChange={e => setProing(e.target.value)}
             />

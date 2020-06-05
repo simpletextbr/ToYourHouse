@@ -10,8 +10,6 @@ exports.up = function(knex) {
       table.string('password').notNullable();
       table.string('logo');
       table.string('cardapio');
-      table.string('urllogo')
-      table.string('urlcardapio');
   })
 };
 

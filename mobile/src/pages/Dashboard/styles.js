@@ -51,7 +51,14 @@ const styles = StyleSheet.create({
     name:{
         fontSize: 14,
         fontWeight: 'bold',
-        marginBottom: -6
+        marginBottom: -4
+    },
+
+    address:{
+        fontSize: 12,
+        width: 160,
+        color: '#00000099',
+        marginBottom: -4
     },
 
     cityUf:{

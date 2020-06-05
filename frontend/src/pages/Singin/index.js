@@ -31,11 +31,16 @@ async function Register(e){
     if(city.trim() === "" || city==="Selecione uma categoria"){
         alert('Você precisa selecionar uma cidade valida!')
     }else{
-    try{
-        await api.post('/register',  data);
+        const response  = await api.post('/register',  data);
+        
+        if(response.data.error==='Nós já vimos muitas senhas como essa por favor, Tente algo mais seguro!'){
+            alert('Nós já vimos muitas senhas como essa por favor, Tente algo mais seguro!');
+        }else if(response.data.error==='Usuario ja Cadastrado, Tente na aba de Login'){
+            alert('Usuario ja Cadastrado, Tente na aba de Login');
+        }else if(response.data.error==='Nós já vimos esse nome por aqui por favor, Tente a aba de login!'){
+            alert('Nós já vimos esse nome por aqui por favor, Tente a aba de login!');
+        }else{
         history.push('/login');
-    }catch(error){
-        alert('Usuario ja Cadastrado, Tente na aba de Login')
         }
     }
 }

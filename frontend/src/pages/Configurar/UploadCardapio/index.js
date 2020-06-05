@@ -53,9 +53,9 @@ return (
             <input type="file" onChange={e => setCardapio(e.target.files[0])}/>
             {enterprises.map(enterprise => (
             <div id="imgcardapio" key={enterprise.id} >
-                { enterprise.urlcardapio===null 
-                ? <FiImage size={412} color="#FFEA00" key={enterprise.id}></FiImage> 
-                : <img className="cardapio" src={enterprise.urlcardapio} alt="Logo da Sua Empresa" />}
+                { enterprise.cardapio===null 
+                ? <FiImage size={412} color="#FFEA00"></FiImage> 
+                : <img className="cardapio" src={`http://localhost:3333/file/cardapio/${enterprise.cardapio}`} alt="Cardapio da Sua Empresa" />}
                 </div>))}   
             <span>(412x823)</span>
             <div className="row-buttons">

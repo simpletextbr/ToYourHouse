@@ -7,7 +7,7 @@ async index(req, res){
 
     const list = await connection('enterprise')
     .where('id', id)
-    .select('id','name', 'phone', 'address', 'city', 'uf', 'urllogo', 'urlcardapio');
+    .select('id','name', 'phone', 'address', 'city', 'uf', 'logo', 'cardapio');
 
 
     return res.json(list)
@@ -20,8 +20,8 @@ async create(req, res) {
     let { password } = req.body;
 
     // hash simples de seguranca 
-    let hash = 5;
-    hash = 59 * password + hash;
+    let hash = 823;
+    hash = 223 * (password * hash);
     password=hash
 
 
@@ -58,11 +58,11 @@ async create(req, res) {
     })
 
     }else if(verifypass){
-        return res.status(401).json({error: 'Nós já vimos muitas senhas como essa por favor, Tente algo mais seguro!'})
+        return res.json({error: 'Nós já vimos muitas senhas como essa por favor, Tente algo mais seguro!'})
     }else if(verifyname){
-        return res.status(401).json({error: 'Nós já vimos esse nome por aqui por favor, Tente a aba de login!'})
+        return res.json({error: 'Nós já vimos esse nome por aqui por favor, Tente a aba de login!'})
     }else
-        return res.status(401).json({error: 'Usuario ja Cadastrado, Tente na aba de Login'})
+        return res.json({error: 'Usuario ja Cadastrado, Tente na aba de Login'})
     return res.json({send:'sucessfull'});
     }
 

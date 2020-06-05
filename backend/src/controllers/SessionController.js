@@ -5,8 +5,8 @@ module.exports ={
         const { name } = req.body;
         let { password }= req.body;
 
-        let hash = 5;
-        hash = 59 * password + hash;
+        let hash = 823;
+        hash = 223 * (password * hash);
         password=hash
 
 

@@ -15,13 +15,14 @@ export default function Dashboard() {
     const [enterprise, setEnterprise] = useState([]);
     
     
-    const [userName, setUserSame] = useState('');
-    const [useId, setUserId] = useState('');
+    const [userName, setUserName] = useState('');
 
     const navigation = useNavigation();
 
 
-    async function go(){
+    async function go(id){
+
+        await AsyncStorage.setItem('enterprise_id', String(id));
         navigation.navigate('Order');
     }
 
@@ -38,11 +39,11 @@ export default function Dashboard() {
     //dados do usuario
     useEffect(() => {
         async function loaddata() {
-            setUserSame(await AsyncStorage.getItem('userName'));
-            setUserId(await AsyncStorage.getItem('userId'));
+            setUserName(await AsyncStorage.getItem('userName'));
         }
         loaddata();
-    }, [])
+        console.log(userName)
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -62,9 +63,10 @@ export default function Dashboard() {
                             <Image style={styles.enterpriselogo} source={enterprises.logo===null ? NOLOGO : {uri: `http://192.168.1.14:3333/file/logo/${enterprises.logo}`} } /> 
                             <View style={styles.dados} >
                                 <Text style={styles.name}>{enterprises.name}</Text>
+                                <Text style={styles.address}>{enterprises.address}</Text>
                                 <Text style={styles.cityUf}>{enterprises.city}, {enterprises.uf}</Text>
                             </View>
-                            <TouchableOpacity onPress={go}>
+                            <TouchableOpacity onPress={() => (go(enterprises.id))}>
                                 <View style={styles.contato}>
                                     <Text style={styles.Textphone}>Whatsapp</Text>
                                     <Text style={styles.phone}>{enterprises.phone}</Text>

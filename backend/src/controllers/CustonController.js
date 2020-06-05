@@ -3,9 +3,10 @@ const connection = require('../database/connection');
 module.exports = {
     async index_Custon(req, res){
         const enterprise_id = req.headers.authorization;
+
         const list = await connection('custom')
         .where('enterprise_id', enterprise_id)
-        .select('*');
+        .select('backgound_app', 'button_app', 'enterprise_id');
 
         return res.json(list);
 

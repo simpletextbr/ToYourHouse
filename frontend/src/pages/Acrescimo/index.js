@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import LogoHeader from '../../assets/logoHeader.svg';
-import NOLOGO from '../../assets/NOLOGO.png';
-import { FiTrash2, FiPlus, FiLogOut} from 'react-icons/fi';
+
+import Header from '../Utils/Header'
+import { FiTrash2, FiPlus } from 'react-icons/fi';
 import './styles.css';
 
 export default function Acrescimos() {
-//logo uploda
-const[logo, setLogo] = useState([]);
 //Acrescimos
 const[adds, setAdds] = useState([]);
 
@@ -30,17 +28,6 @@ async function deleteAdds(id){
   }
 }
 
-//Logo e Name
-useEffect(() => {
-    api.get('/enterprise/list', {
-        headers: {
-            Authorization: enterprise_id
-        }
-    }).then(response => {
-        setLogo(response.data);
-    })
-   },[enterprise_id]);
-
 //Listar Adds
 useEffect(() => {
     api.get('/adds', {
@@ -54,25 +41,7 @@ useEffect(() => {
 
     return(
         <>
-        <header>
-            <Link className="logo-home-link" to='/inicio'>
-                <img className="logoheader" src={LogoHeader} alt="Logo To Your House" />
-            </Link>
-        {logo.map(enterprise => (
-            <div className="row-logo-name" key={enterprise.id}>
-                
-                    <img className="logoenterprise"  src={enterprise.urllogo==null ? NOLOGO : enterprise.urllogo} alt="Logo da Empresa" />
-               
-            <p>Ola, {enterprise.name}</p>
-            </div>
-        ))}
-        <div className="menu-interations">
-        <Link to="/inicio">Inicio</Link>
-        <Link to="/acrescimo">Acrescimos</Link>
-        <Link to="/config">Configurar</Link>
-        <Link to="/Login"><FiLogOut size={23} color="#FF0000" /></Link>
-        </div>
-        </header>
+       <Header />
         <main>
             <section className="acrescimo">
                 <p className="title">Acrescimos</p>

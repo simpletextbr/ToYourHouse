@@ -36,7 +36,7 @@ return(
 {enterprises.map(logo => (
 <div className="row-logo-name" key={logo.id}>
 
-    <img className="logoenterprise"  src={logo.urllogo==null ? NOLOGO : logo.urllogo} alt="Logo da Empresa" />
+    <img className="logoenterprise"  src={logo.logo==null ? NOLOGO : `http://localhost:3333/file/logo/${logo.logo}`} alt="Logo da Empresa" />
 
 <p>Ola, {logo.name}</p>
 </div>

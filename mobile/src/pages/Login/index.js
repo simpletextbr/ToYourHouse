@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, AsyncStorage, Platform, KeyboardAvoidingView, ActivityIndicatorBase } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import { View, Text, Image, TextInput, TouchableOpacity, AsyncStorage, Platform, KeyboardAvoidingView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
 
@@ -40,8 +40,8 @@ return (
             style={styles.input}
             placeholder="Alô, Quem esta ai?"
             placeholderTextColor="#999"
-            autoCapitalize="none"
-            autoCorrect={true}
+            autoCapitalize="words"
+            autoCorrect={false}
             value={name}
             onChangeText={text => setName(text)}
         />

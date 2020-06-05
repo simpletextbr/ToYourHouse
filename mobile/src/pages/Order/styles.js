@@ -1,13 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet} from 'react-native';
 import Constants from 'expo-constants';
 
+
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        justifyContent: "center",
+    Header:{
+        padding: 10,
+        width: '100%',
+        flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#FFE1E1",
-        paddingTop: Constants.statusBarHeight + 20,
+    },
+
+    enterpriselogo:{
+        width: 32,
+        height:28,
+    },
+
+    enterprisename:{
+        marginLeft: 10,
+        fontWeight: "bold"
+    },
+
+    close:{
+        marginLeft: 'auto'
     }
 })
 

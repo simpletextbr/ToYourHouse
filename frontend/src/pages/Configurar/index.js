@@ -206,16 +206,17 @@ return(
                 <Link to="/config/upload/logo">
                 {enterprises.map( enterprise => (
                 <div id="bgcolor" key={enterprise.id}><p>Logo da sua Empresa</p>
-                    {enterprise.urllogo===null 
-                    ? <FiImage size={100} color="#FFEA00" key={enterprise.id}></FiImage> 
-                    : <img className="logo" src={enterprise.urllogo} alt="Logo da Sua Empresa" /> }
+                    {enterprise.logo===null 
+                    ? <FiImage size={100} color="#FFEA00"></FiImage> 
+                : <img className="logo" src={`http://localhost:3333/file/logo/${enterprise.logo}`} alt="Logo da Sua Empresa" /> }
                 </div>))}    
                 </Link>
-                <Link to="/config/upload/cardapio">{enterprises.map( enterprise => (
+                <Link to="/config/upload/cardapio">
+                {enterprises.map( enterprise => (
                 <div id="btcolor" key={enterprise.id}><p>Cardapio da sua Empresa</p>
-                    {enterprise.urlcardapio===null 
-                    ? <FiImage size={100} color="#FFEA00" key={enterprise.id}></FiImage> 
-                    : <img className="cardapio" src={enterprise.urlcardapio} alt="Cardapio da Sua Empresa" /> }
+                    {enterprise.cardapio===null 
+                    ? <FiImage size={100} color="#FFEA00"></FiImage> 
+                    : <img className="cardapio" src={`http://localhost:3333/file/cardapio/${enterprise.cardapio}`} alt="Cardapio da Sua Empresa" /> }
                 </div>))} </Link> 
             </div>
         </div> 

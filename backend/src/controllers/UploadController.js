@@ -11,7 +11,6 @@ module.exports ={
 
             const { filename } = req.file;
             const logo = filename;
-            const urllogo = `http://localhost:3333/file/logo/${logo}`;
 
             const authorization = await connection('enterprise')
             .where('id', enterprise_id)
@@ -19,7 +18,6 @@ module.exports ={
 
             await connection('enterprise').update({
                 logo,
-                urllogo
             }).where({id:authorization.id})
 
             return res.json({send: 'sucessfull'});
@@ -35,7 +33,6 @@ module.exports ={
 
             const { filename } = req.file;
             const cardapio = filename;
-            const urlcardapio = `http://localhost:3333/file/cardapio/${cardapio}`
 
             const authorization = await connection('enterprise')
             .where('id', enterprise_id)
@@ -43,7 +40,6 @@ module.exports ={
 
             await connection('enterprise').update({
                 cardapio,
-                urlcardapio
             }).where({id:authorization.id})
 
             return res.json({send: 'sucessfull'});
