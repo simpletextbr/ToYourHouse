@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList} from 'react-native';
+import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons'
-import Constants from 'expo-constants';
+
 
 
 import api from '../../services/api';
@@ -12,117 +12,119 @@ import styles from './styles';
 
 
 export default function Order() {
-    const [enterprises, setEnterprises] = useState([]);
-    const [categories, setCategories ] = useState([]);
-    const [products, setProducts ] = useState([]);
-    const [enterprise_id, setEnterprise_Id] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
     const [bgColor, setBgColor] = useState('');
     const [btColor, setBtColor] = useState('');
 
 
     const navigation = useNavigation();
+    const route = useRoute();
 
-async function close(){
-    navigation.navigate('Dashboard')
-}
+    const enterprises = route.params.enterprises
 
-useEffect(() => {
+
+    async function close() {
+        navigation.navigate('Dashboard')
+    }
+
     async function loaddata() {
-        setEnterprise_Id(await AsyncStorage.getItem('enterprise_id'));
         try {
-            const response =  await api.get('/config/custom', {
+            const response = await api.get('/config/custom', {
                 headers: {
-                    Authorization: enterprise_id
+                    Authorization: enterprises.id
                 }
             })
-             setBgColor(response.data[0].backgound_app);
-             setBtColor(response.data[0].button_app);
-        } catch (error) {}
+            setBgColor(response.data[0].backgound_app);
+            setBtColor(response.data[0].button_app);
+        } catch (error) {
+            alert('não foi possivel encontrar essas empresa!')
+        }
     }
-    loaddata();
-}, [enterprise_id]);
 
-//dados da empresa
-useEffect(() => {
- async function loaedenterprise(){
-    const response = await api.get('enterprise/list',{
-        headers:{
-            Authorization: enterprise_id
+    //dados da empresa
+    useEffect(() => {
+        loaddata();
+    }, [enterprises.id])
+
+    // categorias
+    useEffect(() => {
+        async function loadCategories() {
+            const response = await api.get('/category', {
+                headers: {
+                    Authorization: enterprises.id
+                }
+            })
+            setCategories(response.data);
         }
-    })
-    setEnterprises(response.data);
-}
-    loaedenterprise();
-},[enterprise_id])
+        loadCategories();
 
-// categorias
-useEffect(() => {
- async function loadCategories(){
-    const response = await api.get('/category', {
-        headers:{
-            Authorization: enterprise_id
+    }, [enterprises.id])
+
+    // produtos
+    useEffect(() => {
+        async function loadProducts() {
+            const response = await api.get('/products', {
+                headers: {
+                    Authorization: enterprises.id
+                }
+            })
+            setProducts(response.data);
         }
-    })
-    setCategories(response.data);
-}
-    loadCategories();
-
-},[enterprise_id])
-
-// produtos
-useEffect(() => {
- async function loadProducts(){
-   const response = await api.get('/products', {
-        headers:{
-            Authorization: enterprise_id
-        }
-    })
-    setProducts(response.data);
-}
-    loadProducts();
-},[enterprise_id])
+        loadProducts();
+    }, [enterprises.id])
 
 
 
 
 
     return (
-        <View style={{flex:1, paddingTop: Constants.statusBarHeight + 10, backgroundColor: `${bgColor}`}}>
-            {enterprises.map(enterprise => (
-            <View style={styles.Header} key={enterprise.id} >
-                <Image  style={styles.enterpriselogo} source={enterprise.logo===null ? NOLOGO : {uri: `http://192.168.1.14:3333/file/logo/${enterprise.logo}`}}/>
-                <Text style={styles.enterprisename}>{enterprise.name}</Text>
+        <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
+            <View style={styles.Header}>
+                <Image style={styles.enterpriselogo} source={enterprises.logo === null ? NOLOGO : { uri: `http://192.168.1.14:3333/file/logo/${enterprises.logo}` }} />
+                <Text style={styles.enterprisename}>{enterprises.name}</Text>
                 <TouchableOpacity style={styles.close} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
             </View>
-            ))}
             <FlatList
                 data={categories}
                 style={styles.Main}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={categorie => String(categorie.id)}
-                renderItem={({item: categorie}) =>(
+                renderItem={({ item: categorie }) => (
                     <View style={styles.categories}>
                         <Text style={styles.nameCat}>{categorie.name}</Text>
                         {products.map(product => (
-                            <View style={styles.products} key={product.id}>
-                                <Text style={styles.nameProduct}>{categorie.id===product.cat_id ? product.name : null}</Text>
-                                <Text style={styles.IngProduct}>{categorie.id===product.cat_id ? product.Ing : null}</Text>
-                                <TextInput 
-                                    style={styles.qtd}
-                                    placeholder="0"
-                                    placeholderTextColor="#999"
-                                    keyboardType="number-pad"
-                                    autoCapitalize="none"
-                                    autoCorrect={false}
-                                    />
-                                <Text style={styles.priceProduct}>{categorie.id===product.cat_id ? product.price : null}</Text>
+                            <View style={styles.listProducts} key={product.id}>
+                                {product.cat_id === categorie.id ?
+                                    <View style={styles.products}>
+                                        <View>
+                                        <Text style={styles.nameProduct}>{product.name}</Text>
+                                        <Text style={styles.IngProduct}>{product.Ing}</Text>
+                                        </View>
+                                        <View style={styles.input}>
+                                        <TouchableOpacity><Feather name="minus-circle" size={16} color={btColor} /></TouchableOpacity>
+                                        <TextInput
+                                            style={styles.qtd}
+                                            placeholder="0"
+                                            placeholderTextColor="#999"
+                                            keyboardType="number-pad"
+                                            autoCapitalize="none"
+                                            autoCorrect={false}
+                                        />
+                                        <TouchableOpacity><Feather name="plus-circle" size={16} color={btColor} /></TouchableOpacity>
+                                        </View>
+                                        <View>
+                                        <Text style={styles.priceProduct}>{   Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(product.price)}</Text>
+                                        </View>
+                                    </View>
+                                    : null}
                             </View>
                         ))}
                     </View>
                 )}
 
-             />
-                
+            />
+
         </View>
     )
 

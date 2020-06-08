@@ -20,29 +20,25 @@ export default function Dashboard() {
     const navigation = useNavigation();
 
 
-    async function go(id){
-
-        await AsyncStorage.setItem('enterprise_id', String(id));
-        navigation.navigate('Order');
-    }
-
-    async function loadlist(){
-        const response = await api.get('/mobile/list');
-
-        setEnterprise(response.data);
+    async function go(enterprises){
+        navigation.navigate('Order', { enterprises });
     }
 
     //Enterprise List
     useEffect(() => {
+        async function loadlist(){
+            const response = await api.get('/mobile/list');
+            setEnterprise(response.data);
+        }
         loadlist();
     }, [])
+
     //dados do usuario
     useEffect(() => {
         async function loaddata() {
             setUserName(await AsyncStorage.getItem('userName'));
         }
         loaddata();
-        console.log(userName)
     }, []);
 
     return (
@@ -66,7 +62,7 @@ export default function Dashboard() {
                                 <Text style={styles.address}>{enterprises.address}</Text>
                                 <Text style={styles.cityUf}>{enterprises.city}, {enterprises.uf}</Text>
                             </View>
-                            <TouchableOpacity onPress={() => (go(enterprises.id))}>
+                            <TouchableOpacity onPress={() =>  (go(enterprises))}>
                                 <View style={styles.contato}>
                                     <Text style={styles.Textphone}>Whatsapp</Text>
                                     <Text style={styles.phone}>{enterprises.phone}</Text>
