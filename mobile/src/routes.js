@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Welcome from './pages/Login/Welcome';
 import Order from './pages/Order';
+import Cardapio from './pages/Order/Cardapio';
 
 
 
@@ -35,6 +36,7 @@ export default function Routes() {
                 <Stack.Screen name="Login" component={Login} /> 
                 <Stack.Screen name="Dashboard" component={Dashboard} />
                 <Stack.Screen name="Order" component={Order} />
+                <Stack.Screen name="Cardapio" component={Cardapio} />
             </Stack.Navigator>
         </NavigationContainer>
 

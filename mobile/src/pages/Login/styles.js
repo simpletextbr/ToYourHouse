@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderColor: '#C2C2C2',
         fontSize: 28,
+        padding: 10
     },
 
     btn:{

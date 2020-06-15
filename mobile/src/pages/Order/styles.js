@@ -45,21 +45,18 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
 
-    listProducts:{
-        marginBottom: 20
-    },
-
     products:{
         backgroundColor: "#FFFFFF22",
         padding: 20,
         borderRadius: 8,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between"
+        
     },
 
     nameProduct:{
         fontSize: 16,
+        maxWidth: 180,
     },
 
     IngProduct:{
@@ -70,17 +67,52 @@ const styles = StyleSheet.create({
 
     input:{
         alignItems:"center",
+        marginLeft: 'auto',
+        marginRight: 10,
         flexDirection: "row",
+        justifyContent: "space-between",
         padding: 2
     },
 
-    qtd:{
-        backgroundColor: '#FFFFFF66',
-        marginLeft: 4,
-        marginRight: 4,
-        borderRadius: 4
-    }
+    minus:{
+        marginRight:10
+    },
 
+    add:{
+        marginLeft:10
+    },
+
+    priceProduct:{
+        fontWeight: "bold"
+    },
+
+    rowbuttons:{
+        flexDirection: "row",
+        marginTop: 20,
+        marginBottom: 20,
+        justifyContent: "space-between", 
+        paddingHorizontal: 20
+    },
+
+    cardapio:{
+        alignItems: "center",
+    },
+
+    textCardapio:{
+        fontSize: 12
+    },
+
+    cardapiobutton:{
+        padding: 4,
+        borderRadius: 8,
+    },
+
+    nextbutton:{
+        padding: 4,
+        borderRadius: 4,
+        height:42,
+        width: 42
+    },
 })
 
 export default styles;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, AsyncStorage, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, AsyncStorage} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
@@ -31,7 +31,7 @@ export default function Login() {
 
 return (
 
-    <KeyboardAvoidingView style={styles.container} enabled={Platform.OS === 'ios'} behavior='padding'>
+    <View style={styles.container}>
         <View style={styles.logoLogin}>
             <Image source={Logo} />
         </View>
@@ -46,6 +46,6 @@ return (
             onChangeText={text => setName(text)}
         />
         <TouchableOpacity style={styles.btn} onPress={createUser}><Text style={styles.btnText}>ENTRAR</Text></TouchableOpacity>
-    </KeyboardAvoidingView>
+    </View>
 )
 }
