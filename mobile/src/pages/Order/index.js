@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList, Animated} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -8,7 +8,6 @@ import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import api from '../../services/api';
 import NOLOGO from '../../assets/NOLOGO.png';
 import styles from './styles';
-import { set } from 'react-native-reanimated';
 
 
 export default function Order() {
@@ -19,11 +18,12 @@ export default function Order() {
     const [btColor, setBtColor] = useState('');
 
     //controle do pedido
-    const [order, setOrder] = useState([]);
+    const [preorder, setPreOrder] = useState([]);
+    const [order, setOrder] = useState([])
 
-    const [qtd, setQtd] = useState([]);
-    const qtd0 = 0;
-
+    //animação do carrinho
+    const [carWidth, setCarWidth] = useState(new Animated.Value(0));
+    const [carHeigth, setCarHeigth] = useState(new Animated.Value(0));
 
     const navigation = useNavigation();
     const route = useRoute();
@@ -41,19 +41,61 @@ export default function Order() {
     }
 
     async function Add(product) {
-        alert(`Produto ${product.name} no valor de ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)} Adcionado ao carrinho.`)
-        qtd.map(qtds => (
-            qtds.productid === product.id ? qtds.productqtd += 1 : qtd0
+        preorder.map(orders => (
+            orders.productid === product.id ? orders.productqtd += 1 : 0
         ))
+       
+
     }
 
     async function Minus(product) {
-        alert(`Você retirou 1 ${product.name} no valor de ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)} do seu carrinho.`)
-        qtd.map(qtds => (
-            qtds.productid === product.id ? qtds.productqtd -= 1 : qtd0  
+        preorder.map(orders => (
+            orders.productid === product.id ? orders.productqtd -= 1 : 0
         ))
-        
+       
+
     }
+
+    async function closeShopping(){
+        Animated.timing(
+            carWidth,{
+                toValue:0,
+                duration: 2000
+            }
+        ).start();
+
+        Animated.timing(
+            carHeigth,{
+                toValue:0,
+                duration: 1000
+            }
+        ).start();
+    }
+
+    async function shopping(){
+        Animated.timing(
+            carWidth,{
+                toValue:360,
+                duration: 1500
+            }
+        ).start();
+
+        Animated.timing(
+            carHeigth,{
+                toValue:140,
+                duration: 500
+            }
+        ).start();
+            const response = [products.length-1]
+            let j = 0;
+            for(let i=0; i < products.length; i++){
+                if(preorder[i].productqtd>0){
+                  response[j] =  preorder[i]
+                  j++
+                }
+            }setOrder(response)
+}
+
 
     async function close() {
         navigation.navigate('Dashboard')
@@ -73,11 +115,8 @@ export default function Order() {
         }
     }
 
-    async function Order() {
-       alert(`Seu carrinho atual é: ${qtd.map(qtds => (
-            qtds.productqtd>0 ? qtd : null
-       ))}`)
-
+    async function next() {
+     console.log(preorder)
     }
 
     useEffect(() => {
@@ -119,19 +158,24 @@ export default function Order() {
         loadProducts();
     }, [enterprise.id])
 
-    //Qtds
+    //Order
     useEffect(() => {
         async function loadqtds() {
             const response = [products.length - 1]
             for (let i = 0; i < products.length; i++) {
-                response[i] = await { productid: products[i].id, enterprise: enterprise.id, productqtd: 0 }
+                response[i] = await { 
+                    productid: products[i].id,
+                    productname: products[i].name, 
+                    productvalue: products[i].price, 
+                    enterprise: enterprise.id, 
+                    productqtd: 0,
+                    productAdd:[]
+                }
             }
-            setQtd(response)
+            setPreOrder(response)
         }
         loadqtds();
     }, [products])
-
-
 
     return (
         <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
@@ -157,8 +201,8 @@ export default function Order() {
                                             <Text style={styles.IngProduct}>{product.Ing}</Text>
                                         </View>
                                         <View style={styles.input}>
-                                            <TouchableOpacity style={styles.minus} onPress={() => (Minus(product))}><Feather name="minus-circle" size={16} color={`${btColor}`} /></TouchableOpacity>
-                                            <TouchableOpacity style={styles.add}   onPress={() => (Add(product))}><Feather name="plus-circle" size={16} color={`${btColor}`} /></TouchableOpacity>
+                                            <TouchableOpacity style={styles.minus} onPress={() => (Minus(product))}><Feather name="minus-circle" size={23} color={`${btColor}`} /></TouchableOpacity>
+                                            <TouchableOpacity style={styles.add}   onPress={() => (Add(product))}><Feather name="plus-circle" size={23} color={`${btColor}`} /></TouchableOpacity>
                                         </View>
                                         <View>
                                             <Text style={styles.priceProduct}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}</Text>
@@ -171,12 +215,35 @@ export default function Order() {
                 )}
 
             />
+             <View style={{alignItems: "center", justifyContent: "space-between", marginTop: 10}}>
+                <Animated.View style={{
+                    width:carWidth,
+                    height:carHeigth,
+                    backgroundColor: '#FFF',
+                    borderRadius: 6
+                }}>
+                    <TouchableOpacity style={styles.close} onPress={closeShopping}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
+                    <FlatList 
+                        data={order}
+                        style={styles.shoppin}
+                        keyExtractor={orders => String(orders.productid)}
+                        renderItem={({ item: orders }) => (
+                            <View style={styles.roworders}>
+                                <Text style={styles.qtdShopping}>{orders.productqtd}</Text>
+                                <Text style={styles.nameShopping}>{orders.productname}</Text>
+                                <Text style={styles.priceShopping}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orders.productqtd*orders.productvalue)}</Text>
+                            </View>
+                        )}
+                        />
+                </Animated.View>
+            </View>
             <View style={styles.rowbuttons} >
                 <View style={styles.cardapio}>
                     <Text style={styles.textCardapio}>Cardapio</Text>
                     <TouchableOpacity style={[styles.cardapiobutton, { backgroundColor: `${btColor}` }]} onPress={() => (goCardapio(enterprise))}><MaterialCommunityIcons name="book-open-outline" size={72} color="#FFFFFF" /></TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => Order(qtd)}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
+                <TouchableOpacity style={[styles.shoppingCart, {backgroundColor: `${btColor}`}]} onPress={() => shopping()}><Feather name="shopping-cart" size={36} color="#FFFFFF" /></TouchableOpacity>
+                <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => next()}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
             </View>
         </View>
     )

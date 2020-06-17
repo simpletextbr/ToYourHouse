@@ -32,10 +32,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
 
-    categories:{
-       
-    },
-
     nameCat:{
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -105,6 +101,44 @@ const styles = StyleSheet.create({
     cardapiobutton:{
         padding: 4,
         borderRadius: 8,
+    },
+
+    shoppingCart:{
+        padding: 6,
+        borderRadius: 4,
+        height:48,
+        width: 52
+    },
+
+    roworders:{
+        backgroundColor: "#E5E5E599",
+        padding: 10,
+        width: '96%',
+        marginTop: 10,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        borderRadius: 8,
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    qtdShopping:{
+        marginLeft: 10,
+        padding: 6,
+        backgroundColor: '#A5A5A566',
+        fontWeight: "bold",
+        borderRadius: 6
+    },
+
+    nameShopping:{
+        marginLeft: 10,
+        fontSize: 18
+    },
+
+    priceShopping:{
+        marginLeft: 'auto',
+        fontSize: 16,
+        fontWeight: "bold"
     },
 
     nextbutton:{
