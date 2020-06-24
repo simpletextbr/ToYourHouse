@@ -13,17 +13,19 @@ import styles from './styles';
 export default function Order() {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
-    const [userName, setUserName] = useState('');
     const [bgColor, setBgColor] = useState('');
     const [btColor, setBtColor] = useState('');
 
     //controle do pedido
     const [preorder, setPreOrder] = useState([]);
-    const [order, setOrder] = useState([])
+    const [order, setOrder] = useState([]);
+    const orderarray = [(products.length*2)-2]
+    let j = 0;
+    let oN = 0; 
 
     //animação do carrinho
-    const [carWidth, setCarWidth] = useState(new Animated.Value(0));
-    const [carHeigth, setCarHeigth] = useState(new Animated.Value(0));
+    const [carWidth] = useState(new Animated.Value(0));
+    const [carHeigth] = useState(new Animated.Value(0));
 
     const navigation = useNavigation();
     const route = useRoute();
@@ -41,33 +43,42 @@ export default function Order() {
     }
 
     async function Add(product) {
-        preorder.map(orders => (
-            orders.productid === product.id ? orders.productqtd += 1 : 0
-        ))
-       
-
-    }
+        for(let i=0; i < products.length-1; i++){
+            if(preorder[i].productid===product.id){
+                orderarray[j] = await {
+                orderNumber: oN++,
+                productid: product.id,
+                productname: product.name, 
+                productvalue: product.price, 
+                enterprise: enterprise.name, 
+                productqtd: 1,
+                productAdd:[]
+                    }
+                j++
+                }
+            }console.log(orderarray)
+            console.log(order)
+        }
 
     async function Minus(product) {
-        preorder.map(orders => (
-            orders.productid === product.id ? orders.productqtd -= 1 : 0
+        orderarray.map(orders => (
+            orders.productid===product.id ? orders.productqtd = 0 : 0
         ))
        
-
     }
 
     async function closeShopping(){
         Animated.timing(
             carWidth,{
                 toValue:0,
-                duration: 2000
+                duration: 100
             }
         ).start();
 
         Animated.timing(
             carHeigth,{
                 toValue:0,
-                duration: 1000
+                duration: 400
             }
         ).start();
     }
@@ -76,26 +87,18 @@ export default function Order() {
         Animated.timing(
             carWidth,{
                 toValue:360,
-                duration: 1500
+                duration: 400
             }
         ).start();
 
         Animated.timing(
             carHeigth,{
                 toValue:140,
-                duration: 500
+                duration: 100
             }
-        ).start();
-            const response = [products.length-1]
-            let j = 0;
-            for(let i=0; i < products.length; i++){
-                if(preorder[i].productqtd>0){
-                  response[j] =  preorder[i]
-                  j++
-                }
-            }setOrder(response)
-}
+        ).start(); 
 
+}
 
     async function close() {
         navigation.navigate('Dashboard')
@@ -111,20 +114,19 @@ export default function Order() {
             setBgColor(response.data[0].backgound_app);
             setBtColor(response.data[0].button_app);
         } catch (error) {
-            alert('não foi possivel encontrar essas empresa!')
+            alert('não foi possivel encontrar essa empresa!')
         }
     }
 
     async function next() {
-     console.log(preorder)
-    }
-
-    useEffect(() => {
-        async function load() {
-            setUserName(await AsyncStorage.getItem('userName'));
+        await setOrder(orderarray);
+        if(order.length===0){
+            alert('Você ainda não comprou nada, amigo!')
+        }else{
+            navigation.navigate('Adds', { order, enterprise });
         }
-        load();
-    }, [enterprise.id])
+        
+    }
 
     //dados 
     useEffect(() => {
@@ -158,12 +160,12 @@ export default function Order() {
         loadProducts();
     }, [enterprise.id])
 
-    //Order
+    //Pre-order
     useEffect(() => {
         async function loadqtds() {
             const response = [products.length - 1]
             for (let i = 0; i < products.length; i++) {
-                response[i] = await { 
+                response[i] = await {
                     productid: products[i].id,
                     productname: products[i].name, 
                     productvalue: products[i].price, 
@@ -177,10 +179,11 @@ export default function Order() {
         loadqtds();
     }, [products])
 
+
     return (
         <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
             <View style={styles.Header}>
-                <Image style={styles.enterpriselogo} source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.11:3333/file/logo/${enterprise.logo}` }} />
+                <Image style={styles.enterpriselogo} source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
                 <Text style={styles.enterprisename}>{enterprise.name}</Text>
                 <TouchableOpacity style={styles.close} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
             </View>
@@ -200,10 +203,10 @@ export default function Order() {
                                             <Text style={styles.nameProduct}>{product.name}</Text>
                                             <Text style={styles.IngProduct}>{product.Ing}</Text>
                                         </View>
-                                        <View style={styles.input}>
-                                            <TouchableOpacity style={styles.minus} onPress={() => (Minus(product))}><Feather name="minus-circle" size={23} color={`${btColor}`} /></TouchableOpacity>
-                                            <TouchableOpacity style={styles.add}   onPress={() => (Add(product))}><Feather name="plus-circle" size={23} color={`${btColor}`} /></TouchableOpacity>
-                                        </View>
+                                        <TouchableOpacity style={styles.input}  onPress={() => (Add(product))}>
+                                            <Feather name="plus-circle" size={16} color={`${btColor}`} />
+                                            <Text style={styles.adc}>Adicionar</Text>
+                                        </TouchableOpacity>
                                         <View>
                                             <Text style={styles.priceProduct}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}</Text>
                                         </View>
@@ -224,15 +227,21 @@ export default function Order() {
                 }}>
                     <TouchableOpacity style={styles.close} onPress={closeShopping}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
                     <FlatList 
-                        data={order}
+                        data={orderarray}
                         style={styles.shoppin}
-                        keyExtractor={orders => String(orders.productid)}
-                        renderItem={({ item: orders }) => (
+                        keyExtractor={orders => String(orders.orderNumber)}
+                        renderItem={({ item: orders }) => ( 
+                            !orders.productid ? 
+                            <View style={styles.noShopping}>
+                                <Feather name="shopping-cart" size={60} color="#A5A5A566"/>
+                                <Text>Você ainda não comprou nada, amigo!</Text>
+                            </View> : 
                             <View style={styles.roworders}>
                                 <Text style={styles.qtdShopping}>{orders.productqtd}</Text>
                                 <Text style={styles.nameShopping}>{orders.productname}</Text>
                                 <Text style={styles.priceShopping}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orders.productqtd*orders.productvalue)}</Text>
-                            </View>
+                                <TouchableOpacity style={styles.minus} onPress={() => (Minus(products))}><Feather name="minus-circle" size={23} color="#FF0000" /></TouchableOpacity>
+                            </View>     
                         )}
                         />
                 </Animated.View>
@@ -242,7 +251,7 @@ export default function Order() {
                     <Text style={styles.textCardapio}>Cardapio</Text>
                     <TouchableOpacity style={[styles.cardapiobutton, { backgroundColor: `${btColor}` }]} onPress={() => (goCardapio(enterprise))}><MaterialCommunityIcons name="book-open-outline" size={72} color="#FFFFFF" /></TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.shoppingCart, {backgroundColor: `${btColor}`}]} onPress={() => shopping()}><Feather name="shopping-cart" size={36} color="#FFFFFF" /></TouchableOpacity>
+                <TouchableOpacity style={[styles.shoppingCart, {backgroundColor: `${btColor}`}]} onPress={() => shopping()}><Feather name="shopping-cart" size={36} color="#FFFFFF" /></TouchableOpacity> 
                 <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => next()}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
             </View>
         </View>

@@ -57,7 +57,7 @@ export default function Dashboard() {
                 renderItem={({item: enterprises}) => (
                     <View style={styles.enterprise}>
                         <View style={styles.row}>
-                            <Image style={styles.enterpriselogo} source={enterprises.logo===null ? NOLOGO : {uri: `http://192.168.1.11:3333/file/logo/${enterprises.logo}`} } /> 
+                            <Image style={styles.enterpriselogo} source={enterprises.logo===null ? NOLOGO : {uri: `http://192.168.1.12:3333/file/logo/${enterprises.logo}`} } /> 
                             <View style={styles.dados} >
                                 <Text style={styles.name}>{enterprises.name}</Text>
                                 <Text style={styles.address}>{enterprises.address}</Text>

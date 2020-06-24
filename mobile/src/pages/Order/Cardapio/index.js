@@ -42,7 +42,7 @@ export default function Cardapio() {
     return (
         <View style={[styles.container, {backgroundColor: `${bgColor}`,}]}>
             <TouchableOpacity style={styles.close} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
-            <Image style={styles.cardapio} source={{ uri: `http://192.168.1.11:3333/file/cardapio/${enterprise.cardapio}`}}/>
+            <Image style={styles.cardapio} source={{ uri: `http://192.168.1.12:3333/file/cardapio/${enterprise.cardapio}`}}/>
         </View>
     )
 }

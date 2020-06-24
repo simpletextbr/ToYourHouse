@@ -65,17 +65,17 @@ const styles = StyleSheet.create({
         alignItems:"center",
         marginLeft: 'auto',
         marginRight: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        padding: 2
+        flexDirection: "column",
+        justifyContent: "center",
     },
 
     minus:{
-        marginRight:10
+        marginLeft:10
     },
 
-    add:{
-        marginLeft:10
+    adc:{
+        alignItems: "center",
+        fontSize: 10
     },
 
     priceProduct:{
@@ -120,6 +120,12 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         flexDirection: "row",
         alignItems: "center",
+    },
+
+    noShopping:{
+        paddingHorizontal: 20,
+        alignItems: "center",
+        justifyContent: "center",
     },
 
     qtdShopping:{

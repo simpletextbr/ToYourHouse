@@ -9,9 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Welcome from './pages/Login/Welcome';
 import Order from './pages/Order';
 import Cardapio from './pages/Order/Cardapio';
-
-
-
+import Adds from './pages/Adds';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +35,7 @@ export default function Routes() {
                 <Stack.Screen name="Dashboard" component={Dashboard} />
                 <Stack.Screen name="Order" component={Order} />
                 <Stack.Screen name="Cardapio" component={Cardapio} />
+                <Stack.Screen name="Adds" component={Adds} />
             </Stack.Navigator>
         </NavigationContainer>
 
