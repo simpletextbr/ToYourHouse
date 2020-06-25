@@ -18,10 +18,9 @@ export default function Order() {
 
     //controle do pedido
     const [preorder, setPreOrder] = useState([]);
-    const [order, setOrder] = useState([]);
-    const orderarray = [(products.length*2)-2]
+    const [order] = useState([]);
     let j = 0;
-    let oN = 0; 
+    let oN = 0;
 
     //animação do carrinho
     const [carWidth] = useState(new Animated.Value(0));
@@ -43,9 +42,9 @@ export default function Order() {
     }
 
     async function Add(product) {
-        for(let i=0; i < products.length-1; i++){
+        for(let i=0; i < products.length; i++){
             if(preorder[i].productid===product.id){
-                orderarray[j] = await {
+                order[j] = {
                 orderNumber: oN++,
                 productid: product.id,
                 productname: product.name, 
@@ -56,16 +55,9 @@ export default function Order() {
                     }
                 j++
                 }
-            }console.log(orderarray)
-            console.log(order)
+            }
         }
 
-    async function Minus(product) {
-        orderarray.map(orders => (
-            orders.productid===product.id ? orders.productqtd = 0 : 0
-        ))
-       
-    }
 
     async function closeShopping(){
         Animated.timing(
@@ -96,8 +88,7 @@ export default function Order() {
                 toValue:140,
                 duration: 100
             }
-        ).start(); 
-
+        ).start();
 }
 
     async function close() {
@@ -119,7 +110,6 @@ export default function Order() {
     }
 
     async function next() {
-        await setOrder(orderarray);
         if(order.length===0){
             alert('Você ainda não comprou nada, amigo!')
         }else{
@@ -227,21 +217,20 @@ export default function Order() {
                 }}>
                     <TouchableOpacity style={styles.close} onPress={closeShopping}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
                     <FlatList 
-                        data={orderarray}
+                        data={order}
                         style={styles.shoppin}
                         keyExtractor={orders => String(orders.orderNumber)}
-                        renderItem={({ item: orders }) => ( 
-                            !orders.productid ? 
+                        renderItem={({ item: orders }) => (
+                            !orders.productid ?
                             <View style={styles.noShopping}>
                                 <Feather name="shopping-cart" size={60} color="#A5A5A566"/>
                                 <Text>Você ainda não comprou nada, amigo!</Text>
-                            </View> : 
+                            </View> :
                             <View style={styles.roworders}>
                                 <Text style={styles.qtdShopping}>{orders.productqtd}</Text>
                                 <Text style={styles.nameShopping}>{orders.productname}</Text>
-                                <Text style={styles.priceShopping}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orders.productqtd*orders.productvalue)}</Text>
-                                <TouchableOpacity style={styles.minus} onPress={() => (Minus(products))}><Feather name="minus-circle" size={23} color="#FF0000" /></TouchableOpacity>
-                            </View>     
+                                <Text style={styles.priceShopping}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orders.productvalue)}</Text>
+                            </View>  
                         )}
                         />
                 </Animated.View>
@@ -251,7 +240,7 @@ export default function Order() {
                     <Text style={styles.textCardapio}>Cardapio</Text>
                     <TouchableOpacity style={[styles.cardapiobutton, { backgroundColor: `${btColor}` }]} onPress={() => (goCardapio(enterprise))}><MaterialCommunityIcons name="book-open-outline" size={72} color="#FFFFFF" /></TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.shoppingCart, {backgroundColor: `${btColor}`}]} onPress={() => shopping()}><Feather name="shopping-cart" size={36} color="#FFFFFF" /></TouchableOpacity> 
+                 <TouchableOpacity style={[styles.shoppingCart, {backgroundColor: `${btColor}`}]} onPress={() => shopping()}><Feather name="shopping-cart" size={36} color="#FFFFFF" /></TouchableOpacity> 
                 <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => next()}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
             </View>
         </View>

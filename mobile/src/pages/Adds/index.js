@@ -44,7 +44,7 @@ export default function Adds(){
         <View style={styles.Header}>
             <Image style={styles.enterpriselogo} source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
             <Text style={styles.enterprisename}>{enterprise.name}</Text>
-            <TouchableOpacity style={styles.back} onPress={() => {navigation.goBack(alert('Todos os seus items foram removidos do carrinho'))}}><Feather name="arrow-left" size={28} color="#000000" /></TouchableOpacity>
+            <TouchableOpacity style={styles.back} onPress={() => {navigation.goBack()}}><Feather name="arrow-left" size={28} color="#000000" /></TouchableOpacity>
         </View>
             <Text style={styles.title}>Adicionar Acréscimos</Text>
             <FlatList
