@@ -69,10 +69,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
-    minus:{
-        marginLeft:10
-    },
-
     adc:{
         alignItems: "center",
         fontSize: 10

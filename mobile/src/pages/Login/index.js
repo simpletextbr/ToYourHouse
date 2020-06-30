@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, AsyncStorage} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -28,12 +28,13 @@ export default function Login() {
              navigation.navigate('Dashboard');
             }
         }
+    
 
 return (
 
     <View style={styles.container}>
         <View style={styles.logoLogin}>
-            <Image source={Logo} />
+            <Image  source={Logo} />
         </View>
         <Text style={styles.p}>Para iniciar diga-nos qual é o seu nome</Text>
         <TextInput

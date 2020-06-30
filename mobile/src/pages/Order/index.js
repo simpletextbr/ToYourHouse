@@ -49,7 +49,7 @@ export default function Order() {
                 productid: product.id,
                 productname: product.name, 
                 productvalue: product.price, 
-                enterprise: enterprise.name, 
+                enterprise: enterprise.id, 
                 productqtd: 1,
                 productAdd:[]
                     }
@@ -198,7 +198,7 @@ export default function Order() {
                                             <Text style={styles.adc}>Adicionar</Text>
                                         </TouchableOpacity>
                                         <View>
-                                            <Text style={styles.priceProduct}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}</Text>
+                                        <Text style={styles.priceProduct}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}</Text>
                                         </View>
                                     </View>
                                     : null}
@@ -221,7 +221,7 @@ export default function Order() {
                         style={styles.shoppin}
                         keyExtractor={orders => String(orders.orderNumber)}
                         renderItem={({ item: orders }) => (
-                            !orders.productid ?
+                            order.length<=0 ?
                             <View style={styles.noShopping}>
                                 <Feather name="shopping-cart" size={60} color="#A5A5A566"/>
                                 <Text>Você ainda não comprou nada, amigo!</Text>
