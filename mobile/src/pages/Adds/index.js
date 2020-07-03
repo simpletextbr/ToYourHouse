@@ -14,8 +14,6 @@ export default function Adds(){
     const [adds, setAdds] = useState([]);
 
     //animação do carrinho
-    const [carWidth] = useState(new Animated.Value(0));
-    const [carHeigth] = useState(new Animated.Value(0));
     const [orderWidth] = useState(new Animated.Value(0));
     const [orderHeigth] = useState(new Animated.Value(0));
 
@@ -24,24 +22,11 @@ export default function Adds(){
 
     const order = route.params.order;
     const enterprise = route.params.enterprise;
+    let j = 0
 
 
 
     async function closeAnimations(){
-        Animated.timing(
-            carWidth,{
-                toValue:0,
-                duration: 100
-            }
-        ).start();
-
-        Animated.timing(
-            carHeigth,{
-                toValue:0,
-                duration: 400
-            }
-        ).start();
-
         Animated.timing(
             orderWidth,{
                 toValue:0,
@@ -55,27 +40,12 @@ export default function Adds(){
                 duration: 400
             }
         ).start();
-    }
+    } 
 
-    async function shopping(){
-        Animated.timing(
-            carWidth,{
-                toValue:360,
-                duration: 400
-            }
-        ).start();
-
-        Animated.timing(
-            carHeigth,{
-                toValue:140,
-                duration: 100
-            }
-        ).start();
-}   
     async function seeOrder(){
         Animated.timing(
             orderWidth,{
-                toValue:200,
+                toValue: 200,
                 duration: 100
             }
         ).start();
@@ -103,7 +73,15 @@ export default function Adds(){
     }
 
     async function Add(add){
-        console.log(add)
+       for(let i = 0 ; i < order.length-1 ; i++){
+           if(order[i].enterprise===add.enterprise_id){
+               order[i].productAdd[j]={
+                   name:add.name,
+                   price:add.price
+               }
+            j++
+           }
+       }
     }
 
     async function next() {
@@ -127,7 +105,7 @@ export default function Adds(){
             setAdds(response.data)
         }
             loadAdds()
-    },[enterprise.id])
+    },[enterprise.id]);
 
   return (
     <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
@@ -146,9 +124,10 @@ export default function Adds(){
                 renderItem={({item: order}) => (
                 <View>
                     <TouchableOpacity style={{alignItems: "center", marginBottom: 20}} onPress={() => seeOrder()}>
-                    <Text style={styles.productName}>Pedido {order.orderNumber}</Text>
+                    <Text style={styles.productName}>Pedido {order.orderNumber + 1}</Text>
+                    <Text style={styles.detail}>Mais Detalhes</Text>
                     <Feather name="chevron-down" size={20} color="#000000"/>
-                    </TouchableOpacity>
+                    </TouchableOpacity> 
                     <Animated.View style={{
                         width:orderWidth,
                         height:orderHeigth,
@@ -166,7 +145,7 @@ export default function Adds(){
                         enterprise.id===add.enterprise_id ? 
                         <View key={add.id} style={styles.add}>
                             <Text style={styles.nameadds}>{add.name}</Text>
-                                <TouchableOpacity style={styles.input} onPress={() => (Add([add,order]))}>
+                                <TouchableOpacity style={styles.input} onPress={() => (Add(add))}>
                                     <Feather name="plus-circle" size={16} color={`${btColor}`} />
                                      <Text style={styles.adc}>Adicionar</Text>
                                 </TouchableOpacity>
@@ -177,33 +156,7 @@ export default function Adds(){
                 </View>
                 )}
             />
-        <View style={{alignItems: "center", justifyContent: "space-between", marginTop: 10}}>
-            <Animated.View style={{
-                width:carWidth,
-                height:carHeigth,
-                backgroundColor: '#FFF',
-                borderRadius: 6
-            }}>
-                <TouchableOpacity style={styles.close} onPress={closeAnimations}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
-                <FlatList 
-                    data={order}
-                    style={styles.shoppin}
-                    keyExtractor={orders => String(orders.orderNumber)}
-                    renderItem={({ item: orders }) => (
-                        <View style={styles.roworders}>
-                            <Text style={styles.qtdShopping}>{orders.productqtd}</Text>
-                            <Text style={styles.nameShopping}>{orders.productname}</Text>
-                            <Text style={styles.priceShopping}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orders.productvalue)}</Text>
-                        </View>  
-                    )}
-                    />
-            </Animated.View>
-        </View>
         <View style={styles.rowbuttons} >
-            <View style={styles.cardapio}>
-                <Text style={styles.textCardapio}>Pedido Atual</Text>
-                <TouchableOpacity style={[styles.shoppingCart, {backgroundColor: `${btColor}`}]} onPress={() => shopping()}><Feather name="shopping-cart" size={72} color="#FFFFFF" /></TouchableOpacity>
-            </View> 
             <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => next()}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
         </View>
     </View>

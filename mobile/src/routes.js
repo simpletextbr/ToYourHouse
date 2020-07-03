@@ -10,6 +10,7 @@ import Welcome from './pages/Login/Welcome';
 import Order from './pages/Order';
 import Cardapio from './pages/Order/Cardapio';
 import Adds from './pages/Adds';
+import OrderFinal from './pages/orderFinal';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,7 @@ export default function Routes() {
                 <Stack.Screen name="Order" component={Order} />
                 <Stack.Screen name="Cardapio" component={Cardapio} />
                 <Stack.Screen name="Adds" component={Adds} />
+                <Stack.Screen name="OrderFinal" component={OrderFinal} />
             </Stack.Navigator>
         </NavigationContainer>
 

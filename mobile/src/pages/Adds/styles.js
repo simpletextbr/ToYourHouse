@@ -45,6 +45,11 @@ const styles = StyleSheet.create({
         textAlign: "center"  
     },
 
+    detail:{
+        fontSize: 10,
+        fontWeight:"bold"
+    },
+
     content:{
         maxWidth: 410,
         flexDirection: 'column',
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     },
 
     add:{
-        backgroundColor: "#E5E5E522",
+        backgroundColor: "#E5E5E544",
         padding: 10,
         marginTop: 10,
         alignItems: "center",
@@ -89,11 +94,6 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
 
-    shoppingCart:{
-        padding: 6,
-        borderRadius: 4,
-    },
-
     rowbuttons:{
         flexDirection: "row",
         marginTop: 20,
@@ -102,42 +102,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
 
-    roworders:{
-        backgroundColor: "#E5E5E599",
-        padding: 10,
-        width: '96%',
-        marginTop: 10,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        borderRadius: 8,
-        flexDirection: "row",
-        alignItems: "center",
-    },
-
-    qtdShopping:{
-        marginLeft: 10,
-        padding: 6,
-        backgroundColor: '#A5A5A566',
-        fontWeight: "bold",
-        borderRadius: 6
-    },
-
-    nameShopping:{
-        marginLeft: 10,
-        fontSize: 18
-    },
-
-    priceShopping:{
-        marginLeft: 'auto',
-        fontSize: 16,
-        fontWeight: "bold"
-    },
-
     nextbutton:{
         padding: 4,
         borderRadius: 4,
         height:42,
-        width: 42
+        width: 42,
+        marginLeft: 'auto',
+        marginBottom: 40
     },
 })
 
