@@ -23,6 +23,7 @@ export default function Adds(){
     const order = route.params.order;
     const enterprise = route.params.enterprise;
     let j = 0
+    let aN = 0
 
 
 
@@ -73,16 +74,23 @@ export default function Adds(){
     }
 
     async function Add(add){
-       for(let i = 0 ; i < order.length-1 ; i++){
-           if(order[i].enterprise===add.enterprise_id){
-               order[i].productAdd[j]={
-                   name:add.name,
-                   price:add.price
+       for(let i = 0 ; i < order.length ; i++){
+           if(order[i].orderNumber===add[1].orderNumber){
+               if(!order[i].productAdd[j]){
+                order[i].productAdd[j]={
+                    name:add[0].name,
+                    price:add[0].price,
+                    id: add[0].id,
+                    AddNumber: aN++
                }
-            j++
-           }
-       }
+                j++
+               }else{
+                   j++
+               }
+            }
+        }
     }
+
 
     async function next() {
         console.log(order)
@@ -110,21 +118,16 @@ export default function Adds(){
   return (
     <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
         <View style={styles.Header}>
-            <Image style={styles.enterpriselogo} source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
+            <Image style={styles.enterpriselogo} resizeMode="contain" source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
             <Text style={styles.enterprisename}>{enterprise.name}</Text>
             <TouchableOpacity style={styles.back} onPress={() => {navigation.goBack()}}><Feather name="arrow-left" size={28} color="#000000" /></TouchableOpacity>
         </View>
             <Text style={styles.title}>Adicionar Acréscimos</Text>
-            <FlatList
-                data={order}
-                style={styles.orders}
-                keyExtractor={order => String(order.orderNumber)}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({item: order}) => (
-                <View>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {order.map(order => (
+                    <View key={order.orderNumber}>
                     <TouchableOpacity style={{alignItems: "center", marginBottom: 20}} onPress={() => seeOrder()}>
-                    <Text style={styles.productName}>Pedido {order.orderNumber + 1}</Text>
+                    <Text style={styles.productName}>{order.productname}</Text>
                     <Text style={styles.detail}>Mais Detalhes</Text>
                     <Feather name="chevron-down" size={20} color="#000000"/>
                     </TouchableOpacity> 
@@ -133,11 +136,16 @@ export default function Adds(){
                         height:orderHeigth,
                         backgroundColor: '#FFF',
                         borderRadius: 6,
-                        marginRight: 10,
-                        marginLeft: 10
+                        marginRight: 20,
+                        marginLeft: 20
                         }}>
-                            <TouchableOpacity style={styles.close} onPress={closeAnimations}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
-                        <Text style={styles.productName}>{order.productname}</Text>
+                    <TouchableOpacity style={styles.close} onPress={closeAnimations}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
+                            <Text style={styles.productName}>Acrescimos: </Text>
+                            { order.productAdd.map(add =>(
+                            <Text key={add.AddNumber} style={styles.adds}>
+                                <Text>{add!==undefined ? add.name: null}, </Text>                   
+                            </Text>
+                            ))} 
                     </Animated.View>
                 <ScrollView style={styles.rowadds} showsVerticalScrollIndicator={false}>
                     <View style={styles.content}>
@@ -145,7 +153,7 @@ export default function Adds(){
                         enterprise.id===add.enterprise_id ? 
                         <View key={add.id} style={styles.add}>
                             <Text style={styles.nameadds}>{add.name}</Text>
-                                <TouchableOpacity style={styles.input} onPress={() => (Add(add))}>
+                                <TouchableOpacity style={styles.input} onPress={() => (Add([add, order]))}>
                                     <Feather name="plus-circle" size={16} color={`${btColor}`} />
                                      <Text style={styles.adc}>Adicionar</Text>
                                 </TouchableOpacity>
@@ -154,8 +162,8 @@ export default function Adds(){
                     </View> 
                 </ScrollView>
                 </View>
-                )}
-            />
+                    ))}
+                </ScrollView>
         <View style={styles.rowbuttons} >
             <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => next()}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
         </View>

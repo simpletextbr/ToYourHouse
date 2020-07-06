@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList, Animated} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
 
 
 
@@ -57,7 +58,6 @@ export default function Order() {
                 }
             }
         }
-
 
     async function closeShopping(){
         Animated.timing(
@@ -173,7 +173,7 @@ export default function Order() {
     return (
         <View style={[styles.container, { backgroundColor: `${bgColor}` }]}>
             <View style={styles.Header}>
-                <Image style={styles.enterpriselogo} source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
+                <Image style={styles.enterpriselogo} resizeMode="contain" source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
                 <Text style={styles.enterprisename}>{enterprise.name}</Text>
                 <TouchableOpacity style={styles.close} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
             </View>

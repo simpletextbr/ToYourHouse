@@ -36,13 +36,18 @@ const styles = StyleSheet.create({
     title:{
         marginTop: 20,
         fontSize: 23,
-        textAlign: "center"
+        textAlign: "center",
     },
 
     productName:{
-        marginTop: 10,
         fontSize: 20,
-        textAlign: "center"  
+        textAlign: "center"
+    },
+
+    adds:{
+        fontSize: 12,
+        color: 'grey',
+        paddingHorizontal: 10,
     },
 
     detail:{

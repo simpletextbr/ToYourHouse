@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Image, Text, FlatList, AsyncStorage} from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as Animatable from 'react-native-animatable';
 
 import api from '../../services/api';
 
@@ -55,9 +56,9 @@ export default function Dashboard() {
                 showsVerticalScrollIndicator={false}
                 keyExtractor={enterprises => String(enterprises.id)}
                 renderItem={({item: enterprises}) => (
-                    <View style={styles.enterprise}>
+                    <Animatable.View style={styles.enterprise} animation="bounceInUp" duration={1000}>
                         <View style={styles.row}>
-                            <Image style={styles.enterpriselogo} source={enterprises.logo===null ? NOLOGO : {uri: `http://192.168.1.12:3333/file/logo/${enterprises.logo}`} } /> 
+                            <Image style={styles.enterpriselogo} resizeMode="contain" source={enterprises.logo===null ? NOLOGO : {uri: `http://192.168.1.12:3333/file/logo/${enterprises.logo}`} } /> 
                             <View style={styles.dados} >
                                 <Text style={styles.name}>{enterprises.name}</Text>
                                 <Text style={styles.address}>{enterprises.address}</Text>
@@ -70,7 +71,7 @@ export default function Dashboard() {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </Animatable.View>
                 )}
             />
         </View>
