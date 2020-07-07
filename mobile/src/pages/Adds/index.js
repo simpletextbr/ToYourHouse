@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity, ScrollView, Animated } from 'react
 import { useRoute, useNavigation  } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
 
 import styles from './styles';
 import api from '../../services/api';
@@ -24,6 +25,7 @@ export default function Adds(){
     const enterprise = route.params.enterprise;
     let j = 0
     let aN = 0
+    let lasti = 0
 
 
 
@@ -31,14 +33,14 @@ export default function Adds(){
         Animated.timing(
             orderWidth,{
                 toValue:0,
-                duration: 100
+                duration: 200
             }
         ).start();
 
         Animated.timing(
             orderHeigth,{
                 toValue:0,
-                duration: 400
+                duration: 100
             }
         ).start();
     } 
@@ -46,7 +48,7 @@ export default function Adds(){
     async function seeOrder(){
         Animated.timing(
             orderWidth,{
-                toValue: 200,
+                toValue: 380,
                 duration: 100
             }
         ).start();
@@ -76,17 +78,23 @@ export default function Adds(){
     async function Add(add){
        for(let i = 0 ; i < order.length ; i++){
            if(order[i].orderNumber===add[1].orderNumber){
+            console.log(i)
+            console.log(lasti)
+               if(lasti !== i){
+                   j=0
+               }
                if(!order[i].productAdd[j]){
-                order[i].productAdd[j]={
-                    name:add[0].name,
-                    price:add[0].price,
-                    id: add[0].id,
-                    AddNumber: aN++
-               }
+                    console.log(i)
+                    console.log(lasti)
+                    lasti = i
+                    order[i].productAdd[j]={
+                        name:add[0].name,
+                        price:add[0].price,
+                        id: add[0].id,
+                        AddNumber: aN++
+                    }
                 j++
-               }else{
-                   j++
-               }
+                }
             }
         }
     }
@@ -140,12 +148,14 @@ export default function Adds(){
                         marginLeft: 20
                         }}>
                     <TouchableOpacity style={styles.close} onPress={closeAnimations}><Feather name="x" size={20} color="#FFFFFF" style={{backgroundColor: '#FF0000', margin: 5, borderRadius: 50}} /></TouchableOpacity>
-                            <Text style={styles.productName}>Acrescimos: </Text>
-                            { order.productAdd.map(add =>(
-                            <Text key={add.AddNumber} style={styles.adds}>
-                                <Text>{add!==undefined ? add.name: null}, </Text>                   
-                            </Text>
-                            ))} 
+                            <Text style={styles.title2}>Acrescimos: </Text>
+                            <FlatList 
+                                data={order.productAdd}
+                                keyExtractor={add => add===undefined ? null : String(add.AddNumber)}
+                                renderItem={({item: add}) => (
+                                    <Text  style={styles.adds}>{add!==undefined ? add.name : null}</Text>
+                                )}
+                            />                 
                     </Animated.View>
                 <ScrollView style={styles.rowadds} showsVerticalScrollIndicator={false}>
                     <View style={styles.content}>
@@ -164,6 +174,7 @@ export default function Adds(){
                 </View>
                     ))}
                 </ScrollView>
+                <Animatable.Text animation="shake" duration={2000} iterationCount="infinite"  style={styles.dica}>Arraste para o lado para o proximo pedido <Feather name="arrow-right" size={10} color={`${btColor}`} /></Animatable.Text>
         <View style={styles.rowbuttons} >
             <TouchableOpacity style={[styles.nextbutton, { backgroundColor: `${btColor}` }]} onPress={() => next()}><MaterialCommunityIcons name="page-next-outline" size={36} color="#FFFFFF" /></TouchableOpacity>
         </View>

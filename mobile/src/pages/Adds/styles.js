@@ -39,15 +39,23 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
 
+    title2:{
+        marginTop: 20,
+        fontSize: 23,
+        textAlign: "center",
+        marginTop: -10
+    },
+
     productName:{
         fontSize: 20,
-        textAlign: "center"
+        textAlign: "center",
     },
 
     adds:{
-        fontSize: 12,
-        color: 'grey',
-        paddingHorizontal: 10,
+        textAlign: "center",
+        marginTop: 4,
+        fontSize: 14,
+        color:"grey"
     },
 
     detail:{
@@ -56,7 +64,7 @@ const styles = StyleSheet.create({
     },
 
     content:{
-        maxWidth: 410,
+        width: 380,
         flexDirection: 'column',
         
     },
@@ -99,6 +107,11 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
 
+    dica:{
+      textAlign: "center",
+      marginTop: 10 ,
+    },
+
     rowbuttons:{
         flexDirection: "row",
         marginTop: 20,
@@ -113,7 +126,7 @@ const styles = StyleSheet.create({
         height:42,
         width: 42,
         marginLeft: 'auto',
-        marginBottom: 40
+        marginBottom: 20
     },
 })
 
