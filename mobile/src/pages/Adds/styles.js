@@ -39,11 +39,18 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
 
-    title2:{
-        marginTop: 20,
-        fontSize: 23,
-        textAlign: "center",
-        marginTop: -10
+    listadds:{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: 10,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        marginTop: 10,
+        borderRadius: 4,
+        width: 360,
+        height: 32,
+        backgroundColor: '#E5E5E5' 
     },
 
     productName:{
@@ -52,10 +59,8 @@ const styles = StyleSheet.create({
     },
 
     adds:{
-        textAlign: "center",
         marginTop: 4,
-        fontSize: 14,
-        color:"grey"
+        fontSize: 16,
     },
 
     detail:{
