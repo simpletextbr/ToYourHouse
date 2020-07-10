@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList, Animated} from 'react-native';
+import { View, Text, AsyncStorage, TouchableOpacity, Image, FlatList, Animated } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import * as Animatable from 'react-native-animatable';
-
-
 
 import api from '../../services/api';
 import NOLOGO from '../../assets/NOLOGO.png';
@@ -18,10 +15,16 @@ export default function Order() {
     const [btColor, setBtColor] = useState('');
 
     //controle do pedido
+    const [userName, setUsername] = useState('');
+    const [userId, setId] = useState('');
     const [preorder, setPreOrder] = useState([]);
     const [order] = useState([]);
+    const [orderdata] = useState([]);
     let j = 0;
     let oN = 0;
+    let FinalProductsValue = 0
+    let FinalAddsValue = 0
+
 
     //animação do carrinho
     const [carWidth] = useState(new Animated.Value(0));
@@ -45,6 +48,14 @@ export default function Order() {
     async function Add(product) {
         for(let i=0; i < products.length; i++){
             if(preorder[i].productid===product.id){
+                orderdata[0]={
+                    FinalProductsValue: FinalProductsValue += product.price,
+                    FinalAddsValue: 0,
+                    FinalPrice: FinalProductsValue + FinalAddsValue,
+                    ClientName: userName,
+                    ClientId:userId,
+                    OrderTo: enterprise.name       
+                },
                 order[j] = {
                 orderNumber: oN++,
                 productid: product.id,
@@ -104,6 +115,8 @@ export default function Order() {
             })
             setBgColor(response.data[0].backgound_app);
             setBtColor(response.data[0].button_app);
+            setUsername(await AsyncStorage.getItem('userName'));
+            setId(await AsyncStorage.getItem('userId'));
         } catch (error) {
             alert('não foi possivel encontrar essa empresa!')
         }
@@ -113,7 +126,7 @@ export default function Order() {
         if(order.length===0){
             alert('Você ainda não comprou nada, amigo!')
         }else{
-            navigation.navigate('Adds', { order, enterprise });
+            navigation.navigate('Adds', { order, enterprise, orderdata });
         }
         
     }
@@ -221,7 +234,7 @@ export default function Order() {
                         style={styles.shoppin}
                         keyExtractor={orders => String(orders.orderNumber)}
                         renderItem={({ item: orders }) => (
-                            order.length<=0 ?
+                            !orders.productid ?
                             <View style={styles.noShopping}>
                                 <Feather name="shopping-cart" size={60} color="#A5A5A566"/>
                                 <Text>Você ainda não comprou nada, amigo!</Text>
@@ -232,7 +245,7 @@ export default function Order() {
                                 <Text style={styles.priceShopping}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orders.productvalue)}</Text>
                             </View>  
                         )}
-                        />
+                        />    
                 </Animated.View>
             </View>
             <View style={styles.rowbuttons} >

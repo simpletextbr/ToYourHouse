@@ -15,14 +15,15 @@ import styles from './styles';
 export default function Dashboard() {
     const [enterprise, setEnterprise] = useState([]);
     
-    
-    const [userName, setUserName] = useState('');
+    const [userName, setUsername] = useState('');
+    const [userId, setId] = useState('');
 
     const navigation = useNavigation();
 
 
     async function go(enterprise){
         await AsyncStorage.setItem('userName', userName)
+        await AsyncStorage.setItem('userId', userId)
         navigation.navigate('Order', { enterprise });
     }
 
@@ -38,7 +39,8 @@ export default function Dashboard() {
     //dados do usuario
     useEffect(() => {
         async function loaddata() {
-            setUserName(await AsyncStorage.getItem('userName'));
+            setUsername(await AsyncStorage.getItem('userName'));
+            setId(await AsyncStorage.getItem('userId'));
         }
         loaddata();
     }, []);

@@ -11,20 +11,25 @@ export default function orderFinal() {
     const [bgColor, setBgColor] = useState('');
     const [btColor, setBtColor] = useState('');
 
-    //addres infos
+    //address infos
     const [address, setAddress] = useState('');
     const [addressNumber, setAddressNumber] = useState('');
     const [neighborhood, setNeighborhood] = useState('');
     const [reference, setReference] = useState('');
 
-    let j = 0
+    const [payment, setPayment] = useState('')
 
     const route = useRoute();
     const navigation = useNavigation();
 
     const order = route.params.order;
     const enterprise = route.params.enterprise;
+    const orderdata = route.params.orderdata;
 
+
+    async function close() {
+        navigation.navigate('Dashboard')
+    }
 
     async function loaddata() {
         try {
@@ -52,7 +57,7 @@ export default function orderFinal() {
             <View style={styles[0].Header}>
                 <Image style={styles[0].enterpriselogo} resizeMode="contain" source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
                 <Text style={styles[0].enterprisename}>{enterprise.name}</Text>
-                <TouchableOpacity style={styles[0].back} onPress={() => { navigation.goBack() }}><Feather name="arrow-left" size={28} color="#000000" /></TouchableOpacity>
+                <TouchableOpacity style={styles[0].back} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
             </View>
             <View style={styles[0].DeliveryInfo}>
                 <Text style={styles[0].TitleDelivery}>Endereço de Entrega</Text>
@@ -116,7 +121,7 @@ export default function orderFinal() {
             </View>
             <View style={styles[0].FinalValue}>
                 <Text style={styles[0].TitleFinalValue}>Valor Total Do Pedido</Text>
-                <Text style={styles[0].value}>R$52,00</Text>
+                <Text style={styles[0].value}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orderdata[0].FinalPrice)}</Text>
                 <TouchableOpacity style={[styles[0].pedirBtn, {backgroundColor: `${btColor}`}]}>
                     <Text style={styles[0].pedirTitle}>PEDIR</Text>
                     <MaterialCommunityIcons style={{marginRight: 10}} name="cart-arrow-down" size={40} color="#FFFFFF" />

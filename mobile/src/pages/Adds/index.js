@@ -23,9 +23,15 @@ export default function Adds() {
 
     const order = route.params.order;
     const enterprise = route.params.enterprise;
+    const orderdata = route.params.orderdata;
+
     let j = 0
     let aN = 0
     let lasti = 0
+    let FinalAddsValue = 0;
+    let FinalProductsValue = orderdata[0].FinalProductsValue;
+   
+   
 
 
 
@@ -61,6 +67,10 @@ export default function Adds() {
         ).start();
     }
 
+    async function close() {
+        navigation.navigate('Dashboard')
+    }
+
     async function loaddata() {
         try {
             const response = await api.get('/config/custom', {
@@ -83,6 +93,14 @@ export default function Adds() {
                 }
                 if (!order[i].productAdd[j]) {
                     lasti = i
+                    orderdata[0]={
+                        FinalProductsValue: orderdata[0].FinalProductsValue,
+                        FinalAddsValue: FinalAddsValue += add[0].price,
+                        FinalPrice: FinalProductsValue + FinalAddsValue,
+                        ClientName: orderdata[0].ClientName,
+                        ClientId:orderdata[0].ClientId,
+                        OrderTo: enterprise.name       
+                    },
                     order[i].productAdd[j] = {
                         name: add[0].name,
                         price: add[0].price,
@@ -97,7 +115,7 @@ export default function Adds() {
 
 
     async function next() {
-        navigation.navigate('OrderFinal', { order, enterprise });
+       navigation.navigate('OrderFinal', { order, enterprise, orderdata });
     }
 
 
@@ -123,7 +141,7 @@ export default function Adds() {
             <View style={styles.Header}>
                 <Image style={styles.enterpriselogo} resizeMode="contain" source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
                 <Text style={styles.enterprisename}>{enterprise.name}</Text>
-                <TouchableOpacity style={styles.back} onPress={() => { navigation.goBack() }}><Feather name="arrow-left" size={28} color="#000000" /></TouchableOpacity>
+                <TouchableOpacity style={styles.back} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
             </View>
             <Text style={styles.title}>Adicionar Acréscimos</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>

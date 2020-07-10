@@ -11,8 +11,8 @@ import styles from './styles';
 
 export default function Welcome() {
 
-    const [name, setName] = useState('');
-    const [id, setId] = useState('');
+    const [userName, setName] = useState('');
+    const [userId, setId] = useState('');
 
     const navigation = useNavigation();
 
@@ -20,7 +20,7 @@ export default function Welcome() {
         try{
             await api.delete(`/mobile/${id}` ,{
                 headers:{
-                    Authorization: name,
+                    Authorization: userName,
                 }
             });
             await AsyncStorage.removeItem('userName');
@@ -31,8 +31,8 @@ export default function Welcome() {
         }
     }
     async function go(){
-        await AsyncStorage.setItem('userName', name)
-        await AsyncStorage.setItem('userId', id)
+        await AsyncStorage.setItem('userName', userName)
+        await AsyncStorage.setItem('userId', userId)
         navigation.navigate('Dashboard');
     }
 
@@ -50,7 +50,7 @@ export default function Welcome() {
             <Feather style={styles.logout} name="log-out" size={32} color="#FFFFFF" onPress={logOut}/>
             <Image style={styles.logowelcome} source={Logo} />
             <Text style={styles.welcome}>Bem-Vindo(a) de volta,</Text>
-            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.name}>{userName}</Text>
             <TouchableOpacity style={styles.btn} onPress={go} ><Text style={styles.textbtn}>CONTINUAR</Text></TouchableOpacity>
         </View>
     )
