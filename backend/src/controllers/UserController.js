@@ -43,20 +43,16 @@ module.exports = {
         .select("address")
         .where({ id });
 
-      if (verify_Address[0].address == null) {
-        const { address, addressNumber, neighborhood, reference } = req.body;
+      const { address, addressNumber, neighborhood, reference } = req.body;
 
-        await connection("user")
-          .update({
-            address,
-            addressNumber,
-            neighborhood,
-            reference,
-          })
-          .where({ id });
-      } else {
-        return res.json(await connection("user").select("*").where({ id }));
-      }
+      await connection("user")
+        .update({
+          address,
+          addressNumber,
+          neighborhood,
+          reference,
+        })
+        .where({ id });
 
       return res.json({ send: "sucessfull" });
     }

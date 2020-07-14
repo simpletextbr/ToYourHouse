@@ -99,6 +99,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#BEBEBE",
   },
+  rowbuttons: {
+    flexDirection: "row",
+  },
 
   paymentmethod: {
     paddingHorizontal: 40,
@@ -106,18 +109,46 @@ const styles = StyleSheet.create({
   },
 
   TitlePayment: {
-    marginTop: 40,
+    marginTop: 10,
     fontSize: 20,
     textAlign: "center",
     marginBottom: 20,
   },
 
   piker: {
-    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
     height: 50,
     width: "100%",
+    borderRadius: 4,
+    backgroundColor: "#FFF",
+    borderWidth: 4,
+    borderColor: "#BEBEBE",
+  },
+
+  rowexchange: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+
+  textNeedExchange: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginRight: "auto",
+  },
+
+  inpuexchange: {
+    marginRight: "auto",
+    backgroundColor: "#fff",
+    padding: 4,
+    borderRadius: 4,
+  },
+
+  textCheckBox: {
+    marginRight: "auto",
+    fontWeight: "bold",
   },
 
   FinalValue: {
