@@ -1,134 +1,218 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import RNPickerSelect from 'react-native-picker-select';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  Picker,
+} from "react-native";
+import { useRoute, useNavigation } from "@react-navigation/native";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
-import styles from './styles';
-import api from '../../services/api';
+import styles from "./styles";
+import api from "../../services/api";
 
 export default function orderFinal() {
-    const [bgColor, setBgColor] = useState('');
-    const [btColor, setBtColor] = useState('');
+  //address infos
+  const [user, setUser] = useState([]);
+  const [address, setAddress] = useState("");
+  const [addressNumber, setAddressNumber] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [reference, setReference] = useState("");
 
-    //address infos
-    const [address, setAddress] = useState('');
-    const [addressNumber, setAddressNumber] = useState('');
-    const [neighborhood, setNeighborhood] = useState('');
-    const [reference, setReference] = useState('');
+  const [payments, setPayments] = useState([]);
+  const [payment, setPayment] = useState(null);
 
-    const [payment, setPayment] = useState('')
+  const route = useRoute();
+  const navigation = useNavigation();
 
-    const route = useRoute();
-    const navigation = useNavigation();
+  const order = route.params.order;
+  const enterprise = route.params.enterprise;
+  const orderdata = route.params.orderdata;
 
-    const order = route.params.order;
-    const enterprise = route.params.enterprise;
-    const orderdata = route.params.orderdata;
+  async function pedir() {
+    orderdata[0] = {
+      FinalProductsValue: orderdata[0].FinalProductsValue,
+      FinalAddsValue: orderdata[0].FinalAddsValue,
+      FinalPrice: orderdata[0].FinalPrice,
+      ClientName: orderdata[0].ClientName,
+      ClientId: orderdata[0].ClientId,
+      OrderTo: enterprise.name,
+      PaymentMethod: payment,
+      Address: address,
+      AddressNumber: addressNumber,
+      Neighborhood: neighborhood,
+      Reference: reference,
+      Background: orderdata[0].Background,
+      BtnColor: orderdata[0].BtnColor,
+    };
 
+    console.log(orderdata);
+  }
 
-    async function close() {
-        navigation.navigate('Dashboard')
+  useEffect(() => {
+    function loadpayments() {
+      api
+        .get("/config/payments", {
+          headers: {
+            Authorization: enterprise.id,
+          },
+        })
+        .then((response) => setPayments(response.data));
     }
 
-    async function loaddata() {
-        try {
-            const response = await api.get('/config/custom', {
-                headers: {
-                    Authorization: enterprise.id
-                }
-            })
-            setBgColor(response.data[0].backgound_app);
-            setBtColor(response.data[0].button_app);
-        } catch (error) {
-            alert('não foi possivel encontrar essa empresa!')
-        }
+    loadpayments();
+  }, [enterprise.id]);
+
+  useEffect(() => {
+    function loaduser() {
+      api
+        .get("/user", {
+          headers: {
+            Authorization: orderdata[0].ClientId,
+          },
+        })
+        .then((response) => setUser(response.data));
     }
 
+    loaduser();
+  }, [orderdata[0].ClientId]);
 
-    //dados 
-    useEffect(() => {
-        loaddata();
-    }, [enterprise.id])
-
-
-    return (
-        <View style={[styles[0].container, { backgroundColor: `${bgColor}` }]}>
-            <View style={styles[0].Header}>
-                <Image style={styles[0].enterpriselogo} resizeMode="contain" source={enterprise.logo === null ? NOLOGO : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }} />
-                <Text style={styles[0].enterprisename}>{enterprise.name}</Text>
-                <TouchableOpacity style={styles[0].back} onPress={close}><Feather name="x" size={28} color="#000000" /></TouchableOpacity>
-            </View>
-            <View style={styles[0].DeliveryInfo}>
-                <Text style={styles[0].TitleDelivery}>Endereço de Entrega</Text>
-                <View style={styles[0].rowAddressandNumber}>
-                    <TextInput
-                        style={styles[0].inputadderss}
-                        placeholder="Rua"
-                        placeholderTextColor="#999"
-                        autoCapitalize="words"
-                        autoCorrect={true}
-                        value={address}
-                        onChangeText={text => setAddress(text)}
-                    />
-                    <TextInput
-                        style={styles[0].inputadderssNumber}
-                        placeholder="N°"
-                        placeholderTextColor="#999"
-                        keyboardType="numeric"
-                        value={addressNumber}
-                        onChangeText={text => setAddressNumber(text)}
-                    />
-                </View>
-                <View style={styles[0].neighborhoodReference}>
-                    <TextInput
-                        style={styles[0].inputneighborhood}
-                        placeholder="Seu Bairro"
-                        placeholderTextColor="#999"
-                        autoCapitalize="words"
-                        value={neighborhood}
-                        onChangeText={text => setNeighborhood(text)}
-                    />
-                    <TextInput
-                        style={styles[0].inputreference}
-                        placeholder="Ponto de Referencia"
-                        placeholderTextColor="#999"
-                        autoCapitalize="words"
-                        value={reference}
-                        onChangeText={text => setReference(text)}
-                    />
-                </View>
-            </View>
-            <View style={styles[0].paymentmethod}>
-                <Text style={styles[0].TitlePayment}>Forma De Pagamento</Text>
-                <RNPickerSelect
-                    placeholder={{
-                        label: 'Selecione uma forma de pagamento',
-                        value: null,
-                        color: 'red'
-                    }}
-                    style={styles[1]}
-                    Icon={() => {
-                        return <MaterialCommunityIcons name="menu-down" size={40} color="#000000" />
-                    }}
-                    onValueChange={(j) => console.log(j)}
-                    items={[
-                        { label: 'Dinheiro', value: 'dinheiro', color: "black" },
-                        { label: 'Cartão de Debito', value: 'Cartão de Debito', color: "black" },
-                        { label: 'Cartão de Credito', value: 'Cartão de Credito', color: "black" },
-                    ]}
+  return (
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: `${orderdata[0].Background}` },
+      ]}
+    >
+      <View style={styles.Header}>
+        <Image
+          style={styles.enterpriselogo}
+          resizeMode="contain"
+          source={
+            enterprise.logo === null
+              ? NOLOGO
+              : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }
+          }
+        />
+        <Text style={styles.enterprisename}>{enterprise.name}</Text>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => navigation.goBack()}
+        >
+          <Feather name="arrow-left" size={28} color="#000000" />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.DeliveryInfo}>
+        <Text style={styles.TitleDelivery}>Endereço de Entrega</Text>
+        {user.map((userdata) =>
+          userdata.address === null ? (
+            <View>
+              <View key={userdata.id} style={styles.rowAddressandNumber}>
+                <TextInput
+                  style={styles.inputadderss}
+                  placeholder="Rua"
+                  placeholderTextColor="#999"
+                  autoCapitalize="words"
+                  autoCorrect={true}
+                  value={address}
+                  onChangeText={(text) => setAddress(text)}
                 />
+                <TextInput
+                  style={styles.inputadderssNumber}
+                  placeholder="N°"
+                  placeholderTextColor="#999"
+                  keyboardType="numeric"
+                  value={addressNumber}
+                  onChangeText={(text) => setAddressNumber(text)}
+                />
+              </View>
+              <View style={styles.neighborhoodReference}>
+                <TextInput
+                  style={styles.inputneighborhood}
+                  placeholder="Seu Bairro"
+                  placeholderTextColor="#999"
+                  autoCapitalize="words"
+                  value={neighborhood}
+                  onChangeText={(text) => setNeighborhood(text)}
+                />
+                <TextInput
+                  style={styles.inputreference}
+                  placeholder="Ponto de Referencia"
+                  placeholderTextColor="#999"
+                  autoCapitalize="words"
+                  value={reference}
+                  onChangeText={(text) => setReference(text)}
+                />
+              </View>
             </View>
-            <View style={styles[0].FinalValue}>
-                <Text style={styles[0].TitleFinalValue}>Valor Total Do Pedido</Text>
-                <Text style={styles[0].value}>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(orderdata[0].FinalPrice)}</Text>
-                <TouchableOpacity style={[styles[0].pedirBtn, {backgroundColor: `${btColor}`}]}>
-                    <Text style={styles[0].pedirTitle}>PEDIR</Text>
-                    <MaterialCommunityIcons style={{marginRight: 10}} name="cart-arrow-down" size={40} color="#FFFFFF" />
-                </TouchableOpacity>
+          ) : (
+            <View key={userdata.id}>
+              <Text style={[styles.endereco, { marginTop: 10 }]}>
+                <Text style={{ fontWeight: "bold" }}>Padrão: </Text>
+                {userdata.address}, n°: {userdata.addressNumber},{" "}
+                {userdata.neighborhood}.
+              </Text>
+              <Text style={styles.endereco}>
+                <Text style={{ fontWeight: "bold" }}>
+                  Ponto de Referencia:{" "}
+                </Text>{" "}
+                {userdata.reference}
+              </Text>
+              <TouchableOpacity
+                style={[
+                  styles.changebtn,
+                  { backgroundColor: `${orderdata[0].BtnColor}` },
+                ]}
+              >
+                <Text style={{ color: "#ffffff" }}>Mudar</Text>
+              </TouchableOpacity>
             </View>
-            
-        </View>
-    )
-
+          )
+        )}
+      </View>
+      <View style={styles.paymentmethod}>
+        <Text style={styles.TitlePayment}>Forma De Pagamento</Text>
+        <Picker
+          selectedValue={payment}
+          style={styles.piker}
+          onValueChange={(type) => setPayment(type)}
+        >
+          <Picker.Item label="Selecione uma forma de Pagamento" value={null} />
+          {payments.map((payment) => (
+            <Picker.Item
+              key={payment.id}
+              label={payment.title}
+              value={payment.title}
+            />
+          ))}
+        </Picker>
+      </View>
+      <View style={styles.FinalValue}>
+        <Text style={styles.TitleFinalValue}>Valor Total Do Pedido</Text>
+        <Text style={styles.value}>
+          {Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(orderdata[0].FinalPrice)}
+        </Text>
+        <TouchableOpacity
+          style={[
+            styles.pedirBtn,
+            { backgroundColor: `${orderdata[0].BtnColor}` },
+          ]}
+          onPress={pedir}
+        >
+          <Text style={styles.pedirTitle}>PEDIR</Text>
+          <MaterialCommunityIcons
+            style={{ marginRight: 10 }}
+            name="cart-arrow-down"
+            size={40}
+            color="#FFFFFF"
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }

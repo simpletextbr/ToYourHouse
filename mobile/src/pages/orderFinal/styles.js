@@ -1,165 +1,158 @@
-import { StyleSheet} from 'react-native';
-import Constants from 'expo-constants';
+import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        paddingTop: Constants.statusBarHeight + 10
-    },
+  container: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight + 10,
+  },
 
-    Header:{
-        padding: 10,
-        width: '100%',
-        flexDirection: "row",
-        alignItems: "center",
-    },
+  Header: {
+    padding: 10,
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
-    enterpriselogo:{
-        width: 32,
-        height:28,
-    },
+  enterpriselogo: {
+    width: 32,
+    height: 28,
+  },
 
-    enterprisename:{
-        marginLeft: 10,
-        fontWeight: "bold"
-    },
+  enterprisename: {
+    marginLeft: 10,
+    fontWeight: "bold",
+  },
 
-    back:{
-        marginLeft: 'auto'
-    },
+  back: {
+    marginLeft: "auto",
+  },
 
-    DeliveryInfo:{
-        paddingHorizontal: 40
-    },
+  DeliveryInfo: {
+    paddingHorizontal: 40,
+  },
 
-    TitleDelivery:{
-        marginTop: 40,
-        fontSize: 20,
-        textAlign: "center"
-    },
+  TitleDelivery: {
+    marginTop: 40,
+    fontSize: 20,
+    textAlign: "center",
+  },
 
-    rowAddressandNumber:{
-        flexDirection: "row",
-        marginTop: 20
-    },
+  endereco: {
+    fontSize: 16,
+  },
 
-    inputadderss:{
-        width: '90%',
-        borderRadius: 6,
-        padding: 4,
-        backgroundColor: "#FFFFFF",
-        borderWidth: 2,
-        borderColor: '#BEBEBE'
-    },
+  changebtn: {
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    width: 100,
+    height: 40,
+    borderRadius: 4,
+  },
 
-    inputadderssNumber:{
-        marginLeft: 2,
-        borderRadius: 6,
-        padding: 4,
-        backgroundColor: "#FFFFFF",
-        borderWidth: 2,
-        borderColor: '#BEBEBE'
-    },
+  rowAddressandNumber: {
+    flexDirection: "row",
+    marginTop: 20,
+  },
 
-    neighborhoodReference:{
-        flexDirection: "row",
-        marginTop: 2
-    },
+  inputadderss: {
+    width: "90%",
+    borderRadius: 6,
+    padding: 4,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 2,
+    borderColor: "#BEBEBE",
+  },
 
-    inputneighborhood:{
-        width: '30%',
-        borderRadius: 6,
-        padding: 4,
-        backgroundColor: "#FFFFFF",
-        borderWidth: 2,
-        borderColor: '#BEBEBE'
-    },
+  inputadderssNumber: {
+    width: "10%",
+    marginLeft: 2,
+    borderRadius: 6,
+    padding: 4,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 2,
+    borderColor: "#BEBEBE",
+  },
 
-    inputreference:{
-        width: '70%',
-        marginLeft: 2,
-        borderRadius: 6,
-        padding: 4,
-        backgroundColor: "#FFFFFF",
-        borderWidth: 2,
-        borderColor: '#BEBEBE'
-    },
+  neighborhoodReference: {
+    flexDirection: "row",
+    marginTop: 2,
+  },
 
-    paymentmethod:{
-        paddingHorizontal: 40,
-        marginTop: 20
-    },
+  inputneighborhood: {
+    width: "30%",
+    borderRadius: 6,
+    padding: 4,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 2,
+    borderColor: "#BEBEBE",
+  },
 
-    TitlePayment:{
-        marginTop: 40,
-        fontSize: 20,
-        textAlign: "center",
-        marginBottom: 20
-        
-    },
+  inputreference: {
+    width: "70%",
+    marginLeft: 2,
+    borderRadius: 6,
+    padding: 4,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 2,
+    borderColor: "#BEBEBE",
+  },
 
-    FinalValue:{
-        marginTop: 40,
-        paddingHorizontal: 40,
-        alignItems: "center",
-        justifyContent: "center"
-    },
+  paymentmethod: {
+    paddingHorizontal: 40,
+    marginTop: 20,
+  },
 
-    TitleFinalValue:{
-        textAlign: "center",
-        fontSize: 20,
-        marginBottom: 10,
-    },
+  TitlePayment: {
+    marginTop: 40,
+    fontSize: 20,
+    textAlign: "center",
+    marginBottom: 20,
+  },
 
-    value:{
-        textAlign: "center",
-        fontSize: 60
-    },
+  piker: {
+    paddingHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 50,
+    width: "100%",
+  },
 
-    pedirBtn:{
-        flexDirection: "row",
-        marginTop: 20,
-        width: '50%',
-        height: 60,
-        borderRadius: 8,
-        alignItems: "center",
-        justifyContent: "space-between"
-    },
+  FinalValue: {
+    marginTop: 40,
+    paddingHorizontal: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-    pedirTitle:{
-        fontSize: 40,
-        marginLeft: 10,
-        color: '#FFFFFF'
-    }
-    
-  
-})
+  TitleFinalValue: {
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 10,
+  },
 
-const pickerStyle = StyleSheet.create({
-    inputIOS: {
-        color: 'black',
-        padding: 20,
-        borderColor:"#BEBEBE",
-        backgroundColor: "#FFFFFF",
-        width: '100%',
-        height: 20,
-    },
+  value: {
+    textAlign: "center",
+    fontSize: 60,
+  },
 
-    inputAndroid: {
-        color: 'black',
-        padding: 20,
-        borderColor:"#BEBEBE",
-        backgroundColor: "#FFFFFF",
-        width: '100%',
-        height: 20,
-    },   
-    
-    iconContainer: {
-        top: 2,
-        right: 4,
-      },
-})
+  pedirBtn: {
+    flexDirection: "row",
+    marginTop: 20,
+    width: "50%",
+    height: 60,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 
+  pedirTitle: {
+    fontSize: 40,
+    marginLeft: 10,
+    color: "#FFFFFF",
+  },
+});
 
-
-export default [styles, pickerStyle];
+export default styles;
