@@ -1,70 +1,87 @@
 main div.add-product {
-    align-items: center;
-    width: 480px;
-    height: 580px;
-    box-sizing: border-box;
-    margin: 20px auto -10px;
-    background-color: #F9F9F9;
-    border-radius: 4px;
-    padding: 20px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  width: 480px;
+  height: 640px;
+  box-sizing: border-box;
+  margin: 20px auto -10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-div.add-product p.title{
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
+div.add-product p.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-div.add-product form{
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+div.add-product form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
-div.add-product form p{
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: auto;
-    margin-top: 20px;
+div.add-product form p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: auto;
+  margin-top: 20px;
 }
 
-div.add-product form input{
-    font-size: 24px;
-    border: 1px solid #d1d1d1;
-    border-radius: 4px;
-    width: 100%;
+div.add-product form input {
+  font-size: 24px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  width: 100%;
 }
 
-div.add-product form textarea{
-    font-size: 24px;
-    border: 1px solid #d1d1d1;
-    border-radius: 4px;
-    min-height: 140px;
-    width: 100%;
-    line-height: 23px;
-    resize: vertical;
+div.add-product form textarea {
+  font-size: 24px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  min-height: 140px;
+  width: 100%;
+  line-height: 23px;
+  resize: vertical;
 }
 
 div.add-product form select {
-    width: 100%;
-    height: 40px;
-    font-size: 24px;
-    opacity: 60%;
-    border: 1 solid #d1d1d1;
+  width: 100%;
+  height: 40px;
+  font-size: 24px;
+  opacity: 60%;
+  border: 1 solid #d1d1d1;
 }
 
-div.add-product form select option{
-    font-size: 24px; 
+div.add-product form select option {
+  font-size: 24px;
+}
+
+div.add-product div.row-checkbox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+div.add-product div.row-checkbox p.title-checkbox {
+  width: 70%;
+  padding: 20;
+  background-color: #00000044;
+  border-radius: 4;
+}
+
+div.add-product div.row-checkbox input.Sim {
+  margin-left: auto;
+  width: 14;
 }
 
 div.add-product div.row-buttons {
-    display: flex;
-    margin-top: 40px;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }
-
-
-
