@@ -1,140 +1,134 @@
-import { StyleSheet} from 'react-native';
-import Constants from 'expo-constants';
-
+import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        paddingTop: Constants.statusBarHeight + 10
-    },
+  container: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight + 10,
+  },
 
-    Header:{
-        padding: 10,
-        width: '100%',
-        flexDirection: "row",
-        alignItems: "center",
-    },
+  Header: {
+    padding: 10,
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
-    enterpriselogo:{
-        width: 32,
-        height:28,
-    },
+  enterpriselogo: {
+    width: 32,
+    height: 28,
+  },
 
-    enterprisename:{
-        marginLeft: 10,
-        fontWeight: "bold"
-    },
+  enterprisename: {
+    marginLeft: 10,
+    fontWeight: "bold",
+  },
 
-    back:{
-        marginLeft: 'auto'
-    },
+  back: {
+    marginLeft: "auto",
+  },
 
-    close:{
-        marginLeft: 'auto'
-    },
+  close: {
+    marginLeft: "auto",
+  },
 
-    title:{
-        marginTop: 20,
-        fontSize: 23,
-        textAlign: "center",
-    },
+  title: {
+    marginTop: 20,
+    fontSize: 23,
+    textAlign: "center",
+  },
 
-    listadds:{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingHorizontal: 10,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        marginTop: 10,
-        borderRadius: 4,
-        width: 360,
-        height: 32,
-        backgroundColor: '#E5E5E5' 
-    },
+  listadds: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginRight: "auto",
+    marginLeft: "auto",
+    marginTop: 10,
+    borderRadius: 4,
+    width: 360,
+    height: 32,
+    backgroundColor: "#E5E5E5",
+  },
 
-    productName:{
-        fontSize: 20,
-        textAlign: "center",
-    },
+  productName: {
+    marginTop: 20,
+    fontSize: 20,
+    textAlign: "center",
+  },
 
-    adds:{
-        marginTop: 4,
-        fontSize: 16,
-    },
+  adds: {
+    marginTop: 4,
+    fontSize: 16,
+  },
 
-    detail:{
-        fontSize: 10,
-        fontWeight:"bold"
-    },
+  detail: {
+    fontSize: 10,
+    fontWeight: "bold",
+  },
 
-    content:{
-        width: 380,
-        flexDirection: 'column',
-        
-    },
-    
-    rowadds:{
-        marginLeft: 20,
-        marginRight: 20,
-        borderRadius: 8,
-        
-        
-    },
+  content: {
+    width: 380,
+    flexDirection: "column",
+  },
 
-    add:{
-        backgroundColor: "#E5E5E544",
-        padding: 10,
-        marginTop: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 8
-    },
+  rowadds: {
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 8,
+  },
 
-    nameadds:{
-        textAlign: "center",
-    },
+  add: {
+    backgroundColor: "#E5E5E544",
+    padding: 10,
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+  },
 
-    input:{
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        
-    },
+  nameadds: {
+    textAlign: "center",
+  },
 
-    adc:{
-        alignItems: "center",
-        fontSize: 10
-    },
+  input: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
 
-    priceadds:{
-        fontWeight: "bold",
-        textAlign: "center"
-    },
+  adc: {
+    alignItems: "center",
+    fontSize: 10,
+  },
 
-    dica:{
-      textAlign: "center",
-      marginTop: 10 ,
-    },
+  priceadds: {
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 
-    rowbuttons:{
-        flexDirection: "row",
-        marginTop: 20,
-        marginBottom: 20,
-        justifyContent: "space-between", 
-        paddingHorizontal: 20
-    },
+  dica: {
+    textAlign: "center",
+    marginTop: 10,
+  },
 
-    nextbutton:{
-        padding: 4,
-        borderRadius: 4,
-        height:42,
-        width: 42,
-        marginLeft: 'auto',
-        marginBottom: 20
-    },
-})
+  rowbuttons: {
+    flexDirection: "row",
+    marginTop: 20,
+    marginBottom: 20,
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
 
-
+  nextbutton: {
+    padding: 4,
+    borderRadius: 4,
+    height: 42,
+    width: 42,
+    marginLeft: "auto",
+    marginBottom: 20,
+  },
+});
 
 export default styles;

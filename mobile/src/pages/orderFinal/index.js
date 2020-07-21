@@ -40,31 +40,18 @@ export default function orderFinal() {
   const orderdata = route.params.orderdata;
 
   async function pedir() {
-    if (
-      user[0].address === null ||
-      user[0].addressNumber === null ||
-      user[0].neighborhood === null ||
-      user[0].reference === null
-    ) {
-      const data = {
-        address,
-        addressNumber,
-        neighborhood,
-        reference,
-      };
-
-      await api.put("/mobile/order/address", data, {
-        headers: {
-          Authorization: orderdata[0].ClientId,
-        },
-      });
-    }
+    const data = {
+      address,
+      addressNumber,
+      neighborhood,
+      reference,
+    };
 
     if (
-      user[0].address === "".trim() ||
-      user[0].addressNumber === "".trim() ||
-      user[0].neighborhood === "".trim() ||
-      user[0].reference === "".trim()
+      address === "".trim() ||
+      addressNumber === "".trim() ||
+      neighborhood === "".trim() ||
+      reference === "".trim()
     ) {
       alert("Você precisa preencher seu endereço completo");
     } else if (payment === null) {
@@ -95,8 +82,15 @@ export default function orderFinal() {
         Background: orderdata[0].Background,
         BtnColor: orderdata[0].BtnColor,
       };
+
+      await api.put("/mobile/order/address", data, {
+        headers: {
+          Authorization: orderdata[0].ClientId,
+        },
+      });
+
+      navigation.navigate("VisualCheck", { order, enterprise, orderdata });
     }
-    navigation.navigate("VisualCheck", { order, enterprise, orderdata });
   }
 
   async function seeaddressinput() {
@@ -205,7 +199,7 @@ export default function orderFinal() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }
+              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>

@@ -122,7 +122,7 @@ export default function Adds() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }
+              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>
@@ -135,91 +135,96 @@ export default function Adds() {
       </View>
       <Text style={styles.title}>Adicionar Acréscimos</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {order.map((order) => (
-          <View key={order.orderNumber}>
-            <TouchableOpacity
-              style={{ alignItems: "center", marginBottom: 20 }}
-              onPress={() => seeOrder()}
-            >
-              <Text style={styles.productName}>{order.productname}</Text>
-              <Text style={styles.detail}>Mais Detalhes</Text>
-              <Feather name="chevron-down" size={20} color="#000000" />
-            </TouchableOpacity>
-            <Animated.View
-              style={{
-                width: orderWidth,
-                height: orderHeigth,
-                backgroundColor: "#FFF",
-                borderRadius: 6,
-                marginRight: 20,
-                marginLeft: 20,
-              }}
-            >
-              <TouchableOpacity style={styles.close} onPress={closeAnimations}>
-                <Feather
-                  name="x"
-                  size={20}
-                  color="#FFFFFF"
-                  style={{
-                    backgroundColor: "#FF0000",
-                    margin: 5,
-                    borderRadius: 50,
-                  }}
-                />
+        {order.map((order) =>
+          order.havAdds === "false".trim() ? null : (
+            <View key={order.orderNumber}>
+              <TouchableOpacity
+                style={{ alignItems: "center", marginBottom: 20 }}
+                onPress={() => seeOrder()}
+              >
+                <Text style={styles.productName}>{order.productname}</Text>
+                <Text style={styles.detail}>Mais Detalhes</Text>
+                <Feather name="chevron-down" size={20} color="#000000" />
               </TouchableOpacity>
-              <FlatList
-                data={order.productAdd}
-                keyExtractor={(add) =>
-                  add === undefined ? null : String(add.AddNumber)
-                }
-                renderItem={({ item: add }) =>
-                  add !== null ? (
-                    <View style={styles.listadds}>
-                      <Text style={styles.adds}>{add.name}</Text>
-                      <Text style={styles.priceadds}>
-                        {Intl.NumberFormat("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        }).format(add.price)}
-                      </Text>
-                    </View>
-                  ) : null
-                }
-              />
-            </Animated.View>
-            <ScrollView
-              style={styles.rowadds}
-              showsVerticalScrollIndicator={false}
-            >
-              <View style={styles.content}>
-                {adds.map((add) =>
-                  enterprise.id === add.enterprise_id ? (
-                    <View key={add.id} style={styles.add}>
-                      <Text style={styles.nameadds}>{add.name}</Text>
-                      <TouchableOpacity
-                        style={styles.input}
-                        onPress={() => Add([add, order])}
-                      >
-                        <Feather
-                          name="plus-circle"
-                          size={16}
-                          color={`${orderdata}`}
-                        />
-                        <Text style={styles.adc}>Adicionar</Text>
-                      </TouchableOpacity>
-                      <Text style={styles.priceadds}>
-                        {Intl.NumberFormat("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        }).format(add.price)}
-                      </Text>
-                    </View>
-                  ) : null
-                )}
-              </View>
-            </ScrollView>
-          </View>
-        ))}
+              <Animated.View
+                style={{
+                  width: orderWidth,
+                  height: orderHeigth,
+                  backgroundColor: "#FFF",
+                  borderRadius: 6,
+                  marginRight: 20,
+                  marginLeft: 20,
+                }}
+              >
+                <TouchableOpacity
+                  style={styles.close}
+                  onPress={closeAnimations}
+                >
+                  <Feather
+                    name="x"
+                    size={20}
+                    color="#FFFFFF"
+                    style={{
+                      backgroundColor: "#FF0000",
+                      margin: 5,
+                      borderRadius: 50,
+                    }}
+                  />
+                </TouchableOpacity>
+                <FlatList
+                  data={order.productAdd}
+                  keyExtractor={(add) =>
+                    add === undefined ? null : String(add.AddNumber)
+                  }
+                  renderItem={({ item: add }) =>
+                    add !== null ? (
+                      <View style={styles.listadds}>
+                        <Text style={styles.adds}>{add.name}</Text>
+                        <Text style={styles.priceadds}>
+                          {Intl.NumberFormat("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          }).format(add.price)}
+                        </Text>
+                      </View>
+                    ) : null
+                  }
+                />
+              </Animated.View>
+              <ScrollView
+                style={styles.rowadds}
+                showsVerticalScrollIndicator={false}
+              >
+                <View style={styles.content}>
+                  {adds.map((add) =>
+                    enterprise.id === add.enterprise_id ? (
+                      <View key={add.id} style={styles.add}>
+                        <Text style={styles.nameadds}>{add.name}</Text>
+                        <TouchableOpacity
+                          style={styles.input}
+                          onPress={() => Add([add, order])}
+                        >
+                          <Feather
+                            name="plus-circle"
+                            size={16}
+                            color={`${orderdata}`}
+                          />
+                          <Text style={styles.adc}>Adicionar</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.priceadds}>
+                          {Intl.NumberFormat("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          }).format(add.price)}
+                        </Text>
+                      </View>
+                    ) : null
+                  )}
+                </View>
+              </ScrollView>
+            </View>
+          )
+        )}
       </ScrollView>
       {order.length === 1 ? null : (
         <Animatable.Text

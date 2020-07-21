@@ -33,7 +33,7 @@ export default function VisualCheck() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }
+              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>

@@ -70,11 +70,13 @@ export default function Order() {
             productvalue: product.price,
             enterprise: enterprise.id,
             productqtd: 1,
+            havAdds: product.adds,
             productAdd: [],
           });
         j++;
       }
     }
+    console.log(order);
   }
 
   async function closeShopping() {
@@ -122,8 +124,18 @@ export default function Order() {
   }
 
   async function next() {
+    let countfalses = 0;
+
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].havAdds === "false".trim()) {
+        countfalses++;
+      }
+    }
+
     if (order.length === 0) {
       alert("Você ainda não comprou nada, amigo!");
+    } else if (countfalses === order.length) {
+      navigation.navigate("OrderFinal", { order, enterprise, orderdata });
     } else {
       navigation.navigate("Adds", { order, enterprise, orderdata });
     }
@@ -188,7 +200,7 @@ export default function Order() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.12:3333/file/logo/${enterprise.logo}` }
+              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>

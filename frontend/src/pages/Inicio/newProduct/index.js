@@ -102,24 +102,20 @@ export default function Newproduct() {
               ))}
             </select>
             <div className="row-checkbox">
-              <p className="title-checkbox">
-                Esse Produdo pode receber acréscimos ?
-              </p>
+              <p>Esse Produdo pode receber acréscimos ?</p>
               <input
-                className="Sim"
                 type="checkbox"
                 name="Sim"
                 value={true}
                 onChange={(e) => setAdds(e.target.value)}
-              />{" "}
+              />
               <i>Sim</i>
               <input
-                className="Nao"
                 type="checkbox"
                 name="Nao"
                 value={false}
                 onChange={(e) => setAdds(e.target.value)}
-              />{" "}
+              />
               <i>Não</i>
             </div>
             <div className="row-buttons">

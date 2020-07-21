@@ -58,24 +58,16 @@ div.add-product form select option {
   font-size: 24px;
 }
 
-div.add-product div.row-checkbox {
+div.row-checkbox {
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-top: 10;
   align-items: center;
   justify-content: center;
 }
-
-div.add-product div.row-checkbox p.title-checkbox {
-  width: 70%;
-  padding: 20;
-  background-color: #00000044;
-  border-radius: 4;
-}
-
-div.add-product div.row-checkbox input.Sim {
-  margin-left: auto;
-  width: 14;
+div.row-checkbox p {
+  background-color: #80808044;
 }
 
 div.add-product div.row-buttons {
