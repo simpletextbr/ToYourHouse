@@ -14,22 +14,11 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { name } = req.body;
+    const name = req.body;
 
-    const response = await connection("user").where("name", name).first();
+    const response = await connection("user").insert(name);
 
-    if (!name.trim()) {
-      return res.json({ send: "Você precisa digitar o seu nome para entar" });
-    } else if (response) {
-      return res.json({
-        send:
-          "Opa! Parece que esse nome ja esta em uso!, por favor tente outro",
-      });
-    } else {
-      const id = await connection("user").insert({ name });
-
-      return res.json({ id, name });
-    }
+    return res.json(response);
   },
 
   async update_address(req, res) {
@@ -39,10 +28,6 @@ module.exports = {
     if (!verifyId[0]) {
       return res.status(401).json({ error: "Id Unauthorized" });
     } else {
-      const verify_Address = await connection("user")
-        .select("address")
-        .where({ id });
-
       const { address, addressNumber, neighborhood, reference } = req.body;
 
       await connection("user")
@@ -60,15 +45,17 @@ module.exports = {
 
   async delete(req, res) {
     const { id } = req.params;
-    const name = req.headers.authorization;
 
     const verify = await connection("user")
-      .where("name", name)
+      .where("id", id)
       .select("id", "name")
       .first();
 
+    console.log(verify);
+    console.log(verify.id);
+
     if (!verify || verify.id != id) {
-      return res.json({ send: "Unautorized" });
+      return res.status(401).json({ send: "Unautorized" });
     }
 
     await connection("user").where("id", id).delete();

@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
   nameProduct: {
     fontSize: 18,
     fontWeight: "bold",
-    maxWidth: 220,
+    maxWidth: 200,
   },
 
   IngProduct: {
-    maxWidth: 220,
+    maxWidth: 200,
     fontSize: 12,
     color: "#00000088",
   },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: "auto",
-    marginRight: 30,
+    marginRight: 10,
     flexDirection: "column",
     padding: 6,
     backgroundColor: "#FFFFFF88",
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
 
   priceProduct: {
-    width: 56,
+    width: 54,
     fontWeight: "bold",
   },
 

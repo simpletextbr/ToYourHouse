@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Image, Text, FlatList, AsyncStorage } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
 
 import api from "../../services/api";
@@ -89,6 +90,12 @@ export default function Dashboard() {
           </Animatable.View>
         )}
       />
+      <View style={styles.bugreport}>
+        <TouchableOpacity>
+          <MaterialCommunityIcons name="ladybug" size={36} color="#FFEA00" />
+          <Text style={styles.textReport}>Reportar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
