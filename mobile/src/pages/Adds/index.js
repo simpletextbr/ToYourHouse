@@ -79,6 +79,7 @@ export default function Adds() {
             PaymentMethod: null,
             Background: bgColor,
             BtnColor: btColor,
+            havAdds: orderdata[0].havAdds,
           }),
             (order[i].productAdd[j] = {
               name: add[0].name,

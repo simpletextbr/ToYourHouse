@@ -50,6 +50,7 @@ export default function Order() {
   }
 
   async function Add(product) {
+    let havAdds = product.adds;
     for (let i = 0; i < products.length; i++) {
       if (preorder[i].productid === product.id) {
         (orderdata[0] = {
@@ -71,7 +72,7 @@ export default function Order() {
             enterprise: enterprise.id,
             productqtd: 1,
             havAdds: product.adds,
-            productAdd: [],
+            productAdd: havAdds === "true".trim() ? [] : [-1],
           });
         j++;
       }
@@ -230,7 +231,7 @@ export default function Order() {
                     >
                       <Feather
                         name="plus-circle"
-                        size={16}
+                        size={23}
                         color={`${btColor}`}
                       />
                       <Text style={styles.adc}>Adicionar</Text>

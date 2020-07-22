@@ -48,48 +48,86 @@ export default function orderFinal() {
     };
 
     if (
-      address === "".trim() ||
-      addressNumber === "".trim() ||
-      neighborhood === "".trim() ||
-      reference === "".trim()
+      user[0].Address === null ||
+      user[0].addressNumber === null ||
+      user[0].neighborhood === null ||
+      user[0].reference === null
     ) {
-      alert("Você precisa preencher seu endereço completo");
-    } else if (payment === null) {
-      alert("Você precisa selecionar uma forma de pagamento");
+      if (
+        address === "".trim() ||
+        addressNumber === "".trim() ||
+        neighborhood === "".trim() ||
+        reference === "".trim()
+      ) {
+        alert("Você precisa preencher seu endereço completo");
+      } else if (payment === null) {
+        alert("Você precisa selecionar uma forma de pagamento");
+      } else {
+        orderdata[0] = {
+          FinalProductsValue: orderdata[0].FinalProductsValue,
+          FinalAddsValue: orderdata[0].FinalAddsValue,
+          FinalPrice: orderdata[0].FinalPrice,
+          ClientName: orderdata[0].ClientName,
+          ClientId: orderdata[0].ClientId,
+          OrderTo: enterprise.name,
+          PaymentMethod:
+            needexchange === true
+              ? `${payment}, sem troco`
+              : `${payment}, com troco para ${Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(exchange)}`,
+          Address: user[0].address === null ? address : user[0].address,
+          AddressNumber:
+            user[0].addressNumber === null
+              ? addressNumber
+              : user[0].addressNumber,
+          Neighborhood:
+            user[0].neighborhood === null ? neighborhood : user[0].neighborhood,
+          Reference: user[0].reference === null ? reference : user[0].reference,
+          Background: orderdata[0].Background,
+          BtnColor: orderdata[0].BtnColor,
+        };
+
+        await api.put("/mobile/order/address", data, {
+          headers: {
+            Authorization: orderdata[0].ClientId,
+          },
+        });
+        navigation.navigate("VisualCheck", { order, enterprise, orderdata });
+      }
     } else {
-      orderdata[0] = {
-        FinalProductsValue: orderdata[0].FinalProductsValue,
-        FinalAddsValue: orderdata[0].FinalAddsValue,
-        FinalPrice: orderdata[0].FinalPrice,
-        ClientName: orderdata[0].ClientName,
-        ClientId: orderdata[0].ClientId,
-        OrderTo: enterprise.name,
-        PaymentMethod:
-          needexchange === true
-            ? `${payment}, sem troco`
-            : `${payment}, com troco para ${Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              }).format(exchange)}`,
-        Address: user[0].address === null ? address : user[0].address,
-        AddressNumber:
-          user[0].addressNumber === null
-            ? addressNumber
-            : user[0].addressNumber,
-        Neighborhood:
-          user[0].neighborhood === null ? neighborhood : user[0].neighborhood,
-        Reference: user[0].reference === null ? reference : user[0].reference,
-        Background: orderdata[0].Background,
-        BtnColor: orderdata[0].BtnColor,
-      };
+      if (payment === null) {
+        alert("Você precisa selecionar uma forma de pagamento");
+      } else {
+        orderdata[0] = {
+          FinalProductsValue: orderdata[0].FinalProductsValue,
+          FinalAddsValue: orderdata[0].FinalAddsValue,
+          FinalPrice: orderdata[0].FinalPrice,
+          ClientName: orderdata[0].ClientName,
+          ClientId: orderdata[0].ClientId,
+          OrderTo: enterprise.name,
+          PaymentMethod:
+            needexchange === true
+              ? `${payment}, sem troco`
+              : `${payment}, com troco para ${Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(exchange)}`,
+          Address: user[0].address === null ? address : user[0].address,
+          AddressNumber:
+            user[0].addressNumber === null
+              ? addressNumber
+              : user[0].addressNumber,
+          Neighborhood:
+            user[0].neighborhood === null ? neighborhood : user[0].neighborhood,
+          Reference: user[0].reference === null ? reference : user[0].reference,
+          Background: orderdata[0].Background,
+          BtnColor: orderdata[0].BtnColor,
+        };
 
-      await api.put("/mobile/order/address", data, {
-        headers: {
-          Authorization: orderdata[0].ClientId,
-        },
-      });
-
-      navigation.navigate("VisualCheck", { order, enterprise, orderdata });
+        navigation.navigate("VisualCheck", { order, enterprise, orderdata });
+      }
     }
   }
 
