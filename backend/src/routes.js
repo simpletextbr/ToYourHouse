@@ -37,6 +37,8 @@ routes.post("/session", SessionController.create);
 routes.get("/enterprise/list", EnterpriseController.index);
 //Cadastro do usuario empresa
 routes.post("/register", EnterpriseController.create);
+//Mudar senha
+routes.put("/changepass", EnterpriseController.update_pass);
 //Upload de logo e do cardapio
 routes.put(
   "/config/upload/logo",

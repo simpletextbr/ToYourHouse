@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
+import * as MailComposer from "expo-mail-composer";
 
 import api from "../../services/api";
 
@@ -23,6 +24,14 @@ export default function Dashboard() {
     await AsyncStorage.setItem("userName", userName);
     await AsyncStorage.setItem("userId", userId);
     navigation.navigate("Order", { enterprise });
+  }
+
+  async function sendMail() {
+    MailComposer.composeAsync({
+      subject: "Report de Bug no ToYourHouse",
+      recipients: ["bugreportoyourhouse@gmail.com"],
+      body: `Ola ToyourHouse Meu Nome é ${userName} e quanto eu utilizava o aplicativo ocorreu isso: `,
+    });
   }
 
   //Enterprise List
@@ -91,7 +100,7 @@ export default function Dashboard() {
         )}
       />
       <View style={styles.bugreport}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={sendMail}>
           <MaterialCommunityIcons name="ladybug" size={36} color="#FFEA00" />
           <Text style={styles.textReport}>Reportar</Text>
         </TouchableOpacity>

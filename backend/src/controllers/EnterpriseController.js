@@ -85,4 +85,42 @@ module.exports = {
       });
     return res.json({ send: "sucessfull" });
   },
+
+  async update_pass(req, res) {
+    const id = req.headers.authorization;
+    const verifyId = await connection("enterprise")
+      .select("id", "password")
+      .where({ id })
+      .first();
+
+    if (!verifyId) {
+      return res.status(400).json({ error: "Id Unauthorized" });
+    } else {
+      let { olderpass, newpass, repnewpass } = req.body;
+
+      let hash = 823;
+      hash = 223 * (olderpass * hash);
+      olderpass = hash;
+
+      if (olderpass != verifyId.password) {
+        return res.json({ send: "Older Password Incompatible" });
+      } else if (newpass != repnewpass)
+        return res.json({ send: "Newer Password Incompatible" });
+      else {
+        let hash = 823;
+        hash = 223 * (newpass * hash);
+        newpass = hash;
+
+        let password = newpass;
+
+        await connection("enterprise")
+          .update({
+            password,
+          })
+          .where({ id });
+
+        return res.status(200).json({ send: "sucessfull" });
+      }
+    }
+  },
 };
