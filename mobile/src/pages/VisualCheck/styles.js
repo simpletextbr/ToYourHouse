@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
 
   titleorders: {
-    fontSize: 23,
+    fontSize: 20,
   },
 
   listadds: {

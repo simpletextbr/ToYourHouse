@@ -9,6 +9,7 @@ import * as MailComposer from "expo-mail-composer";
 import api from "../../services/api";
 
 import LogoHeader from "../../assets/LogoHeader.png";
+import Url from "../../utils/Url";
 import NOLOGO from "../../assets/NOLOGO.png";
 import styles from "./styles";
 
@@ -78,7 +79,7 @@ export default function Dashboard() {
                   enterprises.logo === null
                     ? NOLOGO
                     : {
-                        uri: `http://192.168.1.9:3333/file/logo/${enterprises.logo}`,
+                        uri: `${Url}/file/logo/${enterprises.logo}`,
                       }
                 }
               />

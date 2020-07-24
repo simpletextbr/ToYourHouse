@@ -12,6 +12,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import api from "../../services/api";
+
+import Url from "../../utils/Url";
 import NOLOGO from "../../assets/NOLOGO.png";
 import styles from "./styles";
 
@@ -201,7 +203,7 @@ export default function Order() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
+              : { uri: `${Url}/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>

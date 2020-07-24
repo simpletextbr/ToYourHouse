@@ -12,8 +12,10 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import CheckBox from "@react-native-community/checkbox";
 
-import styles from "./styles";
 import api from "../../services/api";
+
+import Url from "../../utils/Url";
+import styles from "./styles";
 
 export default function orderFinal() {
   //animation address
@@ -237,7 +239,7 @@ export default function orderFinal() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
+              : { uri: `${Url}/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>

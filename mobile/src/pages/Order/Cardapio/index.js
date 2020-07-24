@@ -6,6 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import Constants from "expo-constants";
 
 import api from "../../../services/api";
+import Url from "../../../utils/Url";
 
 export default function Cardapio() {
   const [bgColor, setBgColor] = useState("");
@@ -44,7 +45,7 @@ export default function Cardapio() {
       <Image
         style={styles.cardapio}
         source={{
-          uri: `http://192.168.1.9:3333/file/cardapio/${enterprise.cardapio}`,
+          uri: `${Url}/file/cardapio/${enterprise.cardapio}`,
         }}
       />
     </View>

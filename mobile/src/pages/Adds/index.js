@@ -12,8 +12,10 @@ import { FlatList } from "react-native-gesture-handler";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
 
-import styles from "./styles";
 import api from "../../services/api";
+
+import Url from "../../utils/Url";
+import styles from "./styles";
 
 export default function Adds() {
   const [adds, setAdds] = useState([]);
@@ -123,7 +125,7 @@ export default function Adds() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
+              : { uri: `${Url}/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>

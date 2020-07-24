@@ -10,6 +10,7 @@ import {
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
+import Url from "../../utils/Url";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 
@@ -37,19 +38,21 @@ export default function VisualCheck() {
             )}`
       }`
   )}`;
+
   const End = `
   
   🏠O Endereço de entrega é: ${orderdata[0].Address}, N°: ${orderdata[0].AddressNumber}, Bairro: ${orderdata[0].Neighborhood}.
   🏠Ponto de Referencia é: ${orderdata[0].Reference}.
 
   `;
+
   const Pgt = `
   💰Minha forma de Pagamento é: ${orderdata[0].PaymentMethod} 
   `;
 
   async function cancel() {
     await AsyncStorage.setItem("userName", orderdata[0].ClientName);
-    await AsyncStorage.setItem("userId", orderdata[0].ClientId);
+    await AsyncStorage.setItem("userId", orderdata[0].ClientId.toString());
     navigation.navigate("Dashboard");
   }
 
@@ -73,7 +76,7 @@ export default function VisualCheck() {
           source={
             enterprise.logo === null
               ? NOLOGO
-              : { uri: `http://192.168.1.9:3333/file/logo/${enterprise.logo}` }
+              : { uri: `${Url}/file/logo/${enterprise.logo}` }
           }
         />
         <Text style={styles.enterprisename}>{enterprise.name}</Text>
