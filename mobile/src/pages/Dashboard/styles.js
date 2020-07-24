@@ -5,27 +5,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFE1E1",
-    paddingTop: Constants.statusBarHeight + 20,
+    paddingTop: Constants.statusBarHeight + 10,
   },
 
   Header: {
     alignItems: "center",
-    marginBottom: 60,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 10,
   },
 
   welcome: {
-    marginTop: 20,
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "bold",
   },
 
   enterpriseList: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
 
   enterprise: {
     width: "100%",
-    maxHeight: 100,
     backgroundColor: "#FFFFFF77",
     borderRadius: 8,
     marginBottom: 20,
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     marginLeft: "auto",
     marginBottom: 20,
+    marginTop: 10,
     padding: 10,
     backgroundColor: "#FF0000",
     width: "16%",
