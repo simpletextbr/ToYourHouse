@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Animatable from "react-native-animatable";
 
 import api from "../../services/api";
 
@@ -33,6 +34,7 @@ export default function Order() {
   let oN = 0;
   let FinalProductsValue = 0;
   let FinalAddsValue = 0;
+  let closeAviso = 0;
 
   //animação do carrinho
   const [carWidth] = useState(new Animated.Value(0));
@@ -79,7 +81,7 @@ export default function Order() {
         j++;
       }
     }
-    console.log(order);
+    closeAviso = 1;
   }
 
   async function closeShopping() {
@@ -285,9 +287,9 @@ export default function Order() {
             style={styles.shoppin}
             keyExtractor={(orders) => String(orders.orderNumber)}
             renderItem={({ item: orders }) =>
-              !orders.productid ? (
+              orders.length === 0 ? (
                 <View style={styles.noShopping}>
-                  <Feather name="shopping-cart" size={60} color="#A5A5A566" />
+                  <Feather name="shopping-cart" size={60} color="#A5A5A5" />
                   <Text>Você ainda não comprou nada, amigo!</Text>
                 </View>
               ) : (

@@ -1,18 +1,14 @@
-import 'intl';
-import 'intl/locale-data/jsonp/pt-BR';
+import "intl";
+import "intl/locale-data/jsonp/pt-BR";
 
-import React from 'react';
+import React from "react";
 
-import Routes from './src/routes';
-import { YellowBox } from 'react-native';
+import Routes from "./src/routes";
+import { YellowBox } from "react-native";
 
 export default function App() {
-  YellowBox.ignoreWarnings([
-    'Invalid prop `color` supplied'
-  ])
+  YellowBox.ignoreWarnings(["Invalid prop `color` supplied"]),
+    YellowBox.ignoreWarnings(["This is a no-op"]);
 
-  return (
-    <Routes />
-  );
+  return <Routes />;
 }
- 

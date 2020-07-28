@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
 
   noShopping: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     alignItems: "center",
     justifyContent: "center",
   },
