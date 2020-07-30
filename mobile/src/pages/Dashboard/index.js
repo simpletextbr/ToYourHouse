@@ -14,7 +14,6 @@ import * as Animatable from "react-native-animatable";
 import * as MailComposer from "expo-mail-composer";
 
 import api from "../../services/api";
-import { connect, disconnect, newerEnterprises } from "../../services/socket";
 
 import LogoHeader from "../../assets/LogoHeader.png";
 import Url from "../../utils/Url";
@@ -46,14 +45,7 @@ export default function Dashboard() {
     });
   }
 
-  function setWebSocket() {
-    disconnect();
-
-    connect();
-  }
-
   async function loadlist() {
-    console.log(enterprise);
     if (loading) {
       return;
     }
@@ -70,7 +62,6 @@ export default function Dashboard() {
     setTotal(response.headers["x-total-count"]);
     setPage(page + 1);
     setLoading(false);
-    setWebSocket();
   }
 
   //Enterprise List

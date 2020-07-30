@@ -1,5 +1,4 @@
 const connection = require("../database/connection");
-const { sendMessage } = require("../websocket");
 
 module.exports = {
   async index(req, res) {
@@ -70,10 +69,6 @@ module.exports = {
         title,
         enterprise_id,
       });
-
-      const sendSocketMessageTo = "any";
-
-      sendMessage(sendSocketMessageTo, "new-enterprise", enterprise);
     } else if (verifypass) {
       return res.json({
         error:
