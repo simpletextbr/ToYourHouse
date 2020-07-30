@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Image,
-  Text,
-  FlatList,
-  AsyncStorage,
-  Animated,
-} from "react-native";
+import { View, Image, Text, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
 import * as MailComposer from "expo-mail-composer";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import api from "../../services/api";
 
+import { Feather } from "@expo/vector-icons";
 import LogoHeader from "../../assets/LogoHeader.png";
 import Url from "../../utils/Url";
 import NOLOGO from "../../assets/NOLOGO.png";
@@ -35,6 +30,17 @@ export default function Dashboard() {
     await AsyncStorage.setItem("userName", userName);
     await AsyncStorage.setItem("userId", userId);
     navigation.navigate("Order", { enterprise });
+  }
+
+  async function logOut() {
+    try {
+      await api.delete(`/mobile/${userId}`);
+
+      await AsyncStorage.clear();
+      navigation.navigate("Login");
+    } catch (error) {
+      alert("Não foi possivel sair, tente fechar o app e abri-lo novamente!");
+    }
   }
 
   async function sendMail() {
@@ -69,13 +75,6 @@ export default function Dashboard() {
     loadlist();
   }, []);
 
-  //websocket das empresas
-  useEffect(() => {
-    newerEnterprises((enterprises) =>
-      setEnterprise([...enterprise, enterprises])
-    );
-  }, [enterprise]);
-
   //dados do usuario
   useEffect(() => {
     async function loaddata() {
@@ -87,10 +86,17 @@ export default function Dashboard() {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={styles.Header}>
-        <Image source={LogoHeader} />
+      <View style={styles.Header}>
+        <Image source={LogoHeader} style={styles.LogoHeader} />
         <Text style={styles.welcome}>Olá {userName}, Seja Bem-Vindo</Text>
-      </Animated.View>
+        <Feather
+          style={styles.logout}
+          name="log-out"
+          size={23}
+          color="#FF0000"
+          onPress={logOut}
+        />
+      </View>
 
       <FlatList
         data={enterprise}

@@ -10,14 +10,20 @@ const styles = StyleSheet.create({
 
   Header: {
     alignItems: "center",
+    justifyContent: "center",
     flexDirection: "row",
-    justifyContent: "space-between",
     margin: 10,
+  },
+
+  LogoHeader: {
+    marginRight: "auto",
   },
 
   welcome: {
     fontSize: 12,
     fontWeight: "bold",
+    marginLeft: "auto",
+    marginRight: 10,
   },
 
   enterpriseList: {

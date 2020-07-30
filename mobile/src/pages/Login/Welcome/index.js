@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Feather } from "@expo/vector-icons";
-import {
-  View,
-  Image,
-  AsyncStorage,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import api from "../../../services/api";
 
+import { Feather } from "@expo/vector-icons";
 import Logo from "../../../assets/Logo.png";
 import styles from "./styles";
 
@@ -24,8 +19,7 @@ export default function Welcome() {
     try {
       await api.delete(`/mobile/${userId}`);
 
-      await AsyncStorage.removeItem("userName");
-      await AsyncStorage.removeItem("userId");
+      await AsyncStorage.clear();
       navigation.navigate("Login");
     } catch (error) {
       alert("Não foi possivel sair, tente fechar o app e abri-lo novamente!");
@@ -34,7 +28,7 @@ export default function Welcome() {
 
   async function go() {
     await AsyncStorage.setItem("userName", userName);
-    await AsyncStorage.setItem("userId", userId);
+    await AsyncStorage.setItem("userId", String(userId));
     navigation.navigate("Dashboard");
   }
 

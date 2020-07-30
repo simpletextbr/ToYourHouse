@@ -51,6 +51,10 @@ module.exports = {
       .select("id", "name")
       .first();
 
+    console.log(verify);
+    console.log(verify.id);
+    console.log(id);
+
     if (!verify || verify.id != id) {
       return res.status(401).json({ send: "Unautorized" });
     }

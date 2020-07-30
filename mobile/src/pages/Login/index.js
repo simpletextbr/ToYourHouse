@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  AsyncStorage,
-} from "react-native";
+import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import api from "../../services/api";
 
@@ -28,8 +22,9 @@ export default function Login() {
       alert("Você precisa digitar o seu nome para entar");
     } else {
       const response = await api.post("/mobile", data);
+
       await AsyncStorage.setItem("userName", data.name);
-      await AsyncStorage.setItem("userId", response.data[0].toString());
+      await AsyncStorage.setItem("userId", String(response.data[0]));
       navigation.navigate("Dashboard");
     }
   }
