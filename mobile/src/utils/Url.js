@@ -1,3 +1,3 @@
-const Url = "http://192.168.1.12:3333";
+const Url = "https://api-tyh.herokuapp.com";
 
 export default Url;

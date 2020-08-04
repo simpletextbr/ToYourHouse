@@ -13,6 +13,7 @@ module.exports = {
 
     return res.json(list);
   },
+
   async create_Products(req, res) {
     const enterprise_id = req.headers.authorization;
     const cat_id = req.headers.cat_authorization;
@@ -39,6 +40,7 @@ module.exports = {
     }
     return res.json({ send: "sucessfull" });
   },
+
   async delete_Products(req, res) {
     const { id } = req.params;
     const enterprise_id = req.headers.authorization;

@@ -39,9 +39,10 @@ export default function Singin() {
           "Nós já vimos muitas senhas como essa por favor, Tente algo mais seguro!"
         );
       } else if (
-        response.data.error === "Usuario ja Cadastrado, Tente na aba de Login"
+        response.data.error ===
+        "Telefone já em uso por outra empresa, Tente na aba de Login"
       ) {
-        alert("Usuario ja Cadastrado, Tente na aba de Login");
+        alert("Telefone já em uso por outra empresa, Tente na aba de Login");
       } else if (
         response.data.error ===
         "Nós já vimos esse nome por aqui por favor, Tente a aba de login!"

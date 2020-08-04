@@ -45,7 +45,7 @@ module.exports = {
       .first();
 
     if (!verifyph && !verifypass && !verifyname) {
-      const enterprise = await connection("enterprise").insert({
+      await connection("enterprise").insert({
         name,
         phone,
         address,
@@ -81,7 +81,7 @@ module.exports = {
       });
     } else
       return res.json({
-        error: "Usuario ja Cadastrado, Tente na aba de Login",
+        error: "Telefone já em uso por outra empresa, Tente na aba de Login",
       });
     return res.json({ send: "sucessfull" });
   },
@@ -105,7 +105,9 @@ module.exports = {
       if (olderpass != verifyId.password) {
         return res.json({ send: "Older Password Incompatible" });
       } else if (newpass != repnewpass)
-        return res.json({ send: "Newer Password Incompatible" });
+        return res.json({
+          send: "Wrong password with new pass and repeat new pass ",
+        });
       else {
         let hash = 823;
         hash = 223 * (newpass * hash);

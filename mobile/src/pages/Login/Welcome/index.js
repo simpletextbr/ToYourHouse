@@ -17,7 +17,7 @@ export default function Welcome() {
 
   async function logOut() {
     try {
-      await api.delete(`/mobile/${userId}`);
+      await api.delete(`/user/${userId}`);
 
       await AsyncStorage.clear();
       navigation.navigate("Login");

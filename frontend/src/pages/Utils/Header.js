@@ -37,7 +37,7 @@ export default function Header() {
             src={
               logo.logo == null
                 ? NOLOGO
-                : `http://localhost:3333/file/logo/${logo.logo}`
+                : `https://api-tyh.herokuapp.com/file/logo/${logo.logo}`
             }
             alt="Logo da Empresa"
           />

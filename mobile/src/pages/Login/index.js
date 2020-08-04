@@ -21,7 +21,7 @@ export default function Login() {
     if (data.name === "".trim()) {
       alert("Você precisa digitar o seu nome para entar");
     } else {
-      const response = await api.post("/mobile", data);
+      const response = await api.post("/user/new", data);
 
       await AsyncStorage.setItem("userName", data.name);
       await AsyncStorage.setItem("userId", String(response.data[0]));

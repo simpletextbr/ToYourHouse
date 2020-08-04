@@ -91,7 +91,7 @@ export default function orderFinal() {
           BtnColor: orderdata[0].BtnColor,
         };
 
-        await api.put("/mobile/order/address", data, {
+        await api.put("/user/order/address", data, {
           headers: {
             Authorization: orderdata[0].ClientId,
           },
