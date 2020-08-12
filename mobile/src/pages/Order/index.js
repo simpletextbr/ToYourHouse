@@ -79,6 +79,7 @@ export default function Order() {
             productAdd: havAdds === "true".trim() ? [] : [-1],
           });
         j++;
+        console.log(order);
       }
     }
     closeAviso = 1;

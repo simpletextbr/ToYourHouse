@@ -13,6 +13,7 @@ module.exports = {
         "address",
         "city",
         "uf",
+        "status",
         "logo",
         "cardapio"
       );
@@ -24,6 +25,7 @@ module.exports = {
     const backgound_app = "#FDF5F5";
     const button_app = "#FF0000";
     const title = "Dinheiro";
+    const status = "Fechado";
     const { name, phone, address, city, uf } = req.body;
     let { password } = req.body;
 
@@ -52,6 +54,7 @@ module.exports = {
         city,
         uf,
         password,
+        status,
       });
 
       let enterprise_id = await connection("enterprise")

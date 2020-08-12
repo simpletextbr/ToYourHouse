@@ -1,3 +1,3 @@
-const Url = "https://api-tyh.herokuapp.com";
+const Url = "http://api-tyh-com-br.umbler.net";
 
 export default Url;

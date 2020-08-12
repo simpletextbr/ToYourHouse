@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://api-tyh.herokuapp.com/",
+  baseURL: "http://api-tyh-com-br.umbler.net/",
 });
 
 export default api;

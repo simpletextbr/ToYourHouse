@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import api from "../../../services/api";
 
 import Header from "../../Utils/Header";
+import Footer from "../../Utils/Footer";
 import { FiArrowLeft } from "react-icons/fi";
 import "./styles.css";
 
@@ -34,14 +35,13 @@ export default function Newproduct() {
       adds,
     };
 
-    if (cat_id === "Selecione uma categoria" || cat_id.trim() === "") {
+    if (cat_id === "Selecione uma categoria" || cat_id === "".trim()) {
       alert("Você precisa selecionar uma categoria!");
     } else {
       try {
-        await api.post("/products", data, {
+        await api.post(`/products/${cat_id}`, data, {
           headers: {
             Authorization: enterprise_id,
-            cat_Authorization: cat_id,
           },
         });
         history.push("/inicio");
@@ -130,9 +130,7 @@ export default function Newproduct() {
           </form>
         </div>
       </main>
-      <footer>
-        <p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

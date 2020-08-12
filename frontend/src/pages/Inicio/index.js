@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import api from "../../services/api";
 
 import Header from "../Utils/Header";
+import Footer from "../Utils/Footer";
 import { FiTrash2, FiCheckCircle, FiPlus } from "react-icons/fi";
 import "./styles.css";
 
@@ -192,9 +193,7 @@ export default function Inicio() {
           ) : null}
         </section>
       </main>
-      <footer>
-        <p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

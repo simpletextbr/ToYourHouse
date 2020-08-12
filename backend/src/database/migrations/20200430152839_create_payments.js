@@ -1,15 +1,14 @@
+exports.up = function (knex) {
+  return knex.schema.createTable("payments", function (table) {
+    table.increments("id");
+    table.string("title").notNullable();
 
-exports.up = function(knex) {
-    return knex.schema.createTable('payments', function(table){
-        table.increments('id');
-        table.string('title').notNullable();
+    table.integer("enterprise_id").unsigned();
 
-  
-        table.integer('enterprise_id').notNullable();
-        table.foreign('enterprise_id').references('id').inTable('enterprise');
-    });
+    table.foreign("enterprise_id").references("enterprise.id");
+  });
 };
 
-exports.down = function(knex) {
-    return knex.schema.dropTable('payments');
+exports.down = function (knex) {
+  return knex.schema.dropTable("payments");
 };

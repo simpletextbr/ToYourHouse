@@ -59,7 +59,10 @@ routes.put(
 );
 
 //alterando customizacao do fundo e dos botoes
-routes.put("/config/custom", CustonController.create_Custon);
+routes.put("/config/custom", CustonController.update_Custon);
+
+//alterando status de funcionamento da empresa
+routes.put("/config/status", CustonController.update_status);
 
 //Listagem de Cores
 routes.get("/config/custom", CustonController.index_Custon);
@@ -70,7 +73,7 @@ routes.get("/category", CategoryController.Index_Category);
 routes.delete("/category/:id", CategoryController.delete_Category);
 
 //Cadastro de Produtos, Listar, Deletar
-routes.post("/products", ProductsController.create_Products);
+routes.post("/products/:cat_id", ProductsController.create_Products);
 routes.get("/products", ProductsController.Index_Products);
 routes.delete("/products/:id", ProductsController.delete_Products);
 

@@ -1,0 +1,50 @@
+main div.Changepass {
+  align-items: center;
+  width: 480px;
+  height: 400px;
+  box-sizing: border-box;
+  margin: 20px auto -10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+main div.Changepass p.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+main div.Changepass p span.aviso {
+  font-size: 10px;
+  font-weight: normal;
+}
+
+main div.Changepass form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+main div.Changepass form p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+main div.Changepass form input {
+  font-size: 24px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  width: 100%;
+}
+
+main div.Changepass div.row-buttons {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}

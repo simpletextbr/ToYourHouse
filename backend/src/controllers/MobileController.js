@@ -15,6 +15,7 @@ module.exports = {
         "address",
         "city",
         "uf",
+        "status",
         "logo",
         "cardapio"
       );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import logoHeader from "../../assets/logoHeader.svg";
+import Footer from "../Utils/Footer";
 import "./styles.css";
 import api from "../../services/api";
 
@@ -162,9 +163,7 @@ export default function Singin() {
           </div>
         </section>
       </main>
-      <footer>
-        <p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

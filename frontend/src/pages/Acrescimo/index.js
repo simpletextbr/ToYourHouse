@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import api from "../../services/api";
 
 import Header from "../Utils/Header";
+import Footer from "../Utils/Footer";
 import { FiTrash2, FiPlus } from "react-icons/fi";
 import "./styles.css";
 
@@ -92,9 +93,7 @@ export default function Acrescimos() {
           </div>
         </section>
       </main>
-      <footer>
-        <p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

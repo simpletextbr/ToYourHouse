@@ -130,12 +130,138 @@ export default function Dashboard() {
                   {enterprises.city}, {enterprises.uf}
                 </Text>
               </View>
-              <TouchableOpacity onPress={() => go(enterprises)}>
-                <View style={styles.contato}>
-                  <Text style={styles.Textphone}>Whatsapp</Text>
-                  <Text style={styles.phone}>{enterprises.phone}</Text>
+              {enterprises.status === 0 ? (
+                <Text
+                  style={{ color: "#FF0000", fontSize: 20, fontWeight: "bold" }}
+                >
+                  {" "}
+                  Fechado
+                </Text>
+              ) : (
+                <View style={styles.orderhub}>
+                  <TouchableOpacity onPress={() => go(enterprises)}>
+                    <View style={styles.contato}>
+                      <Text style={styles.Textphone}>PEDIR</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <Text style={styles.status}>
+                    {enterprises.status === 1 ? (
+                      <Text
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        {" "}
+                        - Tempo de entrega{" "}
+                        <Text
+                          style={{
+                            color: "#44CC44",
+                            fontSize: 16,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          10 - 20 min
+                        </Text>
+                      </Text>
+                    ) : enterprises.status === 2 ? (
+                      <Text
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        {" "}
+                        Tempo de entrega{" "}
+                        <Text
+                          style={{
+                            color: "#ADFF2F",
+                            fontSize: 16,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          20 - 30 min
+                        </Text>
+                      </Text>
+                    ) : enterprises.status === 3 ? (
+                      <Text
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        {" "}
+                        Tempo de entrega{" "}
+                        <Text
+                          style={{
+                            color: "#F0E68C",
+                            fontSize: 16,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          30 - 40 min
+                        </Text>
+                      </Text>
+                    ) : enterprises.status === 4 ? (
+                      <Text
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        {" "}
+                        Tempo de entrega{" "}
+                        <Text
+                          style={{
+                            color: "#FFD700",
+                            fontSize: 16,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          40 - 50 min
+                        </Text>
+                      </Text>
+                    ) : enterprises.status === 5 ? (
+                      <Text
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        {" "}
+                        Tempo de entrega{" "}
+                        <Text
+                          style={{
+                            color: "#FFA500",
+                            fontSize: 16,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          50 - 60 min
+                        </Text>
+                      </Text>
+                    ) : enterprises.status === 6 ? (
+                      <Text
+                        style={{
+                          fontSize: 12,
+                        }}
+                      >
+                        {" "}
+                        Tempo de entrega{" "}
+                        <Text
+                          style={{
+                            color: "#FF4500",
+                            fontSize: 16,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          + de 1Hr
+                        </Text>{" "}
+                      </Text>
+                    ) : (
+                      <Text style={{ fontSize: 12, color: "#FF0000" }}>
+                        {" "}
+                        Sem Status Definido
+                      </Text>
+                    )}
+                  </Text>
                 </View>
-              </TouchableOpacity>
+              )}
             </View>
           </Animatable.View>
         )}

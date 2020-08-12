@@ -1,239 +1,254 @@
 section.config {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    background-color: #FFFFFF;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 
-    max-width: 600px;
-    max-height: 1000px;
+  max-width: 600px;
+  max-height: 1000px;
 }
 
-div.pagamento p.title{
-    font-size: 36px;
-    text-align: center;
+div.pagamento p.title {
+  font-size: 36px;
+  text-align: center;
 }
 
-div.pagamento div.new-user{
-    margin-top: 10px;
-    width: 560px;
-    background-color: #F4F4F4;
-    border-radius: 8px;
+div.pagamento div.new-user {
+  margin-top: 10px;
+  width: 560px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
 }
 
-div.pagamento div.new-user form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+div.pagamento div.new-user form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-div.pagamento div.new-user form input{
-    width: 100%;
-    font-size: 20px;
-    height: 40px;
-    border: 0px;
-    background-color: transparent;
+div.pagamento div.new-user form input {
+  width: 100%;
+  font-size: 20px;
+  height: 40px;
+  border: 0px;
+  background-color: transparent;
 }
 
-div.pagamento div.new-user form input::placeholder{
-    font-size: 24px;
-    color: #000000;
-    opacity: 10%;
+div.pagamento div.new-user form input::placeholder {
+  font-size: 24px;
+  color: #000000;
+  opacity: 10%;
 }
 
-div.pagamento div.new-user form button{
-    border: 0px;
-    margin-left: 10px;
-    margin-right: 20px;
+div.pagamento div.new-user form button {
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 div.pagamento div.list-payments {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    width: 560px;
-    background-color: #F4F4F4;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  width: 560px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
 }
 
-div.pagamento div.list-payments p{
-    font-size: 23px;
+div.pagamento div.list-payments p {
+  font-size: 23px;
 }
 
-div.pagamento div.list-payments button{
-    border: 0;
-    background-color: transparent;
-    margin-left: auto;
-    margin-right: 20px;
+div.pagamento div.list-payments button {
+  border: 0;
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
-div.pagamento div.default{
-    margin-top: 10px;
-    width: 560px;
-    background-color: #F4F4F4;
-    border-radius: 8px;
+div.pagamento div.default {
+  margin-top: 10px;
+  width: 560px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
 }
 
-div.pagamento div.default form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+div.pagamento div.default form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-div.pagamento div.default form input{
-    width: 100%;
-    font-size: 20px;
-    height: 40px;
-    border: 0px;
-    background-color: transparent;
+div.pagamento div.default form input {
+  width: 100%;
+  font-size: 20px;
+  height: 40px;
+  border: 0px;
+  background-color: transparent;
 }
 
-div.pagamento div.default form input::placeholder{
-    font-size: 24px;
-    color: #000000;
-    opacity: 10%;
+div.pagamento div.default form input::placeholder {
+  font-size: 24px;
+  color: #000000;
+  opacity: 10%;
 }
 
-div.pagamento div.default form button{
-    border: 0px;
-    margin-left: 10px;
-    margin-right: 20px;
+div.pagamento div.default form button {
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
-div.custom p.title{
-    margin: 20px;
-    font-size: 36px;
-    text-align: center;
+div.Status p.title {
+  margin: 20px;
+  font-size: 36px;
+  text-align: center;
 }
 
-div.custom form{
-    display: flex;
-    flex-direction: column;
+div.Status form {
+  display: flex;
+  flex-direction: column;
 }
 
-div.custom form div.Colors{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    justify-content: space-between;
-    width: 560px;
+div.Status form select {
+  width: 100%;
+  height: 40px;
+  font-size: 24px;
+  border-radius: 4px;
+  border: 1 solid #d1d1d1;
+  margin-bottom: 40px;
 }
 
-div.custom form div.Colors p{
-    display: flex;
-    align-items: center; 
+div.Status form select option {
+  font-size: 24px;
 }
 
-div.custom form div.Colors li{
-    display: flex;
-    flex-direction: row;
-}
-div.custom form div.Colors li p{
-    display: flex;
-    flex-direction: column;
+div.custom p.title {
+  margin: 20px;
+  font-size: 36px;
+  text-align: center;
 }
 
-div.Colors p.bgcolor{
-    font-size: 23px;
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    background-color: #F1F1F1;
+div.custom form {
+  display: flex;
+  flex-direction: column;
 }
 
-div.Colors p.btcolor{
-    font-size: 23px;
-    width: 100%;
-    height: 40px;
-    margin-top: 10px;
-    border-radius: 8px;
-    background-color: #F1F1F1;
+div.custom form div.Colors {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  justify-content: space-between;
+  width: 560px;
 }
 
-div.Colors div.Color li p.atual{
-    font-size: 10px;
-    margin-right: 10px;
-    margin-left: 20px;
+div.custom form div.Colors p {
+  display: flex;
+  align-items: center;
 }
 
-div.Colors div.Color li p.seletor{
-    font-size: 10px;
+div.custom form div.Colors li {
+  display: flex;
+  flex-direction: row;
+}
+div.custom form div.Colors li p {
+  display: flex;
+  flex-direction: column;
 }
 
-div.Colors div.Color li p.seletor input{
-    border: 0.5 solid #D1D1D1;
-    cursor: pointer;
-    width: 32px;
-    height: 28px;
-    border-radius: 6px;
+div.Colors p.bgcolor {
+  font-size: 23px;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
 }
 
-div.custom button{
-    margin-top: 20px;
+div.Colors p.btcolor {
+  font-size: 23px;
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
 }
 
-div.uploads p.title{
-    margin-top: 20px;
-    font-size: 36px;
-    text-align: center;
-    width: 100%;
-    border-radius: 8px;
-    background-color: #F1F1F1;
-
+div.Colors div.Color li p.atual {
+  font-size: 10px;
+  margin-right: 10px;
+  margin-left: 20px;
 }
 
-div.uploads div.links{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    cursor: pointer;
-    margin-bottom: 20px;
+div.Colors div.Color li p.seletor {
+  font-size: 10px;
+}
+
+div.Colors div.Color li p.seletor input {
+  border: 0.5 solid #d1d1d1;
+  cursor: pointer;
+  width: 32px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+div.custom button {
+  margin-top: 20px;
+}
+
+div.uploads p.title {
+  margin-top: 20px;
+  font-size: 36px;
+  text-align: center;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+}
+
+div.uploads div.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 div.uploads a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-div.uploads a div#bgcolor{
-    margin-left: 120px;
+div.uploads a div#bgcolor {
+  margin-left: 120px;
 }
 
-div.uploads a div#bgcolor p{
-    margin-top: 20px;
-    font-size: 10px;
-    color: #000000;
+div.uploads a div#bgcolor p {
+  margin-top: 20px;
+  font-size: 10px;
+  color: #000000;
 }
 
-div.uploads a div#bgcolor img{
-    margin-top: 10px;
+div.uploads a div#bgcolor img {
+  margin-top: 10px;
   width: 100px;
   height: 100px;
 }
 
 div.uploads a div#btcolor {
-    margin-right: 120px;
+  margin-right: 120px;
 }
 
-div.uploads a div#btcolor p{
-    margin-top: 20px;
-    font-size: 10px;
-    color: #000000;
+div.uploads a div#btcolor p {
+  margin-top: 20px;
+  font-size: 10px;
+  color: #000000;
 }
 
-div.uploads a div#btcolor img{
-    margin-top: 10px;
+div.uploads a div#btcolor img {
+  margin-top: 10px;
   width: 100px;
   height: 100px;
 }
-
-
-
-
-
-
-
-

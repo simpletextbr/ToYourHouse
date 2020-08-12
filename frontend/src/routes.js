@@ -5,7 +5,7 @@ import Singin from "./pages/Singin";
 import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
 import Newproduct from "./pages/Inicio/newProduct";
-import Changepass from "./pages/Inicio/Changepass";
+import Changepass from "./pages/Changepass";
 import Acrescimo from "./pages/Acrescimo";
 import Newadds from "./pages/Acrescimo/newAdds";
 import Configurar from "./pages/Configurar";
@@ -19,7 +19,7 @@ export default function Routes() {
         <Route path="/" exact component={Singin} />
         <Route path="/login" component={Login} />
         <Route path="/inicio/new" exact component={Newproduct} />
-        <Route path="/inicio/changepass" exact component={Changepass} />
+        <Route path="/changepass" exact component={Changepass} />
         <Route path="/inicio" component={Inicio} />
         <Route path="/acrescimo/new" exact component={Newadds} />
         <Route path="/acrescimo" component={Acrescimo} />

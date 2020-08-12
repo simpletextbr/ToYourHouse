@@ -37,7 +37,7 @@ export default function Header() {
             src={
               logo.logo == null
                 ? NOLOGO
-                : `https://api-tyh.herokuapp.com/file/logo/${logo.logo}`
+                : `https://api-tyh-com-br.umbler.net/file/logo/${logo.logo}`
             }
             alt="Logo da Empresa"
           />

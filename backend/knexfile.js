@@ -1,4 +1,4 @@
-// Update with your config settings.
+const knex = require("knex");
 
 module.exports = {
   development: {
@@ -12,35 +12,19 @@ module.exports = {
     useNullAsDefault: true,
   },
 
-  staging: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
-    },
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: "knex_migrations",
-    },
-  },
-
   production: {
-    client: "postgresql",
+    client: "mysql",
     connection: {
-      database: "TYH",
-      user: "wesley",
-      password: "TYH1415",
-    },
-    pool: {
-      min: 2,
-      max: 10,
+      host: "mysql669.umbler.com",
+      port: "41890",
+      database: "tyhdb",
+      user: "tyhwesley",
+      password: "herlim437546",
     },
     migrations: {
-      tableName: "knex_migrations",
+      directory: "./src/database/migrations",
+      tableName: "tyhdb",
     },
+    useNullAsDefault: true,
   },
 };

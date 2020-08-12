@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import api from "../../services/api";
 
 import Header from "../Utils/Header";
+import Footer from "../Utils/Footer";
 import {
   FiTrash2,
   FiCheckCircle,
@@ -19,6 +20,9 @@ export default function Configurar() {
   //Pagamentos
   const [payments, setPayments] = useState([]);
   const [payTitle, setPayTitle] = useState("");
+
+  //Status
+  const [status, setStatus] = useState("");
 
   //Customizacao
   const [custom, setCustom] = useState([]);
@@ -63,6 +67,21 @@ export default function Configurar() {
       alert(
         "Não foi possivel deletar seu metodo de pagamento, tente novamente"
       );
+    }
+  }
+
+  async function updateStatus() {
+    const data = {
+      status,
+    };
+    try {
+      await api.put("/config/status", data, {
+        headers: {
+          Authorization: enterprise_id,
+        },
+      });
+    } catch (error) {
+      alert("Não foi possivel atualizar o seu status do app, tente novamente");
     }
   }
 
@@ -184,6 +203,47 @@ export default function Configurar() {
               </div>
             ) : null}
           </div>
+          <div className="Status">
+            <p className="title">Status de Funcionamento</p>
+            <form onSubmit={updateStatus}>
+              <select
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option value="-1">Selecione seu status atual</option>
+                <option value="0">Fechado</option>
+                <option value="1">Tempo de entrega 10 - 20 min</option>
+                <option value="2">Tempo de entrega 20 - 30 min</option>
+                <option value="3">Tempo de entrega 30 - 40 min</option>
+                <option value="4">Tempo de entrega 40 - 50 min</option>
+                <option value="5">Tempo de entrega 50 - 60 min</option>
+                <option value="6">Tempo de entrega + de 1Hr</option>
+              </select>
+              <p className="Dados">
+                Seu Status atual é:
+                {enterprises.map((enterprise) =>
+                  enterprise.status === 0
+                    ? " Fechado"
+                    : enterprise.status === 1
+                    ? " Tempo de entrega 10 - 20 min"
+                    : enterprise.status === 2
+                    ? " Tempo de entrega 20 - 30 min"
+                    : enterprise.status === 3
+                    ? " Tempo de entrega 30 - 40 min"
+                    : enterprise.status === 4
+                    ? " Tempo de entrega 40 - 50 min"
+                    : enterprise.status === 5
+                    ? " Tempo de entrega 50 - 60 min"
+                    : enterprise.status === 6
+                    ? " Tempo de entrega + de 1Hr"
+                    : " Sem Status Definido"
+                )}
+              </p>
+              <button className="btn" type="submit">
+                Mudar Status
+              </button>
+            </form>
+          </div>
           <div className="custom">
             <p className="title">Personalização</p>
             <form onSubmit={updateColor}>
@@ -196,7 +256,7 @@ export default function Configurar() {
                   <li className="List-colors">
                     <p className="atual">
                       Atual
-                      <p
+                      <i
                         className="seletor"
                         style={{
                           backgroundColor: custom.map((bg) => bg.backgound_app),
@@ -204,7 +264,7 @@ export default function Configurar() {
                           height: 28,
                           borderRadius: 6,
                         }}
-                      ></p>
+                      ></i>
                     </p>
                     <p className="seletor">
                       Seletor
@@ -226,7 +286,7 @@ export default function Configurar() {
                   <li className="List-colors">
                     <p className="atual">
                       Atual
-                      <p
+                      <i
                         className="seletor"
                         style={{
                           backgroundColor: custom.map((bt) => bt.button_app),
@@ -234,7 +294,7 @@ export default function Configurar() {
                           height: 28,
                           borderRadius: 6,
                         }}
-                      ></p>{" "}
+                      ></i>{" "}
                     </p>
                     <p className="seletor">
                       Seletor
@@ -264,7 +324,7 @@ export default function Configurar() {
                     ) : (
                       <img
                         className="logo"
-                        src={`https://api-tyh.herokuapp.com/file/logo/${enterprise.logo}`}
+                        src={`http://api-tyh-com-br.umbler.net/file/logo/${enterprise.logo}`}
                         alt="Logo da Sua Empresa"
                       />
                     )}
@@ -280,7 +340,7 @@ export default function Configurar() {
                     ) : (
                       <img
                         className="cardapio"
-                        src={`https://api-tyh.herokuapp.com/file/cardapio/${enterprise.cardapio}`}
+                        src={`http://api-tyh-com-br.umbler.net/file/cardapio/${enterprise.cardapio}`}
                         alt="Cardapio da Sua Empresa"
                       />
                     )}
@@ -291,9 +351,7 @@ export default function Configurar() {
           </div>
         </section>
       </main>
-      <footer>
-        <p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

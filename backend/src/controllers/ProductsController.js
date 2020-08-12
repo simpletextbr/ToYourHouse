@@ -16,15 +16,17 @@ module.exports = {
 
   async create_Products(req, res) {
     const enterprise_id = req.headers.authorization;
-    const cat_id = req.headers.cat_authorization;
+    const { cat_id } = req.params;
+
     const verifyId = await connection("enterprise")
       .select("id")
       .where({ id: enterprise_id });
-    const verityCat = await connection("categoryProducts")
+
+    const verifyCat = await connection("categoryProducts")
       .select("id")
       .where({ id: cat_id });
 
-    if (!verifyId[0] || !verityCat[0]) {
+    if (!verifyId[0] || !verifyCat[0]) {
       return res.status(401).json({ error: "Not Authorized" });
     } else {
       const { name, Ing, price, adds } = req.body;

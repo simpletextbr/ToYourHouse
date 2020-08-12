@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import api from "../../../services/api";
 
 import Header from "../../Utils/Header";
+import Footer from "../../Utils/Footer";
 import {
   FiCheckCircle,
   FiChevronRight,
@@ -67,7 +68,7 @@ export default function Uploadcardapio() {
                 ) : (
                   <img
                     className="cardapio"
-                    src={`https://api-tyh.herokuapp.com/file/cardapio/${enterprise.cardapio}`}
+                    src={`http://api-tyh-com-br.umbler.net/file/cardapio/${enterprise.cardapio}`}
                     alt="Cardapio da Sua Empresa"
                   />
                 )}
@@ -86,9 +87,7 @@ export default function Uploadcardapio() {
           </label>
         </form>
       </main>
-      <footer>
-        <p>2020@ Todos Os Direitos Reservatos. Developed by PlanUnity Inc.</p>
-      </footer>
+      <Footer />
     </>
   );
 }
