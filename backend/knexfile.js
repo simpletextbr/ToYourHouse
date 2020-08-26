@@ -12,14 +12,15 @@ module.exports = {
     useNullAsDefault: true,
   },
 
+  //Production on Umbler.
   production: {
     client: "mysql",
     connection: {
       host: "mysql669.umbler.com",
       port: "41890",
-      database: "tyhdb",
-      user: "tyhwesley",
-      password: "herlim437546",
+      database: "Your_Databese",
+      user: "Your_User",
+      password: "Your_Pass",
     },
     migrations: {
       directory: "./src/database/migrations",
