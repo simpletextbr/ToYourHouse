@@ -99,3 +99,7 @@ mail: simpletextbr@gmail.com
 Connect with me at [LinkedIn](https://www.linkedin.com/in/wesley-pra%C3%A7a-908bb1a9/)
 
 Thank you!
+
+# License
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/simpletextbr/ToYourHouse/blob/master/LICENSE.MD) file for details.
